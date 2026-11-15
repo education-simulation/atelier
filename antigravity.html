@@ -12,10 +12,11 @@ body { margin:0; padding:22px 14px 40px; font-family:'Nunito',system-ui,-apple-s
 .barre i { width:11px; height:11px; border-radius:50%; background:#3f3f46; }
 .barre b { margin-left:8px; color:#fff; font-size:14px; }
 .barre a { margin-left:auto; color:#a1a1aa; font-size:13px; text-decoration:none; }
+.corps > * { min-width:0; }
 .corps { padding:20px 22px 24px; display:grid; gap:16px; font-size:17px; line-height:1.5; }
 h1 { margin:0; font:800 clamp(22px,3.4vw,30px)/1.2 'Outfit',system-ui,sans-serif; color:#fff; }
 ol.etapes { list-style:none; margin:0; padding:0; display:grid; gap:14px; counter-reset:n; }
-ol.etapes > li { counter-increment:n; border:2px solid #f59e0b; background:#1f1a10; border-radius:14px; padding:14px 16px 14px 60px; position:relative; }
+ol.etapes > li { min-width:0; counter-increment:n; border:2px solid #f59e0b; background:#1f1a10; border-radius:14px; padding:14px 16px 14px 60px; position:relative; }
 ol.etapes > li::before { content:counter(n); position:absolute; left:14px; top:14px; width:32px; height:32px; border-radius:50%; background:#f59e0b; color:#1f1300; font-weight:800; display:grid; place-items:center; }
 b.cle { color:#fde68a; }
 .phrase { display:flex; gap:10px; align-items:center; flex-wrap:wrap; margin-top:8px; }
@@ -23,8 +24,8 @@ b.cle { color:#fde68a; }
 .copier { all:unset; cursor:pointer; background:#16a34a; color:#fff; font-weight:800; border-radius:10px; padding:10px 16px; }
 
 /* L'animation : la fenêtre « Allow » d'Antigravity, on choisit 3 puis Submit (8 s, en boucle) */
-.cadre { margin-top:12px; overflow:hidden; }
-.scene { position:relative; width:720px; height:330px; background:#0b0b0f; border:1px solid #27272a; border-radius:12px; transform-origin:0 0; }
+.cadre { position:relative; margin-top:12px; overflow:hidden; width:100%; min-width:0; }
+.scene { position:absolute; left:0; top:0; width:720px; height:330px; background:#0b0b0f; border:1px solid #27272a; border-radius:12px; transform-origin:0 0; }
 .dlg { position:absolute; left:20px; top:20px; width:680px; height:280px; box-sizing:border-box; background:#16161b; border:1px solid #3f3f46; border-radius:18px; padding:14px 16px; font-size:15px; color:#e4e4e7; animation:a-dlg 8s infinite; }
 .dlg .t { font-weight:800; color:#fff; font-size:16px; }
 .dlg .cmd { margin:10px 0 8px; background:#0b0b0f; border-radius:8px; padding:6px 10px; font:13px Menlo,Consolas,monospace; color:#fff; }
