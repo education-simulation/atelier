@@ -165,3 +165,14 @@ body:has(.bande:not([hidden])) { padding-bottom:120px; }
 .allow-rejouer { all:unset; cursor:pointer; display:inline-flex; align-items:center; gap:8px; background:#16161b; color:#fde68a; border:2px solid #f59e0b; border-radius:12px; padding:10px 16px; font-weight:800; font-size:15px; }
 .allow-rejouer:hover { background:#2a2110; }
 .allow-rejouer[hidden] { display:none; }
+
+/* Les deux parties d'un prompt : ① créer (orange) et ② voir (bleu) */
+.bloc-partie { display:grid; gap:10px; border-radius:16px; padding:14px 16px; }
+.bloc-partie > p { margin:0; }
+.bloc-partie .partie { border-top:none; padding-top:0; margin:0; display:flex; flex-wrap:wrap; align-items:baseline; gap:10px; }
+.bloc-partie .partie small { font:700 14px 'Nunito',system-ui,sans-serif; }
+.bloc-partie.creer { background:#1f1a10; border:2px solid #f59e0b; }
+.bloc-partie.creer .partie { color:#fde68a; } .bloc-partie.creer .partie small { color:#d6b768; }
+.bloc-partie.voir { background:#0e1a2f; border:2px solid #3b82f6; }
+.bloc-partie.voir .partie { color:#93c5fd; } .bloc-partie.voir .partie small { color:#7aa7e0; }
+.bloc-partie.voir b.cle { color:#bfdbfe; }
