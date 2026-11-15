@@ -58,3 +58,9 @@ button.tuile { cursor:pointer; }
 body[data-os="mac"] .os-mac, body[data-os="win"] .os-win, body[data-os="linux"] .os-linux { display:inline; }
 .lien-os { all:unset; cursor:pointer; color:#a1a1aa; text-decoration:underline; text-underline-offset:3px; }
 .lien-os[aria-pressed="true"] { color:#fde68a; font-weight:800; text-decoration:none; }
+
+/* Fil d'Ariane */
+.ariane { display:flex; flex-wrap:wrap; align-items:center; gap:6px; padding:8px 22px; background:#111114; border-bottom:1px solid #27272a; font-size:14px; color:#71717a; }
+.ariane a { color:#a1a1aa; text-decoration:none; } .ariane a:hover { color:#fde68a; text-decoration:underline; }
+.ariane span[aria-current] { color:#fde68a; font-weight:800; }
+.ariane i.sep { font-style:normal; color:#52525b; }

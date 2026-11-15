@@ -4,11 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Atelier · Quel outil pour mes simulations ?</title>
-<link rel="stylesheet" href="style.css?v=4">
+<link rel="stylesheet" href="style.css?v=5">
 </head>
 <body>
 <div class="fen">
   <div class="barre"><i></i><i></i><i></i><b>Atelier · atelier.rasf.fr</b></div>
+  <nav class="ariane" aria-label="Fil d'Ariane"><a href="./" id="ariane-accueil">🏠 Accueil</a><span id="ariane-ia"></span></nav>
   <div class="corps">
     <h1>Quel outil pour construire des simulations pour mes cours ?</h1>
     <p class="question">Pour mes simulations, je veux commencer avec :</p>
@@ -56,7 +57,9 @@
 <script>
 // Une IA à la fois ; le choix reste dans l'adresse (#antigravity…) pour survivre au rechargement
 const ias = ["antigravity", "chatgpt", "claude", "lechat"];
+const noms = { antigravity:"Antigravity", chatgpt:"ChatGPT", claude:"Claude", lechat:"Le Chat" };
 const montrer = (id) => {
+  document.getElementById("ariane-ia").innerHTML = '<i class="sep"> › </i><span aria-current="page">' + noms[id] + '</span>';
   document.querySelectorAll("section.info").forEach((s) => { s.hidden = s.id !== id; });
   document.querySelectorAll("[data-ia]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.ia === id)));
 };

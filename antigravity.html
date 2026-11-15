@@ -4,11 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Atelier · Antigravity</title>
-<link rel="stylesheet" href="style.css?v=4">
+<link rel="stylesheet" href="style.css?v=5">
 </head>
 <body>
 <div class="fen">
   <div class="barre"><i></i><i></i><i></i><b>Atelier · Antigravity</b><a href="./">‹ Changer d'IA</a></div>
+  <nav class="ariane" aria-label="Fil d'Ariane"><a href="./">🏠 Accueil</a><i class="sep">›</i><span aria-current="page" id="ariane-ag">Antigravity</span><span id="ariane-choix"></span></nav>
   <div class="corps">
     <h1><img src="logos/antigravity.png" alt="" style="width:34px;height:34px;vertical-align:-6px"> Je commence avec Antigravity</h1>
     <p class="question">Où en es-tu ?</p>
@@ -48,7 +49,10 @@
 </div>
 <script>
 // Un choix à la fois ; le choix reste dans l'adresse (#installer, #configurer) pour survivre au rechargement
+const etapes = { installer:"Installer", configurer:"Configurer" };
 const montrer = (id) => {
+  document.getElementById("ariane-ag").outerHTML = '<a href="antigravity.html" id="ariane-ag">Antigravity</a>';
+  document.getElementById("ariane-choix").innerHTML = '<i class="sep"> › </i><span aria-current="page">' + etapes[id] + '</span>';
   document.querySelectorAll("section[id]").forEach((s) => { s.hidden = s.id !== id; });
   document.querySelectorAll("[data-choix]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.choix === id)));
 };
