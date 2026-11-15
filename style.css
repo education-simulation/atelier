@@ -64,3 +64,4 @@ body[data-os="mac"] .os-mac, body[data-os="win"] .os-win, body[data-os="linux"] 
 .ariane a { color:#a1a1aa; text-decoration:none; } .ariane a:hover { color:#fde68a; text-decoration:underline; }
 .ariane span[aria-current] { color:#fde68a; font-weight:800; }
 .ariane i.sep { font-style:normal; color:#52525b; }
+.note a.mail { color:#fde68a; font-weight:800; }
