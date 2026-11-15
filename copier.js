@@ -62,8 +62,27 @@ cochables.forEach((b, i) => {
   try { if (localStorage.getItem("atelier.coche." + location.pathname + "." + i) === "1") cocher(b, false); } catch {}
 });
 
+// Le bandeau dit « Reste dans la même conversation » dès qu'une simulation a déjà été lancée :
+// la page note dans le navigateur chaque prompt de création copié (data-sim="titrage"…).
+// Les autres messages (suite du prompt détaillé, On modifie) vont toujours dans la même conversation.
+const bandeTitre = bande && bande.querySelector("b"), bandeOu = bande && bande.querySelector("em");
+const bandeDepart = bande && [bandeTitre.textContent, bandeOu.textContent];
+function texteBande(b) {
+  if (!bande) return;
+  let lancees = [];
+  try { lancees = JSON.parse(localStorage.getItem("atelier.simulations") || "[]"); } catch {}
+  const suite = !b.dataset.sim || lancees.length > 0;
+  if (b.dataset.sim && !lancees.includes(b.dataset.sim)) {
+    lancees.push(b.dataset.sim);
+    try { localStorage.setItem("atelier.simulations", JSON.stringify(lancees)); } catch {}
+  }
+  bandeTitre.textContent = suite ? "Reste dans la même conversation" : bandeDepart[0];
+  bandeOu.textContent = suite ? "ne clique pas sur « New Conversation » : colle à la suite, dans la zone de message en bas à gauche" : bandeDepart[1];
+}
+
 document.querySelectorAll("button.copier").forEach((b) => b.addEventListener("click", async () => {
   const c = b.previousElementSibling;
+  if (!b.dataset.ouvrir) texteBande(b);
   if (!b.dataset.texte) b.dataset.texte = b.textContent;
   // D'abord ce qu'on voit (bandeau 10 s, animation), puis la copie
   // Puis, quand le bandeau disparaît (10 s, ou fermé à la main), l'animation « Allow write access »
