@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Atelier · Antigravity</title>
-<link rel="stylesheet" href="style.css?v=11">
+<link rel="stylesheet" href="style.css?v=12">
 </head>
 <body>
 <div class="fen">
@@ -42,8 +42,7 @@
 
     <section id="configurer" hidden>
       <ol class="etapes">
-        <li>Ouvre <b class="cle">Antigravity</b>, puis clique sur <b class="cle">« + New Conversation »</b>, en haut à gauche.</li>
-        <li>Copie ce message, colle-le dans la zone de message, puis appuie sur <b class="cle">Entrée</b> :
+        <li>Clique sur <b class="cle">« 📋 Copier et ouvrir Antigravity »</b> : le message est copié et Antigravity s'ouvre. Si ton navigateur demande d'ouvrir Antigravity, accepte.
           <div class="phrase"><code>Sans rien lancer, réponds seulement par cet encadré d'alerte, rien d'autre :
 
 &gt; [!IMPORTANT]
@@ -72,8 +71,10 @@ Si je réponds 1 et que le modèle est bon, réponds seulement par cet encadré 
 Si je réponds 2, réponds par cet encadré, puis repose la question :
 
 &gt; [!WARNING]
-&gt; ⚠️ **Le mode n'est pas « Auto ».** Refais l'étape 3 de la page de configuration : https://atelier.rasf.fr/configuration.html</code><button type="button" class="copier">📋 Copier</button></div>
+&gt; ⚠️ **Le mode n'est pas « Auto ».** Refais l'étape 3 de la page de configuration : https://atelier.rasf.fr/configuration.html</code><button type="button" class="copier" data-ouvrir="antigravity://">📋 Copier et ouvrir Antigravity</button></div>
+          <p class="note" id="ouvrir-retour" hidden></p>
         </li>
+        <li>Dans Antigravity, clique sur <b class="cle">« + New Conversation »</b>, en haut à gauche, colle le message (<b class="cle os os-mac">Cmd + V</b><b class="cle os os-win">Ctrl + V</b><b class="cle os os-linux">Ctrl + V</b>), puis appuie sur <b class="cle">Entrée</b>.</li>
         <li>Antigravity te répond avec un lien : <b class="cle">clique dessus</b>. La page de configuration s'ouvre et te guide.</li>
         <li>À la fin de la page de configuration, écris <b class="cle">continue</b> dans Antigravity : il vérifie ta configuration (le modèle et le mode « Auto »).</li>
       </ol>
@@ -106,11 +107,26 @@ document.querySelectorAll(".lien-os").forEach((b) => b.addEventListener("click",
 const depart = location.hash.slice(1);
 if (depart === "installer" || depart === "configurer") montrer(depart);
 document.querySelectorAll("button.copier").forEach((b) => b.addEventListener("click", async () => {
-  const c = b.previousElementSibling;
+  const c = b.previousElementSibling, texte = b.textContent;
   try { await navigator.clipboard.writeText(c.textContent); }
   catch { const r = document.createRange(); r.selectNodeContents(c); getSelection().removeAllRanges(); getSelection().addRange(r); document.execCommand("copy"); }
   b.textContent = "✅ Copié";
-  setTimeout(() => { b.textContent = "📋 Copier"; }, 2500);
+  setTimeout(() => { b.textContent = texte; }, 2500);
+  // « Copier et ouvrir » : ouvre l'application Antigravity (adresse antigravity://), puis vérifie qu'elle s'est ouverte
+  if (b.dataset.ouvrir) {
+    const retour = document.getElementById("ouvrir-retour");
+    let ouvert = false;
+    const parti = () => { ouvert = true; };
+    window.addEventListener("blur", parti, { once: true });
+    setTimeout(() => { location.href = b.dataset.ouvrir; }, 300);
+    setTimeout(() => {
+      window.removeEventListener("blur", parti);
+      if (!ouvert && document.hasFocus()) {
+        retour.hidden = false;
+        retour.innerHTML = "⚠️ Antigravity ne s'est pas ouvert ? Ouvre-le toi-même : le message est déjà copié. Pas encore installé ? Clique sur <b class=\"cle\">« 1 · Installer Antigravity »</b>, plus haut.";
+      }
+    }, 2500);
+  }
 }));
 </script>
 </body>
