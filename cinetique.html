@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Atelier · Cinétique chimique</title>
+<link rel="stylesheet" href="style.css?v=31">
+</head>
+<body>
+<div class="fen">
+  <header class="haut">
+  <div class="barre"><i></i><i></i><i></i><b>Atelier · Cinétique chimique</b><a href="ateliers.html#page">‹ Ateliers</a></div>
+  <nav class="ariane" aria-label="Fil d'Ariane"><a href="./">🏠 Accueil</a><i class="sep">›</i><a href="antigravity.html">Antigravity</a><i class="sep">›</i><a href="ateliers.html">Ateliers</a><i class="sep">›</i><a href="ateliers.html#page">Simple page de simulation</a><i class="sep">›</i><span aria-current="page">Cinétique</span></nav>
+    <div class="titre-haut"><h1>⏱️ Cinétique : les profils réactionnels <span class="domaine-titre">Synthèse</span></h1></div>
+  </header>
+  <div class="corps">
+    <div class="aides">
+      <a class="aide-bouton" href="antigravity.html#configurer">⚙️ Configurer Antigravity</a>
+      <a class="aide-bouton" href="decouvrir.html?mode=demo&amp;v=5">🧭 Découvrir Antigravity</a>
+    </div>
+    <div class="onglets" role="tablist">
+      <button type="button" role="tab" data-onglet="simple">✏️ Prompt simple</button>
+      <button type="button" role="tab" data-onglet="modifier">🛠️ On modifie</button>
+      <button type="button" role="tab" data-onglet="detaille">📝 Prompt détaillé</button>
+      <button type="button" role="tab" data-onglet="verifier">⚠️ À vérifier</button>
+    </div>
+
+    <section class="panneau" data-panneau="simple">
+      <div class="bloc-partie creer">
+      <h3 class="partie">① Créer la simulation <small>le code HTML s'écrit dans Antigravity</small></h3>
+      <p>Dans la conversation de configuration d'Antigravity, clique sur <b class="cle">📋 Copier</b>, colle le message dans la zone de message, en bas à gauche, puis appuie sur <b class="cle">Entrée</b>.</p>
+      <div class="phrase"><code>Fais-moi une simulation des profils réactionnels : le graphique de l'énergie en fonction de la coordonnée de réaction, avec les réactifs, l'état de transition et les produits. Je dois pouvoir régler l'énergie d'activation Ea et l'enthalpie de réaction ΔrH (réaction exothermique ou endothermique), choisir un mécanisme en une ou deux étapes (avec un intermédiaire réactionnel), et ajouter un catalyseur qui abaisse la barrière. Affiche les flèches Ea et ΔrH sur le graphique, et une phrase qui dit si la réaction est exothermique ou endothermique, rapide ou lente.</code><button type="button" class="copier" data-allow data-sim="cinetique">📋 Copier</button></div>
+          <div class="allow-zone" hidden></div>
+      </div>
+      <div class="bloc-partie attendre">
+      <h3 class="partie">⏳ Patiente <small>pendant qu'Antigravity écrit le code</small></h3>
+      <p>Cela peut prendre <b class="cle">quelques minutes</b>. S'il te demande une autorisation (« Allow… ? »), choisis <b class="cle">3 · Yes, and always allow</b>, puis <b class="cle">Submit</b>.</p>
+      <p>C'est prêt quand il te répond par l'encadré vert <b class="cle">« ✅ Ta simulation est prête »</b> avec <b class="cle">① ton code</b> (un lien qui l'ouvre dans Antigravity), suivi juste en dessous de <b class="cle">② le rendu</b> (comment le voir dans ton navigateur).</p>
+      <div><button type="button" class="pret">✅ Ma simulation est prête</button></div>
+      </div>
+      <div class="bloc-partie voir" hidden>
+      <h3 class="partie">② Discutons ensemble des résultats obtenus</h3>
+      <div><button type="button" class="aller-onglet" data-aller="modifier">🛠️ On modifie la simulation ›</button></div>
+      </div>
+    </section>
+
+    <section class="panneau" data-panneau="detaille" hidden>
+      <div class="bloc-partie creer">
+      <h3 class="partie">① Créer la simulation <small>le code HTML s'écrit dans Antigravity</small></h3>
+      <p>Les trois messages l'un après l'autre, <b class="cle">dans la même conversation</b> : clique sur <b class="cle">📋 Copier</b>, colle, puis <b class="cle">Entrée</b>. Attends la fin de chaque réponse, et ouvre la page pour voir le résultat avant de passer au message suivant.</p>
+      <p class="etiquette-prompt">① Le profil d'une réaction en une étape, et la loi d'Arrhenius</p>
+      <div class="phrase"><code>Bonjour, je souhaiterais que tu m'aides à concevoir une simulation en HTML (donc un fichier texte avec l'extension .html, et pas un fichier Python) que je puisse facilement partager à mes collègues.
+
+Cette simulation doit tracer le profil réactionnel d'une réaction en une étape : l'énergie E en fonction de la coordonnée de réaction.
+
+On doit pouvoir entrer l'énergie d'activation Ea (en kJ/mol) et l'enthalpie de réaction ΔrH (en kJ/mol). Le niveau des réactifs sert de référence (E = 0). Le sommet de la courbe est l'état de transition (ET), à l'énergie Ea ; le niveau des produits est à ΔrH.
+Si ΔrH &lt; 0, la réaction est exothermique (les produits sont plus bas que les réactifs) ; si ΔrH &gt; 0, elle est endothermique (les produits sont plus hauts). Pour une réaction endothermique, Ea doit rester supérieure à ΔrH : le programme doit l'empêcher.
+
+La courbe doit être lisse : un plateau pour les réactifs, une bosse pour l'état de transition, un plateau pour les produits. Sur le graphique, affiche une flèche verticale Ea (des réactifs jusqu'au sommet), une flèche ΔrH (des réactifs jusqu'aux produits), et les étiquettes « réactifs », « ET » et « produits ».
+
+J'aimerais aussi relier le profil à la vitesse, avec la loi d'Arrhenius : k = A·exp(−Ea/(R·T)), avec R = 8,314 J/(mol·K), Ea convertie en J/mol et T en kelvins. On doit pouvoir régler la température T (en °C, convertie en K) et le facteur A. Affiche k, et le temps de demi-réaction t1/2 = ln 2 / k (pour une réaction d'ordre 1).
+
+Ajoute deux exemples prêts à l'emploi : 2 H2 + O2 → 2 H2O (ΔrH = −241 kJ/mol), et la comparaison d'une réaction rapide (Ea = 20 kJ/mol) et d'une réaction lente (Ea = 100 kJ/mol). Tout doit se mettre à jour automatiquement. Merci</code><button type="button" class="copier" data-allow data-sim="cinetique">📋 Copier</button></div>
+          <div class="allow-zone" hidden></div>
+      <p class="etiquette-prompt">② Plusieurs étapes, catalyse, produit cinétique ou thermodynamique</p>
+      <div class="phrase"><code>Merci. Tu peux maintenant générer un nouveau code, similaire au précédent, pour les mécanismes en plusieurs étapes et la catalyse.
+
+1. Mécanisme en deux étapes : le profil a deux états de transition ET1 et ET2, séparés par un creux, l'intermédiaire réactionnel (IR). On règle l'énergie de ET1, de l'IR, de ET2 et des produits. Affiche Ea1 (des réactifs à ET1) et Ea2 (de l'IR à ET2), et indique l'étape cinétiquement déterminante : celle dont l'état de transition est le plus haut. Exemple prêt à l'emploi : (CH3)3C–Cl + HO⁻ → (CH3)3C–OH + Cl⁻, en deux étapes, avec le carbocation comme intermédiaire.
+
+2. Catalyse : un bouton « avec catalyseur » superpose, dans une autre couleur, le profil catalysé. Le catalyseur ouvre un autre chemin, souvent en deux étapes avec un intermédiaire, dont les barrières sont plus basses. Les niveaux des réactifs et des produits ne changent pas : ΔrH reste le même. Affiche k avec et sans catalyseur (loi d'Arrhenius, comme avant) et le rapport des deux. Exemple prêt à l'emploi : la déshydratation du cyclohexanol en cyclohexène, catalysée par H⁺.
+
+3. Produit cinétique et produit thermodynamique : à partir d'un même intermédiaire, deux chemins mènent à deux produits. Le produit [2] a la barrière la plus basse (produit cinétique) ; le produit [1] est le plus bas en énergie, donc le plus stable (produit thermodynamique). Avec un curseur de température, affiche les proportions des deux produits : à basse température, elles suivent le rapport des constantes de vitesse (le produit cinétique est majoritaire) ; à haute température, quand les réactions deviennent renversables, elles suivent la stabilité (le produit thermodynamique est majoritaire). Exemple : l'hydrolyse du 1-chlorobut-2-ène (à −78 °C : 5 % de [1] et 95 % de [2] ; à 100 °C : 90 % de [1] et 10 % de [2]).
+
+Le code doit être similaire au précédent : mêmes flèches, mêmes étiquettes, même graphique… etc. !</code><button type="button" class="copier" data-allow>📋 Copier</button></div>
+          <div class="allow-zone" hidden></div>
+      <p class="etiquette-prompt">③ L'exploitation de mesures (fichier Excel ou CSV : k à différentes températures)</p>
+      <div class="phrase"><code>Merci. Parfait pour comprendre les profils réactionnels ! Maintenant, j'aimerais que tu ajoutes un autre onglet où l'on puisse charger un fichier de type Excel ou CSV avec des mesures de la constante de vitesse k à différentes températures T, et que la page reconnaisse la colonne de la température (en K ou en °C) et celle de k, puis trace ln k en fonction de 1/T, avec la droite de régression et son équation. Et qu'on puisse directement, dans cet onglet, faire l'exploitation : déduire Ea de la pente (pente = −Ea/R) et A de l'ordonnée à l'origine, puis dessiner le profil réactionnel avec cette Ea ?
+
+Exemple pour tester (CH3I + C2H5ONa → CH3OC2H5 + NaI) : T = 283, 293, 303 et 323 K ; k = 5,56 ; 18 ; 51 et 376. On doit trouver une pente d'environ −10 462 K, donc Ea ≈ 87 kJ/mol.</code><button type="button" class="copier" data-allow>📋 Copier</button></div>
+          <div class="allow-zone" hidden></div>
+      <p class="note">💡 Sois patient : chaque réponse peut prendre plusieurs minutes.</p>
+      </div>
+      <div class="bloc-partie attendre">
+      <h3 class="partie">⏳ Patiente <small>pendant qu'Antigravity écrit le code</small></h3>
+      <p>Cela peut prendre <b class="cle">quelques minutes</b>. S'il te demande une autorisation (« Allow… ? »), choisis <b class="cle">3 · Yes, and always allow</b>, puis <b class="cle">Submit</b>.</p>
+      <p>C'est prêt quand il te répond par l'encadré vert <b class="cle">« ✅ Ta simulation est prête »</b> avec <b class="cle">① ton code</b> (un lien qui l'ouvre dans Antigravity), suivi juste en dessous de <b class="cle">② le rendu</b> (comment le voir dans ton navigateur).</p>
+      <div><button type="button" class="pret">✅ Ma simulation est prête</button></div>
+      </div>
+      <div class="bloc-partie voir" hidden>
+      <h3 class="partie">② Discutons ensemble des résultats obtenus</h3>
+      <div><button type="button" class="aller-onglet" data-aller="modifier">🛠️ On modifie la simulation ›</button></div>
+      </div>
+    </section>
+
+    <section class="panneau" data-panneau="modifier" hidden>
+      <p>Demande des changements à l'IA, dans la même conversation. Quelques idées, à copier ou à écrire avec tes mots :</p>
+      <ul class="idees">
+        <li><div class="phrase"><code>Ajoute une animation : une bille qui roule sur le profil et ne franchit l'état de transition que si l'énergie apportée (réglable avec un curseur) dépasse Ea.</code><button type="button" class="copier" data-coche>📋 Copier</button></div></li>
+        <li><div class="phrase"><code>Ajoute l'exemple du cours en une étape : CH3I + C2H5ONa → CH3OC2H5 + NaI, avec Ea = 87 kJ/mol, et affiche k à 20 °C et à 50 °C.</code><button type="button" class="copier" data-coche>📋 Copier</button></div></li>
+        <li><div class="phrase"><code>Ajoute un curseur de température et un graphique qui montre comment k varie avec T, pour Ea = 20 kJ/mol et pour Ea = 100 kJ/mol, sur le même graphique.</code><button type="button" class="copier" data-coche>📋 Copier</button></div></li>
+        <li><div class="phrase"><code>Ajoute la courbe de la concentration du réactif en fonction du temps, C = C0·exp(−k·t), et place le temps de demi-réaction sur la courbe.</code><button type="button" class="copier" data-coche>📋 Copier</button></div></li>
+        <li><div class="phrase"><code>Ajoute un bouton pour télécharger le graphique en image.</code><button type="button" class="copier" data-coche>📋 Copier</button></div></li>
+      </ul>
+      <p class="note">💡 Après chaque modification, <b class="cle">recharge la page</b> dans ton navigateur (<b class="os os-mac">Cmd + R</b><b class="os os-win">F5</b><b class="os os-linux">F5</b>).</p>
+    </section>
+
+    <section class="panneau" data-panneau="verifier" hidden>
+      <p>L'IA se trompe parfois en chimie. Contrôle au moins ces points avant d'utiliser ta simulation en cours :</p>
+      <div class="verifier">
+          <p>⚠️ <b>Les erreurs fréquentes de l'IA</b></p>
+          <ul>
+            <li><b>L'énergie d'activation</b> se mesure des réactifs jusqu'au sommet de l'état de transition : ni depuis zéro, ni depuis les produits.</li>
+            <li><b>Le signe de ΔrH</b> : ΔrH = E(produits) − E(réactifs) ; négative si la réaction est exothermique (produits plus bas), positive si elle est endothermique.</li>
+            <li><b>Une réaction endothermique</b> : le sommet reste au-dessus des produits (Ea &gt; ΔrH).</li>
+            <li><b>Le catalyseur</b> abaisse la barrière (souvent en plusieurs étapes, avec un intermédiaire) mais ne change ni les réactifs, ni les produits, ni ΔrH.</li>
+            <li><b>L'intermédiaire réactionnel</b> est un creux entre deux états de transition ; l'étape cinétiquement déterminante est celle dont l'état de transition est le plus haut.</li>
+            <li><b>La loi d'Arrhenius</b> : T en kelvins, Ea en J/mol (et non en kJ/mol), R = 8,314 J/(mol·K). Quand T augmente ou quand Ea diminue, k augmente.</li>
+            <li><b>Le temps de demi-réaction</b> t<sub>1/2</sub> = ln 2 / k ne vaut que pour une réaction d'ordre 1.</li>
+            <li><b>Produit cinétique et produit thermodynamique</b> : le cinétique a la plus petite Ea (majoritaire à basse température), le thermodynamique est le plus stable (majoritaire à haute température).</li>
+          </ul>
+          <p class="note">💡 Une erreur trouvée ? Décris-la à l'IA avec tes mots : « Avec le catalyseur, le niveau des produits ne doit pas changer, corrige le profil. »</p>
+        </div>
+    </section>
+  </div>
+</div>
+
+<template id="tpl-allow">
+  <p class="allow-titre">🔐 <b class="cle">Dans quelques instants</b>, une fenêtre en anglais va apparaître dans Antigravity, au-dessus de la zone de message : « Allow write access to this path? ». <b class="cle">À chaque fois</b>, choisis <b class="cle">3 · Yes, and always allow</b>, puis <b class="cle">Submit</b> :</p>
+  <div class="cadre-allow">
+    <div class="scene-allow" role="img" aria-label="La fenêtre « Allow write access to this path? » : on clique sur le choix 3, Yes, and always allow, puis sur Submit">
+      <div class="dlg">
+        <div class="t">📄 Allow write access to this path?</div>
+        <div class="cmd">/Users/…/Desktop/simulation-cinetique/simulation-cinetique.html</div>
+        <div class="opt o1"><i>1</i>Yes, allow this time</div>
+        <div class="opt"><i>2</i>Yes, and always allow in this conversation</div>
+        <div class="opt o3"><i>3</i>Yes, and always allow</div>
+        <div class="opt o4"><i>4</i>No <em>(tell the agent what to do instead)</em></div>
+        <span class="skip">Skip</span><span class="sub">Submit ↵</span>
+      </div>
+      <div class="bulle">👆 puis Submit</div>
+      <div class="ok">✅ Le fichier s'écrit</div>
+      <svg class="souris" viewBox="0 0 14 21" width="22" height="33" aria-hidden="true"><path d="M0 0 L0 17 L4.5 13 L8 20 L11 18.5 L7.5 12 L13 12 Z" fill="#fff" stroke="#000" stroke-width="1.3"/></svg>
+    </div>
+  </div>
+</template>
+
+<div class="bande" id="bande" role="note" hidden><span class="bfleche" aria-hidden="true">⬅</span>
+  <span><b>Colle le message dans Antigravity</b> <em>dans la zone de message, en bas à gauche</em><span class="quoi">👉 <span class="os os-mac">Cmd + V</span><span class="os os-win">Ctrl + V</span><span class="os os-linux">Ctrl + V</span>, puis Entrée.</span></span>
+  <button type="button" class="bande-x" aria-label="Fermer">×</button></div>
+<script src="copier.js?v=8"></script>
+<script>
+// Les onglets ; l'onglet ouvert reste dans l'adresse (#simple, #detaille…) pour survivre au rechargement
+const ongl = [...document.querySelectorAll("[data-onglet]")];
+function ouvrir(id) {
+  if (!ongl.some((b) => b.dataset.onglet === id)) id = "simple";
+  ongl.forEach((b) => b.setAttribute("aria-selected", String(b.dataset.onglet === id)));
+  document.querySelectorAll("[data-panneau]").forEach((p) => { p.hidden = p.dataset.panneau !== id; });
+  history.replaceState(null, "", "#" + id);
+}
+ongl.forEach((b) => b.addEventListener("click", () => ouvrir(b.dataset.onglet)));
+// « On modifie la simulation » : passe à l'onglet On modifie, en haut de page
+document.querySelectorAll("[data-aller]").forEach((b) => b.addEventListener("click", () => { ouvrir(b.dataset.aller); window.scrollTo({ top: 0, behavior: "smooth" }); }));
+ouvrir(location.hash.slice(1));
+// Les cadres sous « Créer » : rien avant la copie ; « Patiente » après Copier ; « Discutons… » après « Ma simulation est prête »
+// L'étape (vide, "attente", "pret") est gardée dans le navigateur pour survivre au rechargement
+function etat(panneau, etape) {
+  panneau.querySelector(".bloc-partie.attendre").hidden = etape !== "attente";
+  panneau.querySelector(".bloc-partie.voir").hidden = etape !== "pret";
+  try { localStorage.setItem("atelier.cinetique.etape." + panneau.dataset.panneau, etape); } catch {}
+}
+document.querySelectorAll("[data-panneau]").forEach((p) => {
+  if (!p.querySelector(".bloc-partie.attendre")) return;
+  p.querySelector("button.pret").addEventListener("click", () => { etat(p, "pret"); p.querySelector(".bloc-partie.voir").scrollIntoView({ behavior: "smooth", block: "nearest" }); });
+  p.querySelectorAll("button.copier").forEach((b) => b.addEventListener("click", () => etat(p, "attente")));   // un nouveau message : on patiente
+  let etape = ""; try { etape = localStorage.getItem("atelier.cinetique.etape." + p.dataset.panneau) || ""; } catch {}
+  etat(p, etape);
+});
+// Le système de l'ordinateur (Mac, Windows, Linux), comme sur la page Antigravity
+let os = null; try { os = localStorage.getItem("atelier.os"); } catch {}
+document.body.dataset.os = os || (/Windows/i.test(navigator.userAgent) ? "win" : /Mac/i.test(navigator.userAgent) ? "mac" : "linux");
+</script>
+</body>
+</html>
