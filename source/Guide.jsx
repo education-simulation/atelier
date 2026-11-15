@@ -481,6 +481,7 @@ function SchemaAntigravity({ actif, setActif, spot = false, zones = null, pastil
   return (
     <svg viewBox="0 0 760 430" role="img" aria-label="Schéma de la fenêtre d'Antigravity, avec ses parties numérotées" style={{ width: "100%", height: "auto", display: "block" }}>
       <rect x="0" y="0" width="760" height="430" rx="14" fill="#0b0b0f" />
+      <g id="g-base">
       {/* barre du haut */}
       <circle cx="18" cy="16" r="5" fill="#3f3f46" /><circle cx="34" cy="16" r="5" fill="#3f3f46" /><circle cx="50" cy="16" r="5" fill="#3f3f46" />
       <rect x="64" y="7" width="18" height="18" rx="3" fill="none" stroke="#a1a1aa" strokeWidth="1.6" /><line x1="70" y1="9" x2="70" y2="23" stroke="#a1a1aa" strokeWidth="1.6" />
@@ -520,15 +521,19 @@ function SchemaAntigravity({ actif, setActif, spot = false, zones = null, pastil
       <text x="360" y="401" fontSize="10.5" fill="#d4d4d8" style={t}>Auto   🎤</text>
       <circle cx="440" cy="397" r="10" fill="#fff" /><text x="440" y="401" fontSize="11" textAnchor="middle" fill="#0b0b0f" style={t}>↑</text>
       {/* volet de droite */}
-      <rect x="476" y="32" width="284" height="398" fill="#f1f5f9" />
+      <rect x="476" y="32" width="284" height="398" fill="#e9ecf2" />
       <rect x="476" y="32" width="284" height="26" fill="#1c1c22" />
-      <rect x="482" y="36" width="140" height="18" rx="5" fill="#3a3a44" /><text x="489" y="49" fontSize="9.5" fill="#fff" style={t}>metamerisme.html  ×</text>
+      <rect x="482" y="36" width="150" height="18" rx="5" fill="#3a3a44" /><text x="489" y="49" fontSize="9.5" fill="#fff" style={t}>Découvre Antigravity  ×</text>
       <text x="654" y="50" fontSize="14" fill="#d4d4d8" textAnchor="middle" style={t}>+</text>
       <text x="700" y="49" fontSize="12" fill="#a1a1aa" textAnchor="middle" style={t}>↗</text>
-      <rect x="482" y="62" width="272" height="16" rx="8" fill="#e2e8f0" /><text x="492" y="73" fontSize="8.5" fill="#64748b" style={t}>file:///…/atelier-simulation/metamerisme.html</text>
-      <text x="610" y="104" fontSize="15" fontWeight="800" fill="#0f172a" textAnchor="middle" style={t}>Atelier · Métamérisme</text>
-      <rect x="496" y="118" width="244" height="40" rx="8" fill="#fff" /><rect x="496" y="168" width="244" height="80" rx="8" fill="#fff" />
-      <rect x="506" y="182" width="224" height="18" rx="5" fill="#dcfce7" /><rect x="506" y="206" width="224" height="18" rx="5" fill="#fef3c7" stroke="#f59e0b" />
+      <rect x="482" y="62" width="272" height="16" rx="8" fill="#d4d9e2" /><text x="492" y="73" fontSize="8.5" fill="#64748b" style={t}>https://atelier.rasf.fr/decouvrir.html</text>
+      {/* la page « Découvre Antigravity », en miniature */}
+      <rect x="492" y="90" width="252" height="250" rx="12" fill="#0b0b0f" />
+      <text x="618" y="132" fontSize="26" textAnchor="middle" style={t}>🧭</text>
+      <text x="618" y="160" fontSize="15" fontWeight="800" fill="#fff" textAnchor="middle" style={t}>Découvre Antigravity</text>
+      <rect x="512" y="174" width="212" height="6" rx="3" fill="#3f3f46" /><rect x="526" y="186" width="184" height="6" rx="3" fill="#3f3f46" /><rect x="548" y="198" width="140" height="6" rx="3" fill="#3f3f46" />
+      <rect x="548" y="220" width="64" height="24" rx="6" fill="#2563eb" /><text x="580" y="236" fontSize="10" fontWeight="800" fill="#fff" textAnchor="middle" style={t}>▶ Démo</text>
+      <rect x="620" y="220" width="72" height="24" rx="6" fill="#f59e0b" /><text x="656" y="236" fontSize="10" fontWeight="800" fill="#1f1300" textAnchor="middle" style={t}>Explorer</text>
       {/* menu des modèles, montré pour 4 et 5 */}
       {/* les pastilles numérotées, sous les fenêtres qui s'ouvrent (menus, Settings…) */}
       {/* démo : le menu de gauche replié, le volet de droite fermé */}
@@ -612,6 +617,7 @@ function SchemaAntigravity({ actif, setActif, spot = false, zones = null, pastil
         </g>
       )}
       {/* visite guidée : tout s'assombrit sauf la partie présentée (le trou glisse d'une partie à l'autre) */}
+      </g>
       {spot && z && (
         <g pointerEvents="none">
           <defs>
@@ -623,10 +629,17 @@ function SchemaAntigravity({ actif, setActif, spot = false, zones = null, pastil
           <rect x="0" y="0" width="760" height="430" rx="14" fill="rgba(2,6,23,.7)" mask="url(#g-trou)" />
         </g>
       )}
-      {/* démo : l'intérieur des zones éclairées est rendu plus lumineux, pour bien voir l'interface */}
-      {spot && liste.map((r, n) => (
-        <rect key={"l" + n} x={r.x} y={r.y} width={r.w} height={r.h} rx="8" fill="#fff" opacity=".24" style={{ mixBlendMode: "screen" }} pointerEvents="none" />
-      ))}
+      {/* démo : l'intérieur des zones éclairées est redessiné plus lumineux (texte plus blanc), pour bien voir l'interface */}
+      {spot && liste.length > 0 && (
+        <g pointerEvents="none">
+          <defs>
+            <clipPath id="g-zones-clip">
+              {liste.map((r, n) => <rect key={n} x={r.x} y={r.y} width={r.w} height={r.h} rx="8" />)}
+            </clipPath>
+          </defs>
+          <use href="#g-base" clipPath="url(#g-zones-clip)" style={{ filter: "brightness(1.9) contrast(1.1)" }} />
+        </g>
+      )}
       {/* zone(s) encadrée(s) */}
       {liste.map((r, n) => (
         <rect key={n} className="g-zone" x={r.x} y={r.y} width={r.w} height={r.h} rx="8" fill="rgba(245,158,11,.10)" stroke="#f59e0b" strokeWidth="3" pointerEvents="none" />
