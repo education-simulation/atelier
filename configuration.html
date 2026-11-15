@@ -334,7 +334,11 @@ function montrer() {
   ronds.forEach((r, i) => { r.className = i < n ? "fait" : i === n ? "ici" : ""; });
   document.getElementById("prec").hidden = n === 0;
   document.getElementById("suiv").hidden = n === etapes.length - 1;
-  document.getElementById("bande").hidden = !etapes[n].classList.contains("e5");   // seulement à l'étape « C'est prêt »
+  // le bandeau jaune : seulement à l'étape « C'est prêt », et 10 secondes
+  const bandeau = document.getElementById("bande");
+  clearTimeout(window.minuteurBande);
+  bandeau.hidden = !etapes[n].classList.contains("e5");
+  if (!bandeau.hidden) window.minuteurBande = setTimeout(() => { bandeau.hidden = true; }, 10000);
   // chaque animation repart du début quand on arrive sur son étape
   etapes[n].querySelectorAll("*").forEach((el) => el.getAnimations().forEach((a) => { a.currentTime = 0; }));
 }
