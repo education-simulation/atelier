@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Atelier · Simulation d'un titrage</title>
-<link rel="stylesheet" href="style.css?v=29">
+<link rel="stylesheet" href="style.css?v=30">
 </head>
 <body>
 <div class="fen">
@@ -20,8 +20,8 @@
     </div>
     <div class="onglets" role="tablist">
       <button type="button" role="tab" data-onglet="simple">✏️ Prompt simple</button>
-      <button type="button" role="tab" data-onglet="detaille">📝 Prompt détaillé</button>
       <button type="button" role="tab" data-onglet="modifier">🛠️ On modifie</button>
+      <button type="button" role="tab" data-onglet="detaille">📝 Prompt détaillé</button>
       <button type="button" role="tab" data-onglet="verifier">⚠️ À vérifier</button>
     </div>
 
@@ -39,16 +39,8 @@
       <div><button type="button" class="pret">✅ Ma simulation est prête</button></div>
       </div>
       <div class="bloc-partie voir" hidden>
-      <h3 class="partie">② Voir le rendu <small>de ton code HTML, dans ton navigateur</small></h3>
-      <p>Le lien ① de l'encadré vert ouvre ton <b class="cle">code</b> dans Antigravity. Pour voir le <b class="cle">rendu</b>, la simulation elle-même :</p>
-      <ol class="voir">
-        <li>Ouvre <b class="cle os os-mac">le Finder</b><b class="cle os os-win">l'Explorateur de fichiers</b><b class="cle os os-linux">ton gestionnaire de fichiers</b>, puis le <b class="cle">Bureau</b>.</li>
-        <li>Ouvre le dossier indiqué par Antigravity (son nom finit par la date et l'heure, par exemple <b class="cle">« simulation-titrage-15nov-18h45 »</b>).</li>
-        <li><b class="cle">Double-clique sur le fichier .html</b> : la simulation s'ouvre dans ton navigateur (Chrome, Firefox, Safari, Edge).</li>
-        <li><b class="cle">Ou plus simple</b> : copie l'adresse <b class="cle">file:///…</b> donnée sous l'encadré vert (partie ②, bouton de copie à droite), puis colle-la dans la barre d'adresse de ton navigateur et appuie sur <b class="cle">Entrée</b>.</li>
-        <li>Après chaque modification demandée à Antigravity, <b class="cle">recharge la page</b> (<b class="os os-mac">Cmd + R</b><b class="os os-win">F5</b><b class="os os-linux">F5</b>).</li>
-      </ol>
-      <p class="note">💡 Le fichier s'ouvre dans une autre application ? Fais un <b class="cle">clic droit</b> sur le fichier, puis <b class="cle">Ouvrir avec</b> → ton navigateur.</p>
+      <h3 class="partie">② Discutons ensemble des résultats obtenus</h3>
+      <div><button type="button" class="aller-onglet" data-aller="modifier">🛠️ On modifie la simulation ›</button></div>
       </div>
     </section>
 
@@ -102,16 +94,8 @@ Le code doit être similaire au précédent : afficher l'équation de la réacti
       <div><button type="button" class="pret">✅ Ma simulation est prête</button></div>
       </div>
       <div class="bloc-partie voir" hidden>
-      <h3 class="partie">② Voir le rendu <small>de ton code HTML, dans ton navigateur</small></h3>
-      <p>Le lien ① de l'encadré vert ouvre ton <b class="cle">code</b> dans Antigravity. Pour voir le <b class="cle">rendu</b>, la simulation elle-même :</p>
-      <ol class="voir">
-        <li>Ouvre <b class="cle os os-mac">le Finder</b><b class="cle os os-win">l'Explorateur de fichiers</b><b class="cle os os-linux">ton gestionnaire de fichiers</b>, puis le <b class="cle">Bureau</b>.</li>
-        <li>Ouvre le dossier indiqué par Antigravity (son nom finit par la date et l'heure, par exemple <b class="cle">« simulation-titrage-15nov-18h45 »</b>).</li>
-        <li><b class="cle">Double-clique sur le fichier .html</b> : la simulation s'ouvre dans ton navigateur (Chrome, Firefox, Safari, Edge).</li>
-        <li><b class="cle">Ou plus simple</b> : copie l'adresse <b class="cle">file:///…</b> donnée sous l'encadré vert (partie ②, bouton de copie à droite), puis colle-la dans la barre d'adresse de ton navigateur et appuie sur <b class="cle">Entrée</b>.</li>
-        <li>Après chaque modification demandée à Antigravity, <b class="cle">recharge la page</b> (<b class="os os-mac">Cmd + R</b><b class="os os-win">F5</b><b class="os os-linux">F5</b>).</li>
-      </ol>
-      <p class="note">💡 Le fichier s'ouvre dans une autre application ? Fais un <b class="cle">clic droit</b> sur le fichier, puis <b class="cle">Ouvrir avec</b> → ton navigateur.</p>
+      <h3 class="partie">② Discutons ensemble des résultats obtenus</h3>
+      <div><button type="button" class="aller-onglet" data-aller="modifier">🛠️ On modifie la simulation ›</button></div>
       </div>
     </section>
 
@@ -183,6 +167,8 @@ function ouvrir(id) {
   history.replaceState(null, "", "#" + id);
 }
 ongl.forEach((b) => b.addEventListener("click", () => ouvrir(b.dataset.onglet)));
+// « On modifie la simulation » : passe à l'onglet On modifie, en haut de page
+document.querySelectorAll("[data-aller]").forEach((b) => b.addEventListener("click", () => { ouvrir(b.dataset.aller); window.scrollTo({ top: 0, behavior: "smooth" }); }));
 ouvrir(location.hash.slice(1));
 // « Ma simulation est prête » : le cadre « Patiente » laisse la place à « Voir le rendu » (gardé dans le navigateur)
 function etat(panneau, pret) {
