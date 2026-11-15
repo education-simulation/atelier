@@ -620,9 +620,13 @@ function SchemaAntigravity({ actif, setActif, spot = false, zones = null, pastil
               {liste.map((r, n) => <rect key={n} className="g-trou" x={r.x - 4} y={r.y - 4} width={r.w + 8} height={r.h + 8} rx="10" fill="#000" />)}
             </mask>
           </defs>
-          <rect x="0" y="0" width="760" height="430" rx="14" fill="rgba(2,6,23,.62)" mask="url(#g-trou)" />
+          <rect x="0" y="0" width="760" height="430" rx="14" fill="rgba(2,6,23,.7)" mask="url(#g-trou)" />
         </g>
       )}
+      {/* démo : l'intérieur des zones éclairées est rendu plus lumineux, pour bien voir l'interface */}
+      {spot && liste.map((r, n) => (
+        <rect key={"l" + n} x={r.x} y={r.y} width={r.w} height={r.h} rx="8" fill="#fff" opacity=".24" style={{ mixBlendMode: "screen" }} pointerEvents="none" />
+      ))}
       {/* zone(s) encadrée(s) */}
       {liste.map((r, n) => (
         <rect key={n} className="g-zone" x={r.x} y={r.y} width={r.w} height={r.h} rx="8" fill="rgba(245,158,11,.10)" stroke="#f59e0b" strokeWidth="3" pointerEvents="none" />
