@@ -121,3 +121,4 @@ a.carte { text-decoration:none; color:inherit; }
 body[data-os="mac"] .bande .os-mac, body[data-os="win"] .bande .os-win, body[data-os="linux"] .bande .os-linux { display:inline; }
 .bande-x { all:unset; cursor:pointer; font-size:24px; font-weight:800; padding:0 8px; }
 body:has(.bande:not([hidden])) { padding-bottom:120px; }
+.bande .allow { display:block; margin-top:6px; padding-top:6px; border-top:1px solid rgba(31,19,0,.25); font-size:16px; } .bande .allow b { font-size:16px; }
