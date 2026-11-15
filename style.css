@@ -158,3 +158,6 @@ body:has(.bande:not([hidden])) { padding-bottom:120px; }
 @keyframes al-ok { 0%, 72% { opacity:0; } 76%, 94% { opacity:1; } 98%, 100% { opacity:0; } }
 @keyframes al-bulle { 0%, 34% { opacity:0; } 37%, 58% { opacity:1; } 61%, 100% { opacity:0; } }
 @media (prefers-reduced-motion: reduce) { .scene-allow * { animation:none !important; } .scene-allow .o2 { background:#3a2a08; border-color:#f59e0b; } }
+.partie { margin:8px 0 0; font:800 19px 'Outfit',system-ui,sans-serif; color:#fff; padding-top:8px; border-top:1px solid #27272a; }
+.panneau > .partie:first-child { border-top:none; padding-top:0; }
+.voir { margin:0; padding-left:22px; display:grid; gap:6px; }

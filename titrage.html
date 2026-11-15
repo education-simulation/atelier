@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Atelier · Simulation d'un titrage</title>
-<link rel="stylesheet" href="style.css?v=21">
+<link rel="stylesheet" href="style.css?v=22">
 </head>
 <body>
 <div class="fen">
@@ -22,12 +22,23 @@
     </div>
 
     <section class="panneau" data-panneau="simple">
+      <h3 class="partie">① Créer la simulation</h3>
       <p>Dans la conversation de configuration d'Antigravity, clique sur <b class="cle">📋 Copier</b>, colle le message dans la zone de message, en bas à gauche, puis appuie sur <b class="cle">Entrée</b>.</p>
       <div class="phrase"><code>Fais-moi une simulation de titrage acido-basique : une burette au-dessus d'un bécher, un indicateur coloré qui change de couleur, l'affichage du pH, et la courbe pH = f(V) qui se trace au fur et à mesure que je verse. Ajoute des boutons pour verser et pour recommencer.</code><button type="button" class="copier" data-allow>📋 Copier</button></div>
           <div class="allow-zone" hidden></div>
+      <h3 class="partie">② Voir la simulation</h3>
+      <p>Antigravity n'affiche que le <b class="cle">code</b>. Pour voir la simulation elle-même :</p>
+      <ol class="voir">
+        <li>Ouvre <b class="cle os os-mac">le Finder</b><b class="cle os os-win">l'Explorateur de fichiers</b><b class="cle os os-linux">ton gestionnaire de fichiers</b>, puis le <b class="cle">Bureau</b>.</li>
+        <li>Ouvre le dossier indiqué par Antigravity (par exemple <b class="cle">« simulation-titrage »</b>).</li>
+        <li><b class="cle">Double-clique sur le fichier .html</b> : la simulation s'ouvre dans ton navigateur (Chrome, Firefox, Safari, Edge).</li>
+        <li>Après chaque modification demandée à Antigravity, <b class="cle">recharge la page</b> (<b class="os os-mac">Cmd + R</b><b class="os os-win">F5</b><b class="os os-linux">F5</b>).</li>
+      </ol>
+      <p class="note">💡 Le fichier s'ouvre dans une autre application ? Fais un <b class="cle">clic droit</b> sur le fichier, puis <b class="cle">Ouvrir avec</b> → ton navigateur.</p>
     </section>
 
     <section class="panneau" data-panneau="detaille" hidden>
+      <h3 class="partie">① Créer la simulation</h3>
       <p>Les trois messages l'un après l'autre, <b class="cle">dans la même conversation</b> : clique sur <b class="cle">📋 Copier</b>, colle, puis <b class="cle">Entrée</b>. Attends la fin de chaque réponse, et ouvre la page pour voir le résultat avant de passer au message suivant.</p>
       <p class="etiquette-prompt">① L'avancement d'une réaction</p>
       <div class="phrase"><code>Bonjour, je souhaiterais que tu m'aides à concevoir une simulation en HTML (donc un fichier texte avec l'extension .html, et pas un fichier Python) que je puisse facilement partager à mes collègues.
@@ -67,6 +78,15 @@ Le code doit être similaire au précédent : afficher l'équation de la réacti
       <div class="phrase"><code>Merci. Parfait pour prévoir le volume à l'équivalence ! Maintenant, j'aimerais que tu ajoutes un autre onglet où l'on puisse charger un fichier de type Excel ou CSV, et que la page reconnaisse la colonne du volume V et celle de la grandeur mesurée (par exemple le pH ou un potentiel), et trace l'évolution de la grandeur mesurée en fonction du volume. Et qu'on puisse directement, dans cet onglet, faire l'exploitation, avec le tracé de la dérivée première, de la dérivée seconde, et éventuellement des tangentes ?</code><button type="button" class="copier" data-allow>📋 Copier</button></div>
           <div class="allow-zone" hidden></div>
       <p class="note">💡 Sois patient : chaque réponse peut prendre plusieurs minutes.</p>
+      <h3 class="partie">② Voir la simulation</h3>
+      <p>Antigravity n'affiche que le <b class="cle">code</b>. Pour voir la simulation elle-même :</p>
+      <ol class="voir">
+        <li>Ouvre <b class="cle os os-mac">le Finder</b><b class="cle os os-win">l'Explorateur de fichiers</b><b class="cle os os-linux">ton gestionnaire de fichiers</b>, puis le <b class="cle">Bureau</b>.</li>
+        <li>Ouvre le dossier indiqué par Antigravity (par exemple <b class="cle">« simulation-titrage »</b>).</li>
+        <li><b class="cle">Double-clique sur le fichier .html</b> : la simulation s'ouvre dans ton navigateur (Chrome, Firefox, Safari, Edge).</li>
+        <li>Après chaque modification demandée à Antigravity, <b class="cle">recharge la page</b> (<b class="os os-mac">Cmd + R</b><b class="os os-win">F5</b><b class="os os-linux">F5</b>).</li>
+      </ol>
+      <p class="note">💡 Le fichier s'ouvre dans une autre application ? Fais un <b class="cle">clic droit</b> sur le fichier, puis <b class="cle">Ouvrir avec</b> → ton navigateur.</p>
     </section>
 
     <section class="panneau" data-panneau="modifier" hidden>
