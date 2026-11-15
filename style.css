@@ -27,3 +27,14 @@ ol.etapes > li::before { content:counter(n); position:absolute; left:14px; top:1
 .note { margin:8px 0 0; color:#a1a1aa; font-size:15px; }
 .tuile[aria-pressed="true"] { background:#3a2a08; box-shadow:0 0 0 5px rgba(245,158,11,.4); }
 a.copier { text-decoration:none; }
+.tuiles.quatre { grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); }
+button.tuile { cursor:pointer; }
+.tuile:not(.vedette):not([aria-pressed="true"]) { border-color:#3f3f46; background:#18181b; box-shadow:none; }
+.tuile .clic { color:#fde68a; font-size:14px; animation:clic 1.4s ease-in-out infinite; }
+@keyframes clic { 50% { transform:translateY(-3px); } }
+.info { border:2px solid #f59e0b; background:#1f1a10; border-radius:14px; padding:14px 18px; }
+.info h2 { margin:0 0 6px; font:800 20px 'Outfit',system-ui,sans-serif; color:#fff; }
+.info p, .info ul { margin:6px 0; }
+.suite { display:flex; justify-content:flex-end; margin-top:10px; }
+.suivant { background:#f59e0b; color:#1f1300; font-weight:800; font-size:17px; text-decoration:none; border-radius:10px; padding:10px 20px; }
+.suivant:hover { background:#fbbf24; }

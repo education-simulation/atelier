@@ -13,13 +13,58 @@
     <h1>Je crée une simulation sur une page html avec l'IA</h1>
     <p class="question">Pour mes simulations, je veux commencer avec :</p>
     <div class="tuiles">
-      <a class="tuile" href="antigravity.html"><img src="logos/antigravity.png" alt="">Antigravity</a>
-      <span class="tuile" aria-disabled="true"><img src="logos/openai.svg" alt="">ChatGPT<em>bientôt</em></span>
-      <span class="tuile" aria-disabled="true"><img src="logos/lechat.svg" alt="">Le Chat<em>bientôt</em></span>
-      <span class="tuile" aria-disabled="true"><img src="logos/claude.svg" alt="">Claude<em>bientôt</em></span>
-      <span class="tuile" aria-disabled="true"><img src="logos/googlegemini.svg" alt="">Gemini<em>bientôt</em></span>
+      <button type="button" class="tuile vedette" data-ia="antigravity"><img src="logos/antigravity.png" alt="">Antigravity<em class="clic">👆 clique ici</em></button>
+      <button type="button" class="tuile" data-ia="chatgpt"><img src="logos/openai.svg" alt="">ChatGPT</button>
+      <button type="button" class="tuile" data-ia="claude"><img src="logos/claude.svg" alt="">Claude</button>
+      <button type="button" class="tuile" data-ia="lechat"><img src="logos/lechat.svg" alt="">Le Chat</button>
     </div>
+
+    <section class="info" id="antigravity" hidden>
+      <h2>🎁 Antigravity : totalement gratuit pour les membres RASF</h2>
+      <p>Avec le <b class="cle">compte Google d'établissement</b> des membres RASF, Antigravity ne coûte <b class="cle">rien</b>. Les autres IA capables de construire une simulation coûtent <b class="cle">entre 20 et 100 € par mois</b>.</p>
+      <p>Antigravity donne accès à plusieurs modèles (Gemini, Claude, GPT-OSS), sans abonnement.</p>
+      <div class="suite"><a class="suivant" href="antigravity.html">Suivant ›</a></div>
+    </section>
+
+    <section class="info" id="chatgpt" hidden>
+      <h2>ChatGPT : payant</h2>
+      <ul>
+        <li><b class="cle">ChatGPT Plus</b> : environ <b class="cle">23 € par mois</b>.</li>
+        <li><b class="cle">ChatGPT Pro</b> : à partir d'environ <b class="cle">103 € par mois</b>.</li>
+      </ul>
+      <p class="note">💡 Avec Antigravity, gratuit pour les membres RASF, tu n'as rien à payer. ChatGPT arrive bientôt dans l'atelier.</p>
+    </section>
+
+    <section class="info" id="claude" hidden>
+      <h2>Claude : payant</h2>
+      <ul>
+        <li><b class="cle">Claude Pro</b> : environ <b class="cle">22 € par mois</b> (18 € hors taxes).</li>
+        <li><b class="cle">Claude Max</b> : à partir d'environ <b class="cle">108 € par mois</b> (90 € hors taxes).</li>
+      </ul>
+      <p class="note">💡 Avec Antigravity, gratuit pour les membres RASF, tu n'as rien à payer. Claude arrive bientôt dans l'atelier.</p>
+    </section>
+
+    <section class="info" id="lechat" hidden>
+      <h2>Le Chat (Mistral) : le moins cher, mais moins performant</h2>
+      <p>Avec une <b class="cle">adresse académique</b>, Le Chat Pro coûte aux alentours de <b class="cle">7 € par mois</b>. Il est en revanche <b class="cle">moins performant pour faire de la simulation</b>.</p>
+      <p class="note">💡 Avec Antigravity, gratuit pour les membres RASF, tu n'as rien à payer. Le Chat arrive bientôt dans l'atelier.</p>
+    </section>
+
+    <p class="note">Tarifs indicatifs relevés en novembre 2026, taxes comprises sauf mention contraire.</p>
   </div>
 </div>
+<script>
+// Une IA à la fois ; le choix reste dans l'adresse (#antigravity…) pour survivre au rechargement
+const ias = ["antigravity", "chatgpt", "claude", "lechat"];
+const montrer = (id) => {
+  document.querySelectorAll("section.info").forEach((s) => { s.hidden = s.id !== id; });
+  document.querySelectorAll("[data-ia]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.ia === id)));
+};
+document.querySelectorAll("[data-ia]").forEach((b) => b.addEventListener("click", () => {
+  montrer(b.dataset.ia); history.replaceState(null, "", "#" + b.dataset.ia);
+}));
+const depart = location.hash.slice(1);
+if (ias.includes(depart)) montrer(depart);
+</script>
 </body>
 </html>
