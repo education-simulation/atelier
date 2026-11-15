@@ -184,3 +184,11 @@ body:has(.bande:not([hidden])) { padding-bottom:120px; }
 .bloc-partie.attendre { background:#1a1626; border:2px solid #8b5cf6; }
 .bloc-partie.attendre .partie { color:#c4b5fd; } .bloc-partie.attendre .partie small { color:#a78bfa; }
 .bloc-partie.attendre b.cle { color:#ddd6fe; }
+
+/* Étiquettes de prix, à cheval sur la bordure des tuiles (accueil) */
+.tuile { position:relative; }
+.tuiles:has(.etiquette-prix) { padding-top:12px; }
+.etiquette-prix { position:absolute; top:-12px; left:50%; transform:translateX(-50%); white-space:nowrap; font:800 12.5px 'Nunito',system-ui,sans-serif; letter-spacing:.02em; border-radius:999px; padding:3px 12px; border:2px solid #0b0b0f; }
+.etiquette-prix.gratuit { background:#22c55e; color:#052e14; }
+.etiquette-prix.payant { background:#ef4444; color:#fff; }
+.etiquette-prix.educ { background:#3b82f6; color:#fff; }
