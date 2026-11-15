@@ -3,6 +3,11 @@
 // data-allow : après la copie, l'animation « 2 · Yes, and always allow in this conversation » s'affiche dessous.
 const bande = document.getElementById("bande");
 let minuteurBande = null;
+let enAttente = null;   // le bouton dont l'animation attend la fin du bandeau
+function finBande() {
+  if (bande) bande.hidden = true;
+  if (enAttente) { montrerAllow(enAttente); enAttente = null; }
+}
 const tpl = document.getElementById("tpl-allow");
 
 // L'animation garde sa taille (720 × 330) et se réduit sur les petits écrans
@@ -23,6 +28,7 @@ function montrerAllow(b) {
   }
   zone.hidden = false;
   ajuster(zone.querySelector(".cadre-allow"));
+  zone.scrollIntoView({ behavior: "smooth", block: "nearest" });
   zone.querySelectorAll("*").forEach((el) => el.getAnimations().forEach((a) => { a.currentTime = 0; }));
 }
 
@@ -30,12 +36,13 @@ document.querySelectorAll("button.copier").forEach((b) => b.addEventListener("cl
   const c = b.previousElementSibling;
   if (!b.dataset.texte) b.dataset.texte = b.textContent;
   // D'abord ce qu'on voit (bandeau 10 s, animation), puis la copie
+  // Puis, quand le bandeau disparaît (10 s, ou fermé à la main), l'animation « Allow write access »
+  enAttente = b.hasAttribute("data-allow") ? b : null;
   if (bande) {
     bande.hidden = false;
     clearTimeout(minuteurBande);
-    minuteurBande = setTimeout(() => { bande.hidden = true; }, 10000);
-  }
-  if (b.hasAttribute("data-allow")) montrerAllow(b);
+    minuteurBande = setTimeout(finBande, 10000);
+  } else finBande();
   b.textContent = "✅ Copié";
   setTimeout(() => { b.textContent = b.dataset.texte; }, 2500);
   const copieManuelle = () => { const r = document.createRange(); r.selectNodeContents(c); getSelection().removeAllRanges(); getSelection().addRange(r); document.execCommand("copy"); getSelection().removeAllRanges(); };
@@ -56,4 +63,4 @@ document.querySelectorAll("button.copier").forEach((b) => b.addEventListener("cl
     }
   }, 2500);
 }));
-if (bande) bande.querySelector(".bande-x").addEventListener("click", () => { bande.hidden = true; clearTimeout(minuteurBande); });
+if (bande) bande.querySelector(".bande-x").addEventListener("click", () => { clearTimeout(minuteurBande); finBande(); });
