@@ -50,6 +50,18 @@ function jouer(zone) {
   zone._minuteur = setTimeout(() => { anim.hidden = true; rejouer.hidden = false; }, 10000);
 }
 
+// data-coche : une fois copié, le bouton garde sa coche « ✅ Copié » (gardée au rechargement)
+const cochables = [...document.querySelectorAll("button.copier[data-coche]")];
+function cocher(b, garder) {
+  b.textContent = "✅ Copié";
+  b.classList.add("coche");
+  if (garder) try { localStorage.setItem("atelier.coche." + location.pathname + "." + cochables.indexOf(b), "1"); } catch {}
+}
+cochables.forEach((b, i) => {
+  b.dataset.texte = b.textContent;
+  try { if (localStorage.getItem("atelier.coche." + location.pathname + "." + i) === "1") cocher(b, false); } catch {}
+});
+
 document.querySelectorAll("button.copier").forEach((b) => b.addEventListener("click", async () => {
   const c = b.previousElementSibling;
   if (!b.dataset.texte) b.dataset.texte = b.textContent;
@@ -61,8 +73,11 @@ document.querySelectorAll("button.copier").forEach((b) => b.addEventListener("cl
     clearTimeout(minuteurBande);
     minuteurBande = setTimeout(finBande, 10000);
   } else finBande();
-  b.textContent = "✅ Copié";
-  setTimeout(() => { b.textContent = b.dataset.texte; }, 2500);
+  if (b.hasAttribute("data-coche")) cocher(b, true);   // data-coche : la coche reste (déjà envoyé)
+  else {
+    b.textContent = "✅ Copié";
+    setTimeout(() => { b.textContent = b.dataset.texte; }, 2500);
+  }
   const copieManuelle = () => { const r = document.createRange(); r.selectNodeContents(c); getSelection().removeAllRanges(); getSelection().addRange(r); document.execCommand("copy"); getSelection().removeAllRanges(); };
   try { await Promise.race([navigator.clipboard.writeText(c.textContent), new Promise((_, non) => setTimeout(non, 1500))]); }
   catch { copieManuelle(); }

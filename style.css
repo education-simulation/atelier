@@ -197,3 +197,4 @@ body:has(.bande:not([hidden])) { padding-bottom:120px; }
 .pret:hover { background:#4ade80; }
 .aller-onglet { all:unset; cursor:pointer; background:#60a5fa; color:#04122b; font-weight:800; font-size:16px; border-radius:12px; padding:10px 18px; box-shadow:0 0 0 4px rgba(96,165,250,.25); }
 .aller-onglet:hover { background:#93c5fd; }
+.copier.coche { background:#14532d; color:#bbf7d0; box-shadow:0 0 0 2px #22c55e inset; }

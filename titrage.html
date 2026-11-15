@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Atelier · Simulation d'un titrage</title>
-<link rel="stylesheet" href="style.css?v=30">
+<link rel="stylesheet" href="style.css?v=31">
 </head>
 <body>
 <div class="fen">
@@ -102,14 +102,10 @@ Le code doit être similaire au précédent : afficher l'équation de la réacti
     <section class="panneau" data-panneau="modifier" hidden>
       <p>Demande des changements à l'IA, dans la même conversation. Quelques idées, à copier ou à écrire avec tes mots :</p>
       <ul class="idees">
-        <li><div class="phrase"><code>Ajoute un curseur pour faire varier le volume versé VB, en plus de la saisie.</code><button type="button" class="copier" data-allow>📋 Copier</button></div>
-          <div class="allow-zone" hidden></div></li>
-        <li><div class="phrase"><code>Affiche sous le graphique un tableau d'avancement : état initial, état intermédiaire, état final.</code><button type="button" class="copier" data-allow>📋 Copier</button></div>
-          <div class="allow-zone" hidden></div></li>
-        <li><div class="phrase"><code>Ajoute un exemple prêt à l'emploi : le dosage des ions fer(II) par les ions permanganate (5 Fe²⁺ + MnO₄⁻ + 8 H⁺ → 5 Fe³⁺ + Mn²⁺ + 4 H₂O).</code><button type="button" class="copier" data-allow>📋 Copier</button></div>
-          <div class="allow-zone" hidden></div></li>
-        <li><div class="phrase"><code>Ajoute un bouton pour télécharger le graphique en image.</code><button type="button" class="copier" data-allow>📋 Copier</button></div>
-          <div class="allow-zone" hidden></div></li>
+        <li><div class="phrase"><code>Ajoute un curseur pour faire varier le volume versé VB, en plus de la saisie.</code><button type="button" class="copier" data-coche>📋 Copier</button></div></li>
+        <li><div class="phrase"><code>Affiche sous le graphique un tableau d'avancement : état initial, état intermédiaire, état final.</code><button type="button" class="copier" data-coche>📋 Copier</button></div></li>
+        <li><div class="phrase"><code>Ajoute un exemple prêt à l'emploi : le dosage des ions fer(II) par les ions permanganate (5 Fe²⁺ + MnO₄⁻ + 8 H⁺ → 5 Fe³⁺ + Mn²⁺ + 4 H₂O).</code><button type="button" class="copier" data-coche>📋 Copier</button></div></li>
+        <li><div class="phrase"><code>Ajoute un bouton pour télécharger le graphique en image.</code><button type="button" class="copier" data-coche>📋 Copier</button></div></li>
       </ul>
       <p class="note">💡 Après chaque modification, <b class="cle">recharge la page</b> dans ton navigateur (<b class="os os-mac">Cmd + R</b><b class="os os-win">F5</b><b class="os os-linux">F5</b>).</p>
     </section>
@@ -156,7 +152,7 @@ Le code doit être similaire au précédent : afficher l'équation de la réacti
 <div class="bande" id="bande" role="note" hidden><span class="bfleche" aria-hidden="true">⬅</span>
   <span><b>Colle le message dans Antigravity</b> <em>dans la zone de message, en bas à gauche</em><span class="quoi">👉 <span class="os os-mac">Cmd + V</span><span class="os os-win">Ctrl + V</span><span class="os os-linux">Ctrl + V</span>, puis Entrée.</span></span>
   <button type="button" class="bande-x" aria-label="Fermer">×</button></div>
-<script src="copier.js?v=6"></script>
+<script src="copier.js?v=7"></script>
 <script>
 // Les onglets ; l'onglet ouvert reste dans l'adresse (#simple, #detaille…) pour survivre au rechargement
 const ongl = [...document.querySelectorAll("[data-onglet]")];
