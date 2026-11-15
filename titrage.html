@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Atelier · Simulation d'un titrage</title>
-<link rel="stylesheet" href="style.css?v=20">
+<link rel="stylesheet" href="style.css?v=21">
 </head>
 <body>
 <div class="fen">
@@ -14,19 +14,23 @@
     <div class="titre-haut"><h1>⚗️ Simulation d'un titrage <span class="domaine-titre">Analyse</span></h1></div>
   </header>
   <div class="corps">
-    <p class="note">⚠️ N'ouvre pas de nouvelle conversation : elle repasserait en mode « Default », et Antigravity te demanderait sans cesse des autorisations.</p>
-    <p class="but">🎯 À la fin, tu repars avec <b class="cle">une mini-simulation de titrage pour tes cours</b>, créée en dialoguant avec l'IA, sans coder… <b class="cle">mais à vérifier</b>.</p>
+    <div class="onglets" role="tablist">
+      <button type="button" role="tab" data-onglet="simple">✏️ Prompt simple</button>
+      <button type="button" role="tab" data-onglet="detaille">📝 Prompt détaillé</button>
+      <button type="button" role="tab" data-onglet="modifier">🛠️ On modifie</button>
+      <button type="button" role="tab" data-onglet="verifier">⚠️ À vérifier</button>
+    </div>
 
-    <ol class="etapes">
-      <li><b class="cle">Le wahou</b> : regarde la simulation finie que l'animateur te montre, et manipule-la. Note ce qui te plaît : c'est ce que tu demanderas à l'IA.</li>
+    <section class="panneau" data-panneau="simple">
+      <p>Dans la conversation de configuration d'Antigravity, clique sur <b class="cle">📋 Copier</b>, colle le message dans la zone de message, en bas à gauche, puis appuie sur <b class="cle">Entrée</b>.</p>
+      <div class="phrase"><code>Fais-moi une simulation de titrage acido-basique : une burette au-dessus d'un bécher, un indicateur coloré qui change de couleur, l'affichage du pH, et la courbe pH = f(V) qui se trace au fur et à mesure que je verse. Ajoute des boutons pour verser et pour recommencer.</code><button type="button" class="copier" data-allow>📋 Copier</button></div>
+          <div class="allow-zone" hidden></div>
+    </section>
 
-      <li><b class="cle">Le prompt court</b> : pour voir ce que l'IA fait avec presque rien. Clique sur <b class="cle">📋 Copier</b>, puis colle le message dans la zone de message d'Antigravity, en bas à gauche, et appuie sur <b class="cle">Entrée</b>.
-        <div class="phrase"><code>Fais-moi une simulation de titrage.</code><button type="button" class="copier">📋 Copier</button></div>
-              </li>
-
-      <li><b class="cle">Le prompt détaillé, en 3 temps</b> : les trois messages l'un après l'autre, toujours <b class="cle">dans la même conversation</b> : clique sur <b class="cle">📋 Copier</b>, colle, puis <b class="cle">Entrée</b>. Attends la fin de chaque réponse, et ouvre la page pour voir le résultat avant de passer au message suivant.
-        <p class="etiquette-prompt">① L'avancement d'une réaction</p>
-        <div class="phrase"><code>Bonjour, je souhaiterais que tu m'aides à concevoir une simulation en HTML (donc un fichier texte avec l'extension .html, et pas un fichier Python) que je puisse facilement partager à mes collègues.
+    <section class="panneau" data-panneau="detaille" hidden>
+      <p>Les trois messages l'un après l'autre, <b class="cle">dans la même conversation</b> : clique sur <b class="cle">📋 Copier</b>, colle, puis <b class="cle">Entrée</b>. Attends la fin de chaque réponse, et ouvre la page pour voir le résultat avant de passer au message suivant.</p>
+      <p class="etiquette-prompt">① L'avancement d'une réaction</p>
+      <div class="phrase"><code>Bonjour, je souhaiterais que tu m'aides à concevoir une simulation en HTML (donc un fichier texte avec l'extension .html, et pas un fichier Python) que je puisse facilement partager à mes collègues.
 
 Cette simulation doit permettre de modéliser une réaction chimique et de déterminer son état final. On utilisera la notation suivante : aA + bB → cC + dD.
 A et B sont les réactifs, C et D sont les produits. Les grandeurs a, b, c et d sont les coefficients stœchiométriques associés respectivement aux espèces chimiques A, B, C et D : ce sont des grandeurs d'entrée qui doivent être modifiables facilement.
@@ -48,33 +52,41 @@ J'aimerais que la page affiche un graphique en histogramme, avec en abscisse les
 
 Il faudrait prévoir une saisie manuelle de la valeur de l'avancement X pour le faire évoluer entre 0 et Xf. Le graphique devrait alors se mettre à jour automatiquement (plus X augmente, plus les histogrammes des réactifs doivent diminuer et ceux des produits augmenter, jusqu'à disparition complète du réactif limitant !).
 
-En plus du graphique, la page doit bien sûr afficher l'équation de la réaction, les quantités de matière initiales et l'avancement final Xf ! Merci</code><button type="button" class="copier">📋 Copier</button></div>
-                <p class="etiquette-prompt">② Le dosage</p>
-        <div class="phrase"><code>Merci. Tu peux maintenant générer un nouveau code, similaire au précédent, mais qui illustre le cas particulier d'un dosage. Dans un dosage, l'espèce A sera définie par défaut comme l'espèce titrée, et B comme l'espèce titrante. Cette fois-ci, ce n'est pas X l'avancement qu'on entrera, mais VB, le volume d'espèce titrante ajouté. VB varie entre 0 et Veq, le volume à l'équivalence versé d'espèce titrante.
+En plus du graphique, la page doit bien sûr afficher l'équation de la réaction, les quantités de matière initiales et l'avancement final Xf ! Merci</code><button type="button" class="copier" data-allow>📋 Copier</button></div>
+          <div class="allow-zone" hidden></div>
+      <p class="etiquette-prompt">② Le dosage</p>
+      <div class="phrase"><code>Merci. Tu peux maintenant générer un nouveau code, similaire au précédent, mais qui illustre le cas particulier d'un dosage. Dans un dosage, l'espèce A sera définie par défaut comme l'espèce titrée, et B comme l'espèce titrante. Cette fois-ci, ce n'est pas X l'avancement qu'on entrera, mais VB, le volume d'espèce titrante ajouté. VB varie entre 0 et Veq, le volume à l'équivalence versé d'espèce titrante.
 
 À l'état initial, on a une quantité de matière nA,0 = cA·VA (en mmol), avec cA la concentration en quantité de matière de A en mol/L et VA le volume en mL de A. Le volume Veq est défini de la manière suivante : Veq = cA·VA·b/(a·cB), avec cB la concentration en quantité de matière de B en mol/L (Veq est en mL). À l'état initial, nB,0 = nC,0 = nD,0 = 0 (les produits C et D sont absents, tout comme le réactif B, en dehors du bécher puisque dans la burette).
 
 Avant l'équivalence (pour un volume VB donné, compris entre 0 et Veq), le réactif titrant B est toujours limitant, donc nB = cB·VB − b·X = 0, donc X = cB·VB/b, avec VB le volume en mL de B versé dans le bécher. On a donc nA = nA,0 − a·X, nC = c·X et nD = d·X. Lorsque VB = Veq, X = Xeq = cB·Veq/b : normalement, on doit donc avoir nA,eq = nB,eq = 0. Pour VB &gt; Veq, le réactif titrant s'accumule : nB = cB·(VB − Veq), nA = 0, nC = c·Xeq et nD = d·Xeq.
 
-Le code doit être similaire au précédent : afficher l'équation de la réaction, la concentration de l'espèce titrée A, le volume de A, la concentration de l'espèce titrante B, le même graphique qu'avant… etc. !</code><button type="button" class="copier">📋 Copier</button></div>
-        <p class="etiquette-prompt">③ L'exploitation de mesures (fichier Excel ou CSV)</p>
-        <div class="phrase"><code>Merci. Parfait pour prévoir le volume à l'équivalence ! Maintenant, j'aimerais que tu ajoutes un autre onglet où l'on puisse charger un fichier de type Excel ou CSV, et que la page reconnaisse la colonne du volume V et celle de la grandeur mesurée (par exemple le pH ou un potentiel), et trace l'évolution de la grandeur mesurée en fonction du volume. Et qu'on puisse directement, dans cet onglet, faire l'exploitation, avec le tracé de la dérivée première, de la dérivée seconde, et éventuellement des tangentes ?</code><button type="button" class="copier">📋 Copier</button></div>
-        <p class="note">💡 Sois patient : chaque réponse peut prendre plusieurs minutes, et Antigravity te demande parfois une autorisation (« Allow… ») : choisis <b class="cle">2 · Yes, and always allow in this conversation</b>, puis <b class="cle">Submit</b>.</p>
-        <p class="note">💡 Compare avec le prompt court : plus le prompt est précis, plus la simulation ressemble à ce que tu veux.</p>
-      </li>
+Le code doit être similaire au précédent : afficher l'équation de la réaction, la concentration de l'espèce titrée A, le volume de A, la concentration de l'espèce titrante B, le même graphique qu'avant… etc. !</code><button type="button" class="copier" data-allow>📋 Copier</button></div>
+          <div class="allow-zone" hidden></div>
+      <p class="etiquette-prompt">③ L'exploitation de mesures (fichier Excel ou CSV)</p>
+      <div class="phrase"><code>Merci. Parfait pour prévoir le volume à l'équivalence ! Maintenant, j'aimerais que tu ajoutes un autre onglet où l'on puisse charger un fichier de type Excel ou CSV, et que la page reconnaisse la colonne du volume V et celle de la grandeur mesurée (par exemple le pH ou un potentiel), et trace l'évolution de la grandeur mesurée en fonction du volume. Et qu'on puisse directement, dans cet onglet, faire l'exploitation, avec le tracé de la dérivée première, de la dérivée seconde, et éventuellement des tangentes ?</code><button type="button" class="copier" data-allow>📋 Copier</button></div>
+          <div class="allow-zone" hidden></div>
+      <p class="note">💡 Sois patient : chaque réponse peut prendre plusieurs minutes.</p>
+    </section>
 
-      <li><b class="cle">On modifie</b> : demande des changements à l'IA, dans la même conversation. Quelques idées, à copier ou à écrire avec tes mots :
-        <ul class="idees">
-          <li><div class="phrase"><code>Ajoute un curseur pour faire varier le volume versé VB, en plus de la saisie.</code><button type="button" class="copier">📋 Copier</button></div></li>
-          <li><div class="phrase"><code>Affiche sous le graphique un tableau d'avancement : état initial, état intermédiaire, état final.</code><button type="button" class="copier">📋 Copier</button></div></li>
-          <li><div class="phrase"><code>Ajoute un exemple prêt à l'emploi : le dosage des ions fer(II) par les ions permanganate (5 Fe²⁺ + MnO₄⁻ + 8 H⁺ → 5 Fe³⁺ + Mn²⁺ + 4 H₂O).</code><button type="button" class="copier">📋 Copier</button></div></li>
-          <li><div class="phrase"><code>Ajoute un bouton pour télécharger le graphique en image.</code><button type="button" class="copier">📋 Copier</button></div></li>
-        </ul>
-        <p class="note">💡 Après chaque modification, <b class="cle">recharge la page</b> dans ton navigateur (<b class="os os-mac">Cmd + R</b><b class="os os-win">F5</b><b class="os os-linux">F5</b>).</p>
-      </li>
+    <section class="panneau" data-panneau="modifier" hidden>
+      <p>Demande des changements à l'IA, dans la même conversation. Quelques idées, à copier ou à écrire avec tes mots :</p>
+      <ul class="idees">
+        <li><div class="phrase"><code>Ajoute un curseur pour faire varier le volume versé VB, en plus de la saisie.</code><button type="button" class="copier" data-allow>📋 Copier</button></div>
+          <div class="allow-zone" hidden></div></li>
+        <li><div class="phrase"><code>Affiche sous le graphique un tableau d'avancement : état initial, état intermédiaire, état final.</code><button type="button" class="copier" data-allow>📋 Copier</button></div>
+          <div class="allow-zone" hidden></div></li>
+        <li><div class="phrase"><code>Ajoute un exemple prêt à l'emploi : le dosage des ions fer(II) par les ions permanganate (5 Fe²⁺ + MnO₄⁻ + 8 H⁺ → 5 Fe³⁺ + Mn²⁺ + 4 H₂O).</code><button type="button" class="copier" data-allow>📋 Copier</button></div>
+          <div class="allow-zone" hidden></div></li>
+        <li><div class="phrase"><code>Ajoute un bouton pour télécharger le graphique en image.</code><button type="button" class="copier" data-allow>📋 Copier</button></div>
+          <div class="allow-zone" hidden></div></li>
+      </ul>
+      <p class="note">💡 Après chaque modification, <b class="cle">recharge la page</b> dans ton navigateur (<b class="os os-mac">Cmd + R</b><b class="os os-win">F5</b><b class="os os-linux">F5</b>).</p>
+    </section>
 
-      <li><b class="cle">À vérifier</b> : l'IA se trompe parfois en chimie. Contrôle au moins ces points avant d'utiliser ta simulation en cours :
-        <div class="verifier">
+    <section class="panneau" data-panneau="verifier" hidden>
+      <p>L'IA se trompe parfois en chimie. Contrôle au moins ces points avant d'utiliser ta simulation en cours :</p>
+      <div class="verifier">
           <p>⚠️ <b>Les erreurs fréquentes de l'IA</b></p>
           <ul>
             <li><b>L'avancement final</b> : X<sub>f</sub> = min(n<sub>A,0</sub>/a ; n<sub>B,0</sub>/b), et le bon réactif limitant.</li>
@@ -87,15 +99,45 @@ Le code doit être similaire au précédent : afficher l'équation de la réacti
           </ul>
           <p class="note">💡 Une erreur trouvée ? Décris-la à l'IA avec tes mots : « Après l'équivalence, nA devrait rester à 0, corrige le calcul. »</p>
         </div>
-      </li>
-    </ol>
+    </section>
   </div>
 </div>
+
+<template id="tpl-allow">
+  <p class="allow-titre">🔐 Antigravity va te demander l'autorisation d'écrire le fichier. <b class="cle">À chaque fois</b>, choisis <b class="cle">2 · Yes, and always allow in this conversation</b>, puis <b class="cle">Submit</b> :</p>
+  <div class="cadre-allow">
+    <div class="scene-allow" role="img" aria-label="La fenêtre « Allow write access to this path? » : on clique sur le choix 2, Yes, and always allow in this conversation, puis sur Submit">
+      <div class="dlg">
+        <div class="t">📄 Allow write access to this path?</div>
+        <div class="cmd">/Users/…/Desktop/simulation-titrage/simulation-titrage.html</div>
+        <div class="opt o1"><i>1</i>Yes, allow this time</div>
+        <div class="opt o2"><i>2</i>Yes, and always allow in this conversation</div>
+        <div class="opt"><i>3</i>Yes, and always allow</div>
+        <div class="opt o4"><i>4</i>No <em>(tell the agent what to do instead)</em></div>
+        <span class="skip">Skip</span><span class="sub">Submit ↵</span>
+      </div>
+      <div class="bulle">👆 puis Submit</div>
+      <div class="ok">✅ Le fichier s'écrit</div>
+      <svg class="souris" viewBox="0 0 14 21" width="22" height="33" aria-hidden="true"><path d="M0 0 L0 17 L4.5 13 L8 20 L11 18.5 L7.5 12 L13 12 Z" fill="#fff" stroke="#000" stroke-width="1.3"/></svg>
+    </div>
+  </div>
+</template>
+
 <div class="bande" id="bande" role="note" hidden><span class="bfleche" aria-hidden="true">⬅</span>
-  <span><b>Colle le message dans Antigravity</b> <em>dans la zone de message, en bas à gauche</em><span class="quoi">👉 <span class="os os-mac">Cmd + V</span><span class="os os-win">Ctrl + V</span><span class="os os-linux">Ctrl + V</span>, puis Entrée.</span><span class="allow">🔐 Antigravity demande « Allow write access… ? » : choisis <b>2 · Yes, and always allow in this conversation</b>, puis <b>Submit</b>.</span></span>
+  <span><b>Colle le message dans Antigravity</b> <em>dans la zone de message, en bas à gauche</em><span class="quoi">👉 <span class="os os-mac">Cmd + V</span><span class="os os-win">Ctrl + V</span><span class="os os-linux">Ctrl + V</span>, puis Entrée.</span></span>
   <button type="button" class="bande-x" aria-label="Fermer">×</button></div>
-<script src="copier.js?v=2"></script>
+<script src="copier.js?v=3"></script>
 <script>
+// Les onglets ; l'onglet ouvert reste dans l'adresse (#simple, #detaille…) pour survivre au rechargement
+const ongl = [...document.querySelectorAll("[data-onglet]")];
+function ouvrir(id) {
+  if (!ongl.some((b) => b.dataset.onglet === id)) id = "simple";
+  ongl.forEach((b) => b.setAttribute("aria-selected", String(b.dataset.onglet === id)));
+  document.querySelectorAll("[data-panneau]").forEach((p) => { p.hidden = p.dataset.panneau !== id; });
+  history.replaceState(null, "", "#" + id);
+}
+ongl.forEach((b) => b.addEventListener("click", () => ouvrir(b.dataset.onglet)));
+ouvrir(location.hash.slice(1));
 // Le système de l'ordinateur (Mac, Windows, Linux), comme sur la page Antigravity
 let os = null; try { os = localStorage.getItem("atelier.os"); } catch {}
 document.body.dataset.os = os || (/Windows/i.test(navigator.userAgent) ? "win" : /Mac/i.test(navigator.userAgent) ? "mac" : "linux");

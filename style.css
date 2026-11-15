@@ -122,3 +122,39 @@ body[data-os="mac"] .bande .os-mac, body[data-os="win"] .bande .os-win, body[dat
 .bande-x { all:unset; cursor:pointer; font-size:24px; font-weight:800; padding:0 8px; }
 body:has(.bande:not([hidden])) { padding-bottom:120px; }
 .bande .allow { display:block; margin-top:6px; padding-top:6px; border-top:1px solid rgba(31,19,0,.25); font-size:16px; } .bande .allow b { font-size:16px; }
+
+/* Onglets (page d'une simulation) */
+.onglets { display:flex; flex-wrap:wrap; gap:6px; border-bottom:2px solid #3f3f46; }
+.onglets button { all:unset; cursor:pointer; padding:10px 16px; border-radius:12px 12px 0 0; font-weight:800; font-size:16px; color:#a1a1aa; background:#18181b; border:1px solid #3f3f46; border-bottom:none; margin-bottom:-2px; }
+.onglets button:hover { color:#fde68a; }
+.onglets button[aria-selected="true"] { color:#1f1300; background:#f59e0b; border-color:#f59e0b; }
+.panneau { display:grid; gap:10px; }
+.panneau[hidden] { display:none; }
+.panneau > p { margin:0; }
+
+/* Animation « Allow write access » : choix 2, puis Submit (8 s, en boucle) */
+.allow-zone { margin-top:6px; }
+.allow-titre { margin:4px 0 8px; }
+.cadre-allow { position:relative; overflow:hidden; width:100%; }
+.scene-allow { position:absolute; left:0; top:0; width:720px; height:330px; background:#0b0b0f; border:1px solid #27272a; border-radius:12px; transform-origin:0 0; }
+.scene-allow .dlg { position:absolute; left:20px; top:20px; width:680px; height:280px; box-sizing:border-box; background:#16161b; border:1px solid #3f3f46; border-radius:18px; padding:14px 16px; font-size:15px; color:#e4e4e7; animation:al-dlg 8s infinite; }
+.scene-allow .t { font-weight:800; color:#fff; font-size:16px; }
+.scene-allow .cmd { margin:10px 0 8px; background:#0b0b0f; border-radius:8px; padding:6px 10px; font:13px Menlo,Consolas,monospace; color:#fff; }
+.scene-allow .opt { display:flex; align-items:center; gap:10px; height:34px; padding:0 10px; border-radius:10px; border:1px solid transparent; white-space:nowrap; }
+.scene-allow .opt i { font-style:normal; display:inline-grid; place-items:center; width:20px; height:20px; border-radius:5px; background:#27272a; color:#a1a1aa; font-size:12px; }
+.scene-allow .o1 { animation:al-o1 8s infinite; }
+.scene-allow .o2 { animation:al-o2 8s infinite; }
+.scene-allow .o4 em { color:#71717a; font-style:normal; }
+.scene-allow .sub { position:absolute; right:16px; bottom:14px; background:#3b82f6; color:#fff; font-weight:800; border-radius:12px; padding:6px 14px; animation:al-sub 8s infinite; }
+.scene-allow .skip { position:absolute; right:120px; bottom:20px; color:#a1a1aa; }
+.scene-allow .ok { position:absolute; left:0; right:0; top:140px; text-align:center; font:800 22px 'Outfit',system-ui,sans-serif; color:#86efac; opacity:0; animation:al-ok 8s infinite; }
+.scene-allow .souris { position:absolute; z-index:5; filter:drop-shadow(0 2px 3px rgba(0,0,0,.6)); left:60px; top:330px; animation:al-souris 8s infinite; }
+.scene-allow .bulle { position:absolute; z-index:6; background:#f59e0b; color:#1f1300; font-weight:800; font-size:14px; border-radius:8px; padding:3px 10px; opacity:0; animation:al-bulle 8s infinite; left:430px; top:150px; }
+@keyframes al-souris { 0%, 8% { left:60px; top:330px; transform:scale(1); } 30% { left:300px; top:160px; transform:scale(1); } 33% { left:300px; top:160px; transform:scale(.8); } 36%, 42% { left:300px; top:160px; transform:scale(1); } 62% { left:640px; top:262px; transform:scale(1); } 65% { left:640px; top:262px; transform:scale(.8); } 68%, 100% { left:640px; top:262px; transform:scale(1); } }
+@keyframes al-o1 { 0%, 32% { background:#27272a; border-color:#3f3f46; } 34%, 100% { background:transparent; border-color:transparent; } }
+@keyframes al-o2 { 0%, 32% { background:transparent; border-color:transparent; box-shadow:none; } 34%, 70% { background:#3a2a08; border-color:#f59e0b; box-shadow:0 0 0 4px rgba(245,158,11,.3); } 72%, 100% { background:#27272a; border-color:#3f3f46; box-shadow:none; } }
+@keyframes al-sub { 0%, 63% { box-shadow:none; transform:none; } 64%, 67% { box-shadow:0 0 0 5px rgba(59,130,246,.45); transform:scale(.95); } 69%, 100% { box-shadow:none; transform:none; } }
+@keyframes al-dlg { 0%, 70% { opacity:1; } 74%, 96% { opacity:0; } 100% { opacity:1; } }
+@keyframes al-ok { 0%, 72% { opacity:0; } 76%, 94% { opacity:1; } 98%, 100% { opacity:0; } }
+@keyframes al-bulle { 0%, 34% { opacity:0; } 37%, 58% { opacity:1; } 61%, 100% { opacity:0; } }
+@media (prefers-reduced-motion: reduce) { .scene-allow * { animation:none !important; } .scene-allow .o2 { background:#3a2a08; border-color:#f59e0b; } }
