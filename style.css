@@ -85,3 +85,14 @@ body[data-os="mac"] .os-mac, body[data-os="win"] .os-win, body[data-os="linux"] 
 .phrase .copier { white-space:nowrap; }
 .phrase code { overflow-wrap:anywhere; }
 .phrase:has([data-ouvrir]) code { flex-basis:100%; }
+
+/* Les simulations (page Ateliers) */
+.sims { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:12px; }
+.sim { all:unset; box-sizing:border-box; cursor:pointer; display:flex; flex-direction:column; align-items:center; gap:8px; text-align:center; padding:18px 12px; border-radius:16px; background:linear-gradient(180deg,#1c1c22,#141418); border:1px solid #3f3f46; transition:transform .15s, border-color .15s; }
+.sim:hover { transform:translateY(-2px); border-color:#f59e0b; }
+.sim[aria-pressed="true"] { border:2px solid #f59e0b; background:linear-gradient(180deg,#2a2110,#1a150b); box-shadow:0 0 0 4px rgba(245,158,11,.18); }
+.sim .ico { font-size:40px; line-height:1; }
+.sim b { color:#fff; font-size:17px; line-height:1.25; }
+.sim .domaine { font-size:13px; font-weight:800; color:#1f1300; background:#fbbf24; border-radius:999px; padding:2px 12px; }
+#page { display:grid; gap:12px; }
+#page[hidden] { display:none; }

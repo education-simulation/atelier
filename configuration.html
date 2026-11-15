@@ -224,6 +224,9 @@ b.cle { color:#fde68a; }
 .haut { position:sticky; top:0; z-index:50; }
 .titre-haut { background:#0b0b0f; padding:12px 22px; border-bottom:1px solid #27272a; }
 .titre-haut h1 { margin:0; }
+.vers-atelier { display:inline-block; background:#f59e0b; color:#1f1300; font:800 20px 'Outfit',system-ui,sans-serif; text-decoration:none; border-radius:14px; padding:14px 26px; box-shadow:0 0 0 6px rgba(245,158,11,.25); }
+.vers-atelier:hover { background:#fbbf24; }
+.note-atelier { text-align:center; color:#a1a1aa; font-size:15px; }
 </style>
 </head>
 <body>
@@ -234,7 +237,7 @@ b.cle { color:#fde68a; }
     <div class="titre-haut"><h1>Configuration d'Antigravity</h1></div>
   </header>
   <div class="corps">
-    <ol class="st" id="st"><li><span class="rond">1</span>Fermer les fenêtres</li><li><span class="rond">2</span>Le modèle</li><li><span class="rond">3</span>Le mode Auto</li><li><span class="rond">4</span>Découvrir Antigravity</li><li><span class="rond">5</span>C'est prêt</li><li><span class="rond">✓</span>Fermer l'onglet</li></ol>
+    <ol class="st" id="st"><li><span class="rond">1</span>Fermer les fenêtres</li><li><span class="rond">2</span>Le modèle</li><li><span class="rond">3</span>Le mode Auto</li><li><span class="rond">4</span>Découvrir Antigravity</li><li><span class="rond">5</span>C'est prêt</li><li><span class="rond">✓</span>Atelier</li></ol>
 
     <section class="etape">
       <h2>1. Fermer les petites fenêtres</h2>
@@ -311,19 +314,10 @@ b.cle { color:#fde68a; }
     </section>
 
     <section class="etape e6">
-      <h2>6. Fermer cet onglet</h2>
-      Dans Antigravity, à droite, en haut du navigateur : clique sur le <b class="cle">×</b> de l'onglet « Configuration d'Antigravity ».
-      <div class="ecran e6s" role="img" aria-label="La fenêtre d'Antigravity : à droite, le navigateur ; cliquer sur le × de l'onglet Configuration d'Antigravity">
-        <div class="ag-titre"><i></i><i></i><i></i></div>
-        <div class="ag-gauche"><p class="ag-new">+ New Conversation</p><p class="ag-conv">Atelier simulation</p><p class="ag-conv off">…</p><p class="ag-settings">⚙ Settings</p></div>
-        <div class="ag-milieu"><p class="ag-msg">💬 Pour toi :</p><p class="ag-ligne"></p><p class="ag-ligne court"></p><div class="ag-saisie">Ask anything…</div></div>
-        <div class="ag-droite">
-          <div class="onglets-ag"><span class="og actif"><span>Configuration d'Antig…</span><b class="x">×</b></span><span class="og-plus">+</span></div>
-          <div class="ag-adresse">education-simulation.atelier.rasf.fr/configuration.html</div>
-          <div class="page-ag"></div>
-          <svg class="souris" viewBox="0 0 14 21" width="22" height="33" aria-hidden="true"><path d="M0 0 L0 17 L4.5 13 L8 20 L11 18.5 L7.5 12 L13 12 Z" fill="#fff" stroke="#000" stroke-width="1.3"/></svg>
-        </div>
-      </div>
+      <h2>6. Choisis ton atelier</h2>
+      <p>Antigravity est configuré ✅ Place à la simulation : choisis ce que tu veux construire.</p>
+      <p style="text-align:center;margin:28px 0"><a class="vers-atelier" href="ateliers.html">🧪 Choisir mon atelier ›</a></p>
+      <p class="note-atelier">Tu pourras aussi y revenir plus tard : <b class="cle">atelier.rasf.fr/ateliers.html</b></p>
     </section>
 
     <div class="nav"><button type="button" class="prec" id="prec">‹ Précédent</button><button type="button" class="suiv" id="suiv">Suivant ›</button></div>
