@@ -23,8 +23,8 @@ b.cle { color:#fde68a; }
 .copier { all:unset; cursor:pointer; background:#16a34a; color:#fff; font-weight:800; border-radius:10px; padding:10px 16px; }
 .ia code { color:#fde68a; }
 .ias { display:flex; flex-wrap:wrap; gap:8px; margin:4px 0 10px; }
-.ias button { all:unset; display:flex; align-items:center; gap:6px; border-radius:10px; padding:8px 12px; font-weight:800; font-size:15px; }
-.ias .on { background:#f59e0b; color:#1f1300; cursor:default; }
+.ias button, .ias a { all:unset; display:flex; align-items:center; gap:6px; border-radius:10px; padding:8px 12px; font-weight:800; font-size:15px; }
+.ias .on { background:#f59e0b; color:#1f1300; cursor:pointer; text-decoration:none; box-shadow:0 0 0 4px rgba(245,158,11,.3); }
 .ias [disabled] { background:#18181b; color:#52525b; border:1px solid #27272a; cursor:not-allowed; }
 .ias [disabled] em { font-style:normal; font-weight:600; font-size:12px; }
 .note { font-size:15px; color:#d4d4d8; }
@@ -37,15 +37,13 @@ b.cle { color:#fde68a; }
     <h1>Je crée une simulation sur une page html avec l'IA</h1>
     <div class="bloc">
       <div class="ias" role="group" aria-label="Ton IA">
-        <button type="button" class="on" aria-pressed="true">🚀 Antigravity</button>
+        <a class="on" href="antigravity.html">🚀 Antigravity ›</a>
         <button type="button" disabled title="Bientôt">💬 ChatGPT <em>bientôt</em></button>
         <button type="button" disabled title="Bientôt">🌬️ Le Chat <em>bientôt</em></button>
         <button type="button" disabled title="Bientôt">✳️ Claude <em>bientôt</em></button>
         <button type="button" disabled title="Bientôt">✨ Gemini <em>bientôt</em></button>
       </div>
-      <p>Ouvre <b class="cle">Antigravity</b>, clique sur <b class="cle">« + New Conversation »</b>, colle cette phrase, puis appuie sur <b class="cle">Entrée</b> :</p>
-      <div class="phrase"><code>Lis https://atelier.rasf.fr et suis les instructions.</code><button type="button" class="copier">📋 Copier</button></div>
-      <p class="note">💡 Antigravity te demande « Allow … ? » : choisis <b class="cle">1 · Yes, allow this time</b>, puis <b class="cle">Submit</b>.</p>
+      <p class="note">👉 Choisis ton IA : clique sur <b class="cle">Antigravity</b>.</p>
     </div>
 
     <div class="bloc ia">
