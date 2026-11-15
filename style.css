@@ -38,3 +38,17 @@ button.tuile { cursor:pointer; }
 .suite { display:flex; justify-content:flex-end; margin-top:10px; }
 .suivant { background:#f59e0b; color:#1f1300; font-weight:800; font-size:17px; text-decoration:none; border-radius:10px; padding:10px 20px; }
 .suivant:hover { background:#fbbf24; }
+
+/* Les cartes de choix (page Antigravity) */
+.choix { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:12px; }
+.carte { all:unset; box-sizing:border-box; position:relative; display:flex; align-items:center; gap:14px; padding:16px 16px 16px 18px; border-radius:16px; background:linear-gradient(180deg,#1c1c22,#141418); border:1px solid #3f3f46; cursor:pointer; transition:transform .15s, border-color .15s, box-shadow .15s; }
+.carte:hover:not([disabled]) { transform:translateY(-2px); border-color:#f59e0b; box-shadow:0 8px 24px rgba(0,0,0,.4); }
+.carte[aria-pressed="true"] { border:2px solid #f59e0b; background:linear-gradient(180deg,#2a2110,#1a150b); box-shadow:0 0 0 4px rgba(245,158,11,.18); }
+.carte[disabled] { cursor:not-allowed; opacity:.45; }
+.carte .num { position:absolute; top:8px; right:12px; font:800 13px 'Outfit',system-ui,sans-serif; color:#71717a; }
+.carte .rond { flex:none; width:48px; height:48px; border-radius:14px; display:grid; place-items:center; background:rgba(245,158,11,.14); color:#fbbf24; }
+.carte[aria-pressed="true"] .rond { background:#f59e0b; color:#1f1300; }
+.carte .rond svg { width:26px; height:26px; }
+.carte .txt { display:grid; gap:2px; }
+.carte .txt b { color:#fff; font-size:17px; font-weight:800; line-height:1.25; }
+.carte .txt small { color:#a1a1aa; font-size:13.5px; line-height:1.3; }
