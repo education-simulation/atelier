@@ -181,3 +181,6 @@ body:has(.bande:not([hidden])) { padding-bottom:120px; }
 .aides { display:flex; flex-wrap:wrap; gap:8px; justify-content:flex-end; }
 .aide-bouton { display:inline-flex; align-items:center; gap:6px; color:#d4d4d8; background:#18181b; border:1px solid #3f3f46; border-radius:999px; padding:6px 14px; font-size:14px; font-weight:800; text-decoration:none; }
 .aide-bouton:hover { color:#1f1300; background:#f59e0b; border-color:#f59e0b; }
+.bloc-partie.attendre { background:#1a1626; border:2px solid #8b5cf6; }
+.bloc-partie.attendre .partie { color:#c4b5fd; } .bloc-partie.attendre .partie small { color:#a78bfa; }
+.bloc-partie.attendre b.cle { color:#ddd6fe; }
