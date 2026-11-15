@@ -14,6 +14,21 @@
     <div class="titre-haut"><h1>🧪 Choisis ton atelier</h1></div>
   </header>
   <div class="corps">
+    <p class="question">Où lis-tu cette page ?</p>
+    <div class="choix">
+      <button type="button" class="carte" data-ou="dans"><span class="rond"><img src="logos/antigravity.png" alt="" style="width:30px;height:30px"></span><span class="txt"><b>Je suis dans Antigravity</b><small>Dans la conversation où Antigravity m'a dit « Antigravity est configuré »</small></span></button>
+      <button type="button" class="carte" data-ou="hors"><span class="rond"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a14 14 0 0 1 0 18a14 14 0 0 1 0-18"/></svg></span><span class="txt"><b>Je ne suis pas dans Antigravity</b><small>Dans mon navigateur habituel</small></span></button>
+    </div>
+
+    <section class="info" id="hors" hidden>
+      <h2>⚙️ D'abord, configure Antigravity</h2>
+      <p>Les ateliers se font <b class="cle">dans Antigravity</b>, dans la conversation de configuration : c'est elle qui donne à Antigravity les règles des simulations (un seul fichier HTML, enregistré sur ton Bureau…).</p>
+      <p>Commence donc par le message de configuration : Antigravity te ramènera ensuite ici, au bon endroit.</p>
+      <div class="suite"><a class="suivant" href="antigravity.html#configurer">Configurer Antigravity ›</a></div>
+      <p class="note">Antigravity n'est pas encore installé ? <a class="mail" href="antigravity.html#installer">Installe-le d'abord</a>.</p>
+    </section>
+
+    <div id="suite-ateliers" hidden>
     <p class="question">Que veux-tu construire ?</p>
     <div class="choix">
       <button type="button" class="carte" data-choix="page"><span class="num">1</span><span class="rond"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="m10 13-2 2 2 2"/><path d="m14 13 2 2-2 2"/></svg></span><span class="txt"><b>Une simple page de simulation</b><small>Une page HTML, qui s'ouvre d'un double-clic</small></span></button>
@@ -30,9 +45,21 @@
       </div>
       <p class="note" id="sim-retour" hidden>⏳ Le parcours de cette simulation arrive bientôt.</p>
     </section>
+    </div>
   </div>
 </div>
 <script>
+// « Où lis-tu cette page ? » : gardé dans le navigateur (atelier.ou)
+function ou(v) {
+  document.querySelectorAll("[data-ou]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.ou === v)));
+  document.getElementById("hors").hidden = v !== "hors";
+  document.getElementById("suite-ateliers").hidden = v !== "dans";
+  try { localStorage.setItem("atelier.ou", v); } catch {}
+}
+document.querySelectorAll("[data-ou]").forEach((b) => b.addEventListener("click", () => ou(b.dataset.ou)));
+let ouDepart = new URLSearchParams(location.search).get("ou"); // lien venu d'Antigravity : ?ou=dans
+if (!ouDepart) { try { ouDepart = localStorage.getItem("atelier.ou"); } catch {} }
+if (ouDepart === "dans" || ouDepart === "hors") ou(ouDepart);
 // Un choix à la fois ; l'atelier et la simulation restent dans l'adresse (#page, #page/titrage) pour survivre au rechargement
 const noms = { page: "Simple page de simulation" }, sims = { titrage: "Titrage", metamerie: "Métamérie", cinetique: "Cinétique chimique" };
 function montrer(choix, sim) {
