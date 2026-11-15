@@ -161,3 +161,7 @@ body:has(.bande:not([hidden])) { padding-bottom:120px; }
 .partie { margin:8px 0 0; font:800 19px 'Outfit',system-ui,sans-serif; color:#fff; padding-top:8px; border-top:1px solid #27272a; }
 .panneau > .partie:first-child { border-top:none; padding-top:0; }
 .voir { margin:0; padding-left:22px; display:grid; gap:6px; }
+.allow-anim[hidden] { display:none; }
+.allow-rejouer { all:unset; cursor:pointer; display:inline-flex; align-items:center; gap:8px; background:#16161b; color:#fde68a; border:2px solid #f59e0b; border-radius:12px; padding:10px 16px; font-weight:800; font-size:15px; }
+.allow-rejouer:hover { background:#2a2110; }
+.allow-rejouer[hidden] { display:none; }

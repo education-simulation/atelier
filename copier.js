@@ -22,14 +22,32 @@ function montrerAllow(b) {
   const zone = b.closest(".phrase").nextElementSibling;
   if (!tpl || !zone || !zone.classList.contains("allow-zone")) return;
   if (!zone.firstElementChild) {
-    zone.appendChild(tpl.content.cloneNode(true));
+    const anim = document.createElement("div");
+    anim.className = "allow-anim";
+    anim.appendChild(tpl.content.cloneNode(true));
+    const rejouer = document.createElement("button");
+    rejouer.type = "button";
+    rejouer.className = "allow-rejouer";
+    rejouer.textContent = "🔐 Allow write access to this path? · revoir quoi choisir";
+    rejouer.hidden = true;
+    rejouer.addEventListener("click", () => jouer(zone));
+    zone.append(anim, rejouer);
     const cadre = zone.querySelector(".cadre-allow");
     new ResizeObserver(() => ajuster(cadre)).observe(cadre);
   }
   zone.hidden = false;
+  jouer(zone);
+}
+
+// L'animation reste 10 secondes, puis laisse la place au bouton qui la rejoue (10 s aussi)
+function jouer(zone) {
+  const anim = zone.querySelector(".allow-anim"), rejouer = zone.querySelector(".allow-rejouer");
+  anim.hidden = false; rejouer.hidden = true;
   ajuster(zone.querySelector(".cadre-allow"));
+  anim.querySelectorAll("*").forEach((el) => el.getAnimations().forEach((a) => { a.currentTime = 0; }));
   zone.scrollIntoView({ behavior: "smooth", block: "nearest" });
-  zone.querySelectorAll("*").forEach((el) => el.getAnimations().forEach((a) => { a.currentTime = 0; }));
+  clearTimeout(zone._minuteur);
+  zone._minuteur = setTimeout(() => { anim.hidden = true; rejouer.hidden = false; }, 10000);
 }
 
 document.querySelectorAll("button.copier").forEach((b) => b.addEventListener("click", async () => {
