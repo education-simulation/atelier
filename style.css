@@ -25,3 +25,5 @@ ol.etapes > li::before { content:counter(n); position:absolute; left:14px; top:1
 .phrase code { flex:1; min-width:240px; background:#0b0b0f; border:1px dashed #f59e0b; border-radius:10px; padding:12px 14px; font-family:Menlo,Consolas,monospace; font-size:15px; color:#fff; white-space:pre-wrap; }
 .copier { all:unset; cursor:pointer; background:#16a34a; color:#fff; font-weight:800; border-radius:10px; padding:10px 16px; }
 .note { margin:8px 0 0; color:#a1a1aa; font-size:15px; }
+.tuile[aria-pressed="true"] { background:#3a2a08; box-shadow:0 0 0 5px rgba(245,158,11,.4); }
+a.copier { text-decoration:none; }

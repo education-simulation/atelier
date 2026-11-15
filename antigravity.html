@@ -12,9 +12,24 @@
   <div class="corps">
     <h1><img src="logos/antigravity.png" alt="" style="width:34px;height:34px;vertical-align:-6px"> Je commence avec Antigravity</h1>
     <div class="tuiles">
-      <button type="button" class="tuile" id="choix-configurer"><span class="ico">⚙️</span>Je veux configurer Antigravity</button>
+      <button type="button" class="tuile" data-choix="installer"><span class="ico">⬇️</span>Je veux installer Antigravity</button>
+      <button type="button" class="tuile" data-choix="configurer"><span class="ico">⚙️</span>Je veux configurer Antigravity</button>
       <button type="button" class="tuile" disabled><span class="ico">✅</span>J'ai déjà configuré Antigravity<em>bientôt</em></button>
     </div>
+
+    <section id="installer" hidden>
+      <ol class="etapes">
+        <li>Ouvre la page officielle de Google et télécharge Antigravity pour ton ordinateur (Mac ou Windows) :
+          <div class="phrase"><a class="copier" href="https://antigravity.google/download" target="_blank" rel="noopener">⬇️ Télécharger Antigravity</a></div>
+        </li>
+        <li>Installe-le : <b class="cle">sur Mac</b>, ouvre le fichier téléchargé et glisse Antigravity dans le dossier <b class="cle">Applications</b> ; <b class="cle">sur Windows</b>, double-clique sur le fichier téléchargé et suis l'installation.</li>
+        <li>Ouvre Antigravity et connecte-toi avec ton <b class="cle">compte Google d'établissement</b>.</li>
+        <li>Antigravity te demande « What best describes your work? » : clique simplement sur <b class="cle">Skip</b>, en bas.
+          <img src="images/antigravity-bienvenue.webp" alt="L'écran d'accueil d'Antigravity : Hey education!, six choix, et Skip en bas" style="display:block;width:100%;max-width:520px;margin-top:10px;border-radius:12px;border:1px solid #3f3f46">
+        </li>
+        <li>C'est installé ✅ Clique maintenant sur <b class="cle">« Je veux configurer Antigravity »</b>, plus haut.</li>
+      </ol>
+    </section>
 
     <section id="configurer" hidden>
       <ol class="etapes">
@@ -28,10 +43,17 @@
   </div>
 </div>
 <script>
-const section = document.getElementById("configurer"), bouton = document.getElementById("choix-configurer");
-const montrer = () => { section.hidden = false; bouton.setAttribute("aria-pressed", "true"); };
-bouton.addEventListener("click", () => { montrer(); history.replaceState(null, "", "#configurer"); section.scrollIntoView({ behavior: "smooth" }); });
-if (location.hash === "#configurer") montrer();
+// Un choix à la fois ; le choix reste dans l'adresse (#installer, #configurer) pour survivre au rechargement
+const montrer = (id) => {
+  document.querySelectorAll("section[id]").forEach((s) => { s.hidden = s.id !== id; });
+  document.querySelectorAll("[data-choix]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.choix === id)));
+};
+document.querySelectorAll("[data-choix]").forEach((b) => b.addEventListener("click", () => {
+  montrer(b.dataset.choix); history.replaceState(null, "", "#" + b.dataset.choix);
+  document.getElementById(b.dataset.choix).scrollIntoView({ behavior: "smooth" });
+}));
+const depart = location.hash.slice(1);
+if (depart === "installer" || depart === "configurer") montrer(depart);
 document.querySelectorAll("button.copier").forEach((b) => b.addEventListener("click", async () => {
   const c = b.previousElementSibling;
   try { await navigator.clipboard.writeText(c.textContent); }
