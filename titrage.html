@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Atelier · Simulation d'un titrage</title>
+<link rel="stylesheet" href="style.css?v=18">
+</head>
+<body>
+<div class="fen">
+  <header class="haut">
+  <div class="barre"><i></i><i></i><i></i><b>Atelier · Simulation d'un titrage</b><a href="ateliers.html#page">‹ Ateliers</a></div>
+  <nav class="ariane" aria-label="Fil d'Ariane"><a href="./">🏠 Accueil</a><i class="sep">›</i><a href="antigravity.html">Antigravity</a><i class="sep">›</i><a href="ateliers.html">Ateliers</a><i class="sep">›</i><a href="ateliers.html#page">Simple page de simulation</a><i class="sep">›</i><span aria-current="page">Titrage</span></nav>
+    <div class="titre-haut"><h1>⚗️ Simulation d'un titrage <span class="domaine-titre">Analyse</span></h1></div>
+  </header>
+  <div class="corps">
+    <p class="but">🎯 À la fin, tu repars avec <b class="cle">une mini-simulation de titrage pour tes cours</b>, créée en dialoguant avec l'IA, sans coder… <b class="cle">mais à vérifier</b>.</p>
+
+    <ol class="etapes">
+      <li><b class="cle">Le wahou</b> : regarde la simulation finie que l'animateur te montre, et manipule-la. Note ce qui te plaît : c'est ce que tu demanderas à l'IA.</li>
+
+      <li><b class="cle">Ton premier prompt</b> : choisis un des deux messages, clique sur son bouton, puis dans Antigravity : <b class="cle">+ New Conversation</b>, colle (<b class="cle os os-mac">Cmd + V</b><b class="cle os os-win">Ctrl + V</b><b class="cle os os-linux">Ctrl + V</b>) et <b class="cle">Entrée</b>.
+        <p class="etiquette-prompt">✏️ Le prompt court</p>
+        <div class="phrase"><code>Fais-moi une simulation de titrage dans un seul fichier HTML, enregistré dans un dossier « simulation-titrage » sur mon Bureau. Puis dis-moi de l'ouvrir d'un double-clic dans mon navigateur.</code><button type="button" class="copier" data-ouvrir="antigravity://">📋 Copier et ouvrir Antigravity</button></div>
+        <p class="note retour-ouvrir" hidden></p>
+        <p class="etiquette-prompt">📝 Le prompt détaillé</p>
+        <div class="phrase"><code>Crée une simulation de titrage acido-basique, en français, dans un seul fichier HTML sans aucune ressource externe, enregistré dans un dossier « simulation-titrage » sur mon Bureau.
+
+Le titrage : 20,0 mL d'acide chlorhydrique de concentration 0,100 mol/L, titrés par une solution d'hydroxyde de sodium de concentration 0,100 mol/L, versée à la burette.
+
+La page montre :
+- à gauche, un schéma de la burette au-dessus d'un bécher, avec un curseur pour le volume versé (de 0 à 40 mL, au pas de 0,1 mL) et un bouton « Verser 1 mL » ;
+- la couleur de la solution, avec un indicateur coloré (bleu de bromothymol) ;
+- à droite, la courbe pH = f(V), qui se trace au fur et à mesure ;
+- la valeur du pH affichée en grand, et le point d'équivalence repéré sur la courbe.
+
+Le pH est calculé exactement à chaque volume (pas d'approximation), en tenant compte de la dilution.
+
+Ensuite, dis-moi de l'ouvrir d'un double-clic dans mon navigateur.</code><button type="button" class="copier" data-ouvrir="antigravity://">📋 Copier et ouvrir Antigravity</button></div>
+        <p class="note retour-ouvrir" hidden></p>
+        <p class="note">💡 Compare les deux résultats : plus le prompt est précis, plus la simulation ressemble à ce que tu veux.</p>
+      </li>
+
+      <li><b class="cle">On modifie</b> : demande des changements à l'IA, dans la même conversation. Quelques idées, à copier ou à écrire avec tes mots :
+        <ul class="idees">
+          <li><div class="phrase"><code>Remplace l'acide chlorhydrique par l'acide éthanoïque (pKa = 4,76).</code><button type="button" class="copier">📋 Copier</button></div></li>
+          <li><div class="phrase"><code>Ajoute un menu pour choisir l'indicateur coloré : hélianthine, bleu de bromothymol, phénolphtaléine.</code><button type="button" class="copier">📋 Copier</button></div></li>
+          <li><div class="phrase"><code>Ajoute la courbe dérivée dpH/dV, pour repérer l'équivalence.</code><button type="button" class="copier">📋 Copier</button></div></li>
+          <li><div class="phrase"><code>Permets de changer les concentrations et le volume d'acide.</code><button type="button" class="copier">📋 Copier</button></div></li>
+        </ul>
+        <p class="note">💡 Après chaque modification, <b class="cle">recharge la page</b> dans ton navigateur (<b class="os os-mac">Cmd + R</b><b class="os os-win">F5</b><b class="os os-linux">F5</b>).</p>
+      </li>
+
+      <li><b class="cle">À vérifier</b> : l'IA se trompe parfois en chimie. Contrôle au moins ces points avant d'utiliser ta simulation en cours :
+        <div class="verifier">
+          <p>⚠️ <b>Les erreurs fréquentes de l'IA</b></p>
+          <ul>
+            <li><b>Le volume équivalent</b> : V<sub>E</sub> = C<sub>a</sub>·V<sub>a</sub> / C<sub>b</sub> (ici 20,0 mL).</li>
+            <li><b>Le pH à l'équivalence</b> : 7 pour un acide fort par une base forte ; supérieur à 7 pour un acide faible.</li>
+            <li><b>Le pH initial</b> : 1,0 pour l'acide chlorhydrique à 0,100 mol/L ; environ 2,9 pour l'acide éthanoïque.</li>
+            <li><b>La demi-équivalence</b> (acide faible) : pH = pKa.</li>
+            <li><b>La dilution</b> : après l'équivalence, le pH tend vers celui de la soude diluée, pas vers 13 tout de suite.</li>
+            <li><b>L'indicateur</b> : sa couleur change bien dans sa zone de virage (bleu de bromothymol : 6,0 à 7,6).</li>
+          </ul>
+          <p class="note">💡 Une erreur trouvée ? Décris-la à l'IA avec tes mots : « Le pH à l'équivalence devrait être 7, corrige le calcul. »</p>
+        </div>
+      </li>
+    </ol>
+  </div>
+</div>
+<script src="copier.js"></script>
+<script>
+// Le système de l'ordinateur (Mac, Windows, Linux), comme sur la page Antigravity
+let os = null; try { os = localStorage.getItem("atelier.os"); } catch {}
+document.body.dataset.os = os || (/Windows/i.test(navigator.userAgent) ? "win" : /Mac/i.test(navigator.userAgent) ? "mac" : "linux");
+</script>
+</body>
+</html>

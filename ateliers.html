@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Atelier · Choisis ton atelier</title>
-<link rel="stylesheet" href="style.css?v=16">
+<link rel="stylesheet" href="style.css?v=18">
 </head>
 <body>
 <div class="fen">
@@ -24,9 +24,9 @@
     <section id="page" hidden>
       <p class="question">Quelle simulation ?</p>
       <div class="sims">
-        <button type="button" class="sim" data-sim="titrage"><span class="ico">⚗️</span><b>Simulation d'un titrage</b><span class="domaine">Analyse</span></button>
-        <button type="button" class="sim" data-sim="metamerie"><span class="ico">🎨</span><b>Simulation de la métamérie</b><span class="domaine">Formulation</span></button>
-        <button type="button" class="sim" data-sim="cinetique"><span class="ico">⏱️</span><b>Cinétique chimique</b><span class="domaine">Synthèse</span></button>
+        <a class="sim" href="titrage.html"><span class="ico">⚗️</span><b>Simulation d'un titrage</b><span class="domaine">Analyse</span></a>
+        <button type="button" class="sim" data-sim="metamerie"><span class="ico">🎨</span><b>Simulation de la métamérie</b><span class="domaine">Formulation</span><small class="bientot">bientôt</small></button>
+        <button type="button" class="sim" data-sim="cinetique"><span class="ico">⏱️</span><b>Cinétique chimique</b><span class="domaine">Synthèse</span><small class="bientot">bientôt</small></button>
       </div>
       <p class="note" id="sim-retour" hidden>⏳ Le parcours de cette simulation arrive bientôt.</p>
     </section>
