@@ -19,34 +19,57 @@
     <ol class="etapes">
       <li><b class="cle">Le wahou</b> : regarde la simulation finie que l'animateur te montre, et manipule-la. Note ce qui te plaît : c'est ce que tu demanderas à l'IA.</li>
 
-      <li><b class="cle">Ton premier prompt</b> : choisis un des deux messages, clique sur son bouton, puis dans Antigravity : <b class="cle">+ New Conversation</b>, colle (<b class="cle os os-mac">Cmd + V</b><b class="cle os os-win">Ctrl + V</b><b class="cle os os-linux">Ctrl + V</b>) et <b class="cle">Entrée</b>.
-        <p class="etiquette-prompt">✏️ Le prompt court</p>
-        <div class="phrase"><code>Fais-moi une simulation de titrage dans un seul fichier HTML, enregistré dans un dossier « simulation-titrage » sur mon Bureau. Puis dis-moi de l'ouvrir d'un double-clic dans mon navigateur.</code><button type="button" class="copier" data-ouvrir="antigravity://">📋 Copier et ouvrir Antigravity</button></div>
+      <li><b class="cle">Le prompt court</b> : pour voir ce que l'IA fait avec presque rien. Clique sur le bouton, puis dans Antigravity : <b class="cle">+ New Conversation</b>, colle (<b class="cle os os-mac">Cmd + V</b><b class="cle os os-win">Ctrl + V</b><b class="cle os os-linux">Ctrl + V</b>) et <b class="cle">Entrée</b>.
+        <div class="phrase"><code>Fais-moi une simulation de titrage dans un seul fichier HTML, enregistré dans un dossier « simulation-titrage-court » sur mon Bureau. Puis dis-moi de l'ouvrir d'un double-clic dans mon navigateur.</code><button type="button" class="copier" data-ouvrir="antigravity://">📋 Copier et ouvrir Antigravity</button></div>
         <p class="note retour-ouvrir" hidden></p>
-        <p class="etiquette-prompt">📝 Le prompt détaillé</p>
-        <div class="phrase"><code>Crée une simulation de titrage acido-basique, en français, dans un seul fichier HTML sans aucune ressource externe, enregistré dans un dossier « simulation-titrage » sur mon Bureau.
+      </li>
 
-Le titrage : 20,0 mL d'acide chlorhydrique de concentration 0,100 mol/L, titrés par une solution d'hydroxyde de sodium de concentration 0,100 mol/L, versée à la burette.
+      <li><b class="cle">Le prompt détaillé, en 3 temps</b> : une nouvelle conversation, puis les trois messages l'un après l'autre, <b class="cle">dans la même conversation</b>. Attends la fin de chaque réponse, et ouvre la page pour voir le résultat avant de passer au message suivant.
+        <p class="etiquette-prompt">① L'avancement d'une réaction</p>
+        <div class="phrase"><code>Bonjour, je souhaiterais que tu m'aides à concevoir une simulation en HTML (donc un fichier texte avec l'extension .html, et pas un fichier Python) que je puisse facilement partager à mes collègues. Enregistre-la dans un dossier « simulation-titrage » sur mon Bureau, puis dis-moi de l'ouvrir d'un double-clic dans mon navigateur.
 
-La page montre :
-- à gauche, un schéma de la burette au-dessus d'un bécher, avec un curseur pour le volume versé (de 0 à 40 mL, au pas de 0,1 mL) et un bouton « Verser 1 mL » ;
-- la couleur de la solution, avec un indicateur coloré (bleu de bromothymol) ;
-- à droite, la courbe pH = f(V), qui se trace au fur et à mesure ;
-- la valeur du pH affichée en grand, et le point d'équivalence repéré sur la courbe.
+Cette simulation doit permettre de modéliser une réaction chimique et de déterminer son état final. On utilisera la notation suivante : aA + bB → cC + dD.
+A et B sont les réactifs, C et D sont les produits. Les grandeurs a, b, c et d sont les coefficients stœchiométriques associés respectivement aux espèces chimiques A, B, C et D : ce sont des grandeurs d'entrée qui doivent être modifiables facilement.
 
-Le pH est calculé exactement à chaque volume (pas d'approximation), en tenant compte de la dilution.
+On doit ensuite pouvoir entrer les quantités de matière initiales nA,0, nB,0, nC,0 et nD,0 (en mol) (les « 0 » permettent de comprendre que ce sont bien les quantités de matière initiales), quantités de matière respectivement des espèces chimiques A, B, C et D.
 
-Ensuite, dis-moi de l'ouvrir d'un double-clic dans mon navigateur.</code><button type="button" class="copier" data-ouvrir="antigravity://">📋 Copier et ouvrir Antigravity</button></div>
+Le programme doit alors calculer xa = nA,0/a et xb = nB,0/b, puis la grandeur Xf = min(xa, xb) (Xf est l'avancement final) : le minimum des deux grandeurs xa et xb.
+Xf permet de définir le réactif limitant.
+Si Xf = xa, alors le réactif limitant est A.
+Si Xf = xb, alors le réactif limitant est B.
+
+J'aimerais que le programme calcule les quantités de matière nA, nB, nC et nD pour n'importe quel avancement X, compris entre 0 et Xf :
+nA = nA,0 − a·X ;
+nB = nB,0 − b·X ;
+nC = nC,0 + c·X ;
+nD = nD,0 + d·X.
+
+J'aimerais que la page affiche un graphique en histogramme, avec en abscisse les 4 espèces chimiques A, B, C et D, et en ordonnée les quantités de matière respectives.
+
+Il faudrait prévoir une saisie manuelle de la valeur de l'avancement X pour le faire évoluer entre 0 et Xf. Le graphique devrait alors se mettre à jour automatiquement (plus X augmente, plus les histogrammes des réactifs doivent diminuer et ceux des produits augmenter, jusqu'à disparition complète du réactif limitant !).
+
+En plus du graphique, la page doit bien sûr afficher l'équation de la réaction, les quantités de matière initiales et l'avancement final Xf ! Merci</code><button type="button" class="copier" data-ouvrir="antigravity://">📋 Copier et ouvrir Antigravity</button></div>
         <p class="note retour-ouvrir" hidden></p>
-        <p class="note">💡 Compare les deux résultats : plus le prompt est précis, plus la simulation ressemble à ce que tu veux.</p>
+        <p class="etiquette-prompt">② Le dosage</p>
+        <div class="phrase"><code>Merci. Tu peux maintenant générer un nouveau code, similaire au précédent, mais qui illustre le cas particulier d'un dosage. Dans un dosage, l'espèce A sera définie par défaut comme l'espèce titrée, et B comme l'espèce titrante. Cette fois-ci, ce n'est pas X l'avancement qu'on entrera, mais VB, le volume d'espèce titrante ajouté. VB varie entre 0 et Veq, le volume à l'équivalence versé d'espèce titrante.
+
+À l'état initial, on a une quantité de matière nA,0 = cA·VA (en mmol), avec cA la concentration en quantité de matière de A en mol/L et VA le volume en mL de A. Le volume Veq est défini de la manière suivante : Veq = cA·VA·b/(a·cB), avec cB la concentration en quantité de matière de B en mol/L (Veq est en mL). À l'état initial, nB,0 = nC,0 = nD,0 = 0 (les produits C et D sont absents, tout comme le réactif B, en dehors du bécher puisque dans la burette).
+
+Avant l'équivalence (pour un volume VB donné, compris entre 0 et Veq), le réactif titrant B est toujours limitant, donc nB = cB·VB − b·X = 0, donc X = cB·VB/b, avec VB le volume en mL de B versé dans le bécher. On a donc nA = nA,0 − a·X, nC = c·X et nD = d·X. Lorsque VB = Veq, X = Xeq = cB·Veq/b : normalement, on doit donc avoir nA,eq = nB,eq = 0. Pour VB &gt; Veq, le réactif titrant s'accumule : nB = cB·(VB − Veq), nA = 0, nC = c·Xeq et nD = d·Xeq.
+
+Le code doit être similaire au précédent : afficher l'équation de la réaction, la concentration de l'espèce titrée A, le volume de A, la concentration de l'espèce titrante B, le même graphique qu'avant… etc. !</code><button type="button" class="copier">📋 Copier</button></div>
+        <p class="etiquette-prompt">③ L'exploitation de mesures (fichier Excel ou CSV)</p>
+        <div class="phrase"><code>Merci. Parfait pour prévoir le volume à l'équivalence ! Maintenant, j'aimerais que tu ajoutes un autre onglet où l'on puisse charger un fichier de type Excel ou CSV, et que la page reconnaisse la colonne du volume V et celle de la grandeur mesurée (par exemple le pH ou un potentiel), et trace l'évolution de la grandeur mesurée en fonction du volume. Et qu'on puisse directement, dans cet onglet, faire l'exploitation, avec le tracé de la dérivée première, de la dérivée seconde, et éventuellement des tangentes ?</code><button type="button" class="copier">📋 Copier</button></div>
+        <p class="note">💡 Sois patient : chaque réponse peut prendre plusieurs minutes, et Antigravity te demande parfois une autorisation (« Allow… ») : clique sur <b class="cle">Yes</b>, puis <b class="cle">Submit</b>.</p>
+        <p class="note">💡 Compare avec le prompt court : plus le prompt est précis, plus la simulation ressemble à ce que tu veux.</p>
       </li>
 
       <li><b class="cle">On modifie</b> : demande des changements à l'IA, dans la même conversation. Quelques idées, à copier ou à écrire avec tes mots :
         <ul class="idees">
-          <li><div class="phrase"><code>Remplace l'acide chlorhydrique par l'acide éthanoïque (pKa = 4,76).</code><button type="button" class="copier">📋 Copier</button></div></li>
-          <li><div class="phrase"><code>Ajoute un menu pour choisir l'indicateur coloré : hélianthine, bleu de bromothymol, phénolphtaléine.</code><button type="button" class="copier">📋 Copier</button></div></li>
-          <li><div class="phrase"><code>Ajoute la courbe dérivée dpH/dV, pour repérer l'équivalence.</code><button type="button" class="copier">📋 Copier</button></div></li>
-          <li><div class="phrase"><code>Permets de changer les concentrations et le volume d'acide.</code><button type="button" class="copier">📋 Copier</button></div></li>
+          <li><div class="phrase"><code>Ajoute un curseur pour faire varier le volume versé VB, en plus de la saisie.</code><button type="button" class="copier">📋 Copier</button></div></li>
+          <li><div class="phrase"><code>Affiche sous le graphique un tableau d'avancement : état initial, état intermédiaire, état final.</code><button type="button" class="copier">📋 Copier</button></div></li>
+          <li><div class="phrase"><code>Ajoute un exemple prêt à l'emploi : le dosage des ions fer(II) par les ions permanganate (5 Fe²⁺ + MnO₄⁻ + 8 H⁺ → 5 Fe³⁺ + Mn²⁺ + 4 H₂O).</code><button type="button" class="copier">📋 Copier</button></div></li>
+          <li><div class="phrase"><code>Ajoute un bouton pour télécharger le graphique en image.</code><button type="button" class="copier">📋 Copier</button></div></li>
         </ul>
         <p class="note">💡 Après chaque modification, <b class="cle">recharge la page</b> dans ton navigateur (<b class="os os-mac">Cmd + R</b><b class="os os-win">F5</b><b class="os os-linux">F5</b>).</p>
       </li>
@@ -55,14 +78,15 @@ Ensuite, dis-moi de l'ouvrir d'un double-clic dans mon navigateur.</code><button
         <div class="verifier">
           <p>⚠️ <b>Les erreurs fréquentes de l'IA</b></p>
           <ul>
-            <li><b>Le volume équivalent</b> : V<sub>E</sub> = C<sub>a</sub>·V<sub>a</sub> / C<sub>b</sub> (ici 20,0 mL).</li>
-            <li><b>Le pH à l'équivalence</b> : 7 pour un acide fort par une base forte ; supérieur à 7 pour un acide faible.</li>
-            <li><b>Le pH initial</b> : 1,0 pour l'acide chlorhydrique à 0,100 mol/L ; environ 2,9 pour l'acide éthanoïque.</li>
-            <li><b>La demi-équivalence</b> (acide faible) : pH = pKa.</li>
-            <li><b>La dilution</b> : après l'équivalence, le pH tend vers celui de la soude diluée, pas vers 13 tout de suite.</li>
-            <li><b>L'indicateur</b> : sa couleur change bien dans sa zone de virage (bleu de bromothymol : 6,0 à 7,6).</li>
+            <li><b>L'avancement final</b> : X<sub>f</sub> = min(n<sub>A,0</sub>/a ; n<sub>B,0</sub>/b), et le bon réactif limitant.</li>
+            <li><b>À X = X<sub>f</sub></b> : la quantité du réactif limitant vaut exactement 0, jamais une valeur négative.</li>
+            <li><b>Le volume équivalent</b> : V<sub>eq</sub> = b·c<sub>A</sub>·V<sub>A</sub> / (a·c<sub>B</sub>), avec les coefficients au bon endroit.</li>
+            <li><b>Après l'équivalence</b> : n<sub>A</sub> = 0, n<sub>B</sub> = c<sub>B</sub>·(V<sub>B</sub> − V<sub>eq</sub>), et les produits ne bougent plus.</li>
+            <li><b>Les unités</b> : des mmol avec des mL et des mol/L.</li>
+            <li><b>Si la page calcule un pH</b> : 7 à l'équivalence pour un acide fort par une base forte, plus de 7 pour un acide faible ; pH = pKa à la demi-équivalence.</li>
+            <li><b>L'exploitation</b> : l'équivalence est au maximum de la dérivée première (et là où la dérivée seconde s'annule).</li>
           </ul>
-          <p class="note">💡 Une erreur trouvée ? Décris-la à l'IA avec tes mots : « Le pH à l'équivalence devrait être 7, corrige le calcul. »</p>
+          <p class="note">💡 Une erreur trouvée ? Décris-la à l'IA avec tes mots : « Après l'équivalence, nA devrait rester à 0, corrige le calcul. »</p>
         </div>
       </li>
     </ol>
