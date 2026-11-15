@@ -68,3 +68,5 @@ body[data-os="mac"] .os-mac, body[data-os="win"] .os-win, body[data-os="linux"] 
 
 /* Le haut de chaque fenêtre (titre + fil d'Ariane) reste visible en défilant */
 .haut { position:sticky; top:0; z-index:50; }
+.titre-haut { background:#0b0b0f; padding:12px 22px; border-bottom:1px solid #27272a; }
+.titre-haut h1 { margin:0; }
