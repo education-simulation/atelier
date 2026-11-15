@@ -21,12 +21,24 @@
       <li><b class="cle">Le wahou</b> : regarde la simulation finie que l'animateur te montre, et manipule-la. Note ce qui te plaît : c'est ce que tu demanderas à l'IA.</li>
 
       <li><b class="cle">Le prompt court</b> : pour voir ce que l'IA fait avec presque rien. Clique sur <b class="cle">📋 Copier</b>, puis colle le message dans la zone de message d'Antigravity, en bas à gauche, et appuie sur <b class="cle">Entrée</b>.
-        <div class="phrase"><code>Fais-moi une simulation de titrage dans un seul fichier HTML, enregistré dans un dossier « simulation-titrage-court » sur mon Bureau. Puis dis-moi de l'ouvrir d'un double-clic dans mon navigateur.</code><button type="button" class="copier">📋 Copier</button></div>
+        <div class="phrase"><code>Fais-moi une simulation de titrage dans un seul fichier HTML, enregistré dans un dossier « simulation-titrage-court » sur mon Bureau.
+
+Tout en haut du fichier, juste après &lt;!DOCTYPE html&gt;, mets ce commentaire :
+&lt;!-- Ceci est le CODE de la simulation : ne la regarde pas ici. Pour la voir, ouvre le dossier « simulation-titrage-court » sur ton Bureau, puis double-clique sur ce fichier : il s'ouvre dans ton navigateur (Chrome, Firefox, Safari, Edge). --&gt;
+
+Quand c'est fini, réponds seulement par cet encadré, avec le vrai nom du fichier :
+
+&gt; [!TIP]
+&gt; ✅ **Ta simulation est prête.**
+&gt;
+&gt; 👉 **Pour la voir :** ouvre le dossier « simulation-titrage-court » sur ton Bureau, puis **double-clique sur le fichier** &lt;nom du fichier&gt;.html : il s'ouvre dans ton navigateur (Chrome, Firefox, Safari, Edge).
+&gt;
+&gt; 💡 Ne la regarde pas dans Antigravity : il n'affiche que son code.</code><button type="button" class="copier">📋 Copier</button></div>
               </li>
 
       <li><b class="cle">Le prompt détaillé, en 3 temps</b> : les trois messages l'un après l'autre, toujours <b class="cle">dans la même conversation</b> : clique sur <b class="cle">📋 Copier</b>, colle, puis <b class="cle">Entrée</b>. Attends la fin de chaque réponse, et ouvre la page pour voir le résultat avant de passer au message suivant.
         <p class="etiquette-prompt">① L'avancement d'une réaction</p>
-        <div class="phrase"><code>Bonjour, je souhaiterais que tu m'aides à concevoir une simulation en HTML (donc un fichier texte avec l'extension .html, et pas un fichier Python) que je puisse facilement partager à mes collègues. Enregistre-la dans un dossier « simulation-titrage » sur mon Bureau, puis dis-moi de l'ouvrir d'un double-clic dans mon navigateur.
+        <div class="phrase"><code>Bonjour, je souhaiterais que tu m'aides à concevoir une simulation en HTML (donc un fichier texte avec l'extension .html, et pas un fichier Python) que je puisse facilement partager à mes collègues. Enregistre-la dans un dossier « simulation-titrage » sur mon Bureau.
 
 Cette simulation doit permettre de modéliser une réaction chimique et de déterminer son état final. On utilisera la notation suivante : aA + bB → cC + dD.
 A et B sont les réactifs, C et D sont les produits. Les grandeurs a, b, c et d sont les coefficients stœchiométriques associés respectivement aux espèces chimiques A, B, C et D : ce sont des grandeurs d'entrée qui doivent être modifiables facilement.
@@ -48,7 +60,19 @@ J'aimerais que la page affiche un graphique en histogramme, avec en abscisse les
 
 Il faudrait prévoir une saisie manuelle de la valeur de l'avancement X pour le faire évoluer entre 0 et Xf. Le graphique devrait alors se mettre à jour automatiquement (plus X augmente, plus les histogrammes des réactifs doivent diminuer et ceux des produits augmenter, jusqu'à disparition complète du réactif limitant !).
 
-En plus du graphique, la page doit bien sûr afficher l'équation de la réaction, les quantités de matière initiales et l'avancement final Xf ! Merci</code><button type="button" class="copier">📋 Copier</button></div>
+En plus du graphique, la page doit bien sûr afficher l'équation de la réaction, les quantités de matière initiales et l'avancement final Xf ! Merci
+
+Tout en haut du fichier, juste après &lt;!DOCTYPE html&gt;, mets ce commentaire :
+&lt;!-- Ceci est le CODE de la simulation : ne la regarde pas ici. Pour la voir, ouvre le dossier « simulation-titrage » sur ton Bureau, puis double-clique sur ce fichier : il s'ouvre dans ton navigateur (Chrome, Firefox, Safari, Edge). --&gt;
+
+Quand c'est fini, réponds seulement par cet encadré, avec le vrai nom du fichier :
+
+&gt; [!TIP]
+&gt; ✅ **Ta simulation est prête.**
+&gt;
+&gt; 👉 **Pour la voir :** ouvre le dossier « simulation-titrage » sur ton Bureau, puis **double-clique sur le fichier** &lt;nom du fichier&gt;.html : il s'ouvre dans ton navigateur (Chrome, Firefox, Safari, Edge).
+&gt;
+&gt; 💡 Ne la regarde pas dans Antigravity : il n'affiche que son code.</code><button type="button" class="copier">📋 Copier</button></div>
                 <p class="etiquette-prompt">② Le dosage</p>
         <div class="phrase"><code>Merci. Tu peux maintenant générer un nouveau code, similaire au précédent, mais qui illustre le cas particulier d'un dosage. Dans un dosage, l'espèce A sera définie par défaut comme l'espèce titrée, et B comme l'espèce titrante. Cette fois-ci, ce n'est pas X l'avancement qu'on entrera, mais VB, le volume d'espèce titrante ajouté. VB varie entre 0 et Veq, le volume à l'équivalence versé d'espèce titrante.
 
@@ -56,9 +80,13 @@ En plus du graphique, la page doit bien sûr afficher l'équation de la réactio
 
 Avant l'équivalence (pour un volume VB donné, compris entre 0 et Veq), le réactif titrant B est toujours limitant, donc nB = cB·VB − b·X = 0, donc X = cB·VB/b, avec VB le volume en mL de B versé dans le bécher. On a donc nA = nA,0 − a·X, nC = c·X et nD = d·X. Lorsque VB = Veq, X = Xeq = cB·Veq/b : normalement, on doit donc avoir nA,eq = nB,eq = 0. Pour VB &gt; Veq, le réactif titrant s'accumule : nB = cB·(VB − Veq), nA = 0, nC = c·Xeq et nD = d·Xeq.
 
-Le code doit être similaire au précédent : afficher l'équation de la réaction, la concentration de l'espèce titrée A, le volume de A, la concentration de l'espèce titrante B, le même graphique qu'avant… etc. !</code><button type="button" class="copier">📋 Copier</button></div>
+Le code doit être similaire au précédent : afficher l'équation de la réaction, la concentration de l'espèce titrée A, le volume de A, la concentration de l'espèce titrante B, le même graphique qu'avant… etc. !
+
+Garde le commentaire tout en haut du fichier, et termine par le même encadré « Ta simulation est prête » qu'avant, avec le vrai nom du fichier.</code><button type="button" class="copier">📋 Copier</button></div>
         <p class="etiquette-prompt">③ L'exploitation de mesures (fichier Excel ou CSV)</p>
-        <div class="phrase"><code>Merci. Parfait pour prévoir le volume à l'équivalence ! Maintenant, j'aimerais que tu ajoutes un autre onglet où l'on puisse charger un fichier de type Excel ou CSV, et que la page reconnaisse la colonne du volume V et celle de la grandeur mesurée (par exemple le pH ou un potentiel), et trace l'évolution de la grandeur mesurée en fonction du volume. Et qu'on puisse directement, dans cet onglet, faire l'exploitation, avec le tracé de la dérivée première, de la dérivée seconde, et éventuellement des tangentes ?</code><button type="button" class="copier">📋 Copier</button></div>
+        <div class="phrase"><code>Merci. Parfait pour prévoir le volume à l'équivalence ! Maintenant, j'aimerais que tu ajoutes un autre onglet où l'on puisse charger un fichier de type Excel ou CSV, et que la page reconnaisse la colonne du volume V et celle de la grandeur mesurée (par exemple le pH ou un potentiel), et trace l'évolution de la grandeur mesurée en fonction du volume. Et qu'on puisse directement, dans cet onglet, faire l'exploitation, avec le tracé de la dérivée première, de la dérivée seconde, et éventuellement des tangentes ?
+
+Garde le commentaire tout en haut du fichier, et termine par le même encadré « Ta simulation est prête » qu'avant, avec le vrai nom du fichier.</code><button type="button" class="copier">📋 Copier</button></div>
         <p class="note">💡 Sois patient : chaque réponse peut prendre plusieurs minutes, et Antigravity te demande parfois une autorisation (« Allow… ») : choisis <b class="cle">2 · Yes, and always allow in this conversation</b>, puis <b class="cle">Submit</b>.</p>
         <p class="note">💡 Compare avec le prompt court : plus le prompt est précis, plus la simulation ressemble à ce que tu veux.</p>
       </li>
