@@ -166,18 +166,19 @@ ongl.forEach((b) => b.addEventListener("click", () => ouvrir(b.dataset.onglet)))
 // « On modifie la simulation » : passe à l'onglet On modifie, en haut de page
 document.querySelectorAll("[data-aller]").forEach((b) => b.addEventListener("click", () => { ouvrir(b.dataset.aller); window.scrollTo({ top: 0, behavior: "smooth" }); }));
 ouvrir(location.hash.slice(1));
-// « Ma simulation est prête » : le cadre « Patiente » laisse la place à « Voir le rendu » (gardé dans le navigateur)
-function etat(panneau, pret) {
-  panneau.querySelector(".bloc-partie.attendre").hidden = pret;
-  panneau.querySelector(".bloc-partie.voir").hidden = !pret;
-  try { localStorage.setItem("atelier.titrage.pret." + panneau.dataset.panneau, pret ? "1" : ""); } catch {}
+// Les cadres sous « Créer » : rien avant la copie ; « Patiente » après Copier ; « Discutons… » après « Ma simulation est prête »
+// L'étape (vide, "attente", "pret") est gardée dans le navigateur pour survivre au rechargement
+function etat(panneau, etape) {
+  panneau.querySelector(".bloc-partie.attendre").hidden = etape !== "attente";
+  panneau.querySelector(".bloc-partie.voir").hidden = etape !== "pret";
+  try { localStorage.setItem("atelier.titrage.etape." + panneau.dataset.panneau, etape); } catch {}
 }
 document.querySelectorAll("[data-panneau]").forEach((p) => {
   if (!p.querySelector(".bloc-partie.attendre")) return;
-  p.querySelector("button.pret").addEventListener("click", () => { etat(p, true); p.querySelector(".bloc-partie.voir").scrollIntoView({ behavior: "smooth", block: "nearest" }); });
-  p.querySelectorAll("button.copier").forEach((b) => b.addEventListener("click", () => etat(p, false)));   // un nouveau message : on repatiente
-  let pret = false; try { pret = localStorage.getItem("atelier.titrage.pret." + p.dataset.panneau) === "1"; } catch {}
-  etat(p, pret);
+  p.querySelector("button.pret").addEventListener("click", () => { etat(p, "pret"); p.querySelector(".bloc-partie.voir").scrollIntoView({ behavior: "smooth", block: "nearest" }); });
+  p.querySelectorAll("button.copier").forEach((b) => b.addEventListener("click", () => etat(p, "attente")));   // un nouveau message : on patiente
+  let etape = ""; try { etape = localStorage.getItem("atelier.titrage.etape." + p.dataset.panneau) || ""; } catch {}
+  etat(p, etape);
 });
 // Le système de l'ordinateur (Mac, Windows, Linux), comme sur la page Antigravity
 let os = null; try { os = localStorage.getItem("atelier.os"); } catch {}
