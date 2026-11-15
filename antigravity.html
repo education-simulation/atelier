@@ -3,96 +3,35 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Atelier · Démarrer avec Antigravity</title>
-<style>
-html { background:#e9ecf2; }
-body { margin:0; padding:22px 14px 40px; font-family:'Nunito',system-ui,-apple-system,'Segoe UI',sans-serif; color:#e4e4e7; display:flex; justify-content:center; }
-.fen { width:min(860px,100%); background:#0b0b0f; border-radius:16px; overflow:hidden; box-shadow:0 18px 50px rgba(15,23,42,.35); }
-.barre { display:flex; align-items:center; gap:8px; padding:10px 16px; background:#18181b; border-bottom:1px solid #27272a; }
-.barre i { width:11px; height:11px; border-radius:50%; background:#3f3f46; }
-.barre b { margin-left:8px; color:#fff; font-size:14px; }
-.barre a { margin-left:auto; color:#a1a1aa; font-size:13px; text-decoration:none; }
-.corps > * { min-width:0; }
-.corps { padding:20px 22px 24px; display:grid; gap:16px; font-size:17px; line-height:1.5; }
-h1 { margin:0; font:800 clamp(22px,3.4vw,30px)/1.2 'Outfit',system-ui,sans-serif; color:#fff; }
-ol.etapes { list-style:none; margin:0; padding:0; display:grid; gap:14px; counter-reset:n; }
-ol.etapes > li { min-width:0; counter-increment:n; border:2px solid #f59e0b; background:#1f1a10; border-radius:14px; padding:14px 16px 14px 60px; position:relative; }
-ol.etapes > li::before { content:counter(n); position:absolute; left:14px; top:14px; width:32px; height:32px; border-radius:50%; background:#f59e0b; color:#1f1300; font-weight:800; display:grid; place-items:center; }
-b.cle { color:#fde68a; }
-.phrase { display:flex; gap:10px; align-items:center; flex-wrap:wrap; margin-top:8px; }
-.phrase code { flex:1; min-width:240px; background:#0b0b0f; border:1px dashed #f59e0b; border-radius:10px; padding:12px 14px; font-family:Menlo,Consolas,monospace; font-size:16px; color:#fff; }
-.copier { all:unset; cursor:pointer; background:#16a34a; color:#fff; font-weight:800; border-radius:10px; padding:10px 16px; }
-
-/* L'animation : la fenêtre « Allow » d'Antigravity, on choisit 3 puis Submit (8 s, en boucle) */
-.cadre { position:relative; margin-top:12px; overflow:hidden; width:100%; min-width:0; }
-.scene { position:absolute; left:0; top:0; width:720px; height:330px; background:#0b0b0f; border:1px solid #27272a; border-radius:12px; transform-origin:0 0; }
-.dlg { position:absolute; left:20px; top:20px; width:680px; height:280px; box-sizing:border-box; background:#16161b; border:1px solid #3f3f46; border-radius:18px; padding:14px 16px; font-size:15px; color:#e4e4e7; animation:a-dlg 8s infinite; }
-.dlg .t { font-weight:800; color:#fff; font-size:16px; }
-.dlg .cmd { margin:10px 0 8px; background:#0b0b0f; border-radius:8px; padding:6px 10px; font:13px Menlo,Consolas,monospace; color:#fff; }
-.dlg .cmd span { color:#fde047; }
-.opt { display:flex; align-items:center; gap:10px; height:34px; padding:0 10px; border-radius:10px; border:1px solid transparent; white-space:nowrap; }
-.opt i { font-style:normal; display:inline-grid; place-items:center; width:20px; height:20px; border-radius:5px; background:#27272a; color:#a1a1aa; font-size:12px; }
-.o1 { animation:a-o1 8s infinite; }
-.o3 { animation:a-o3 8s infinite; }
-.o4 { color:#e4e4e7; } .o4 em { color:#71717a; font-style:normal; }
-.sub { position:absolute; right:16px; bottom:14px; background:#3b82f6; color:#fff; font-weight:800; border-radius:12px; padding:6px 14px; animation:a-sub 8s infinite; }
-.skip { position:absolute; right:120px; bottom:20px; color:#a1a1aa; }
-.ok { position:absolute; left:0; right:0; top:120px; text-align:center; font:800 22px 'Outfit',system-ui,sans-serif; color:#86efac; opacity:0; animation:a-ok 8s infinite; }
-.souris { position:absolute; z-index:5; filter:drop-shadow(0 2px 3px rgba(0,0,0,.6)); left:60px; top:330px; animation:a-souris 8s infinite; }
-.bulle { position:absolute; z-index:6; background:#f59e0b; color:#1f1300; font-weight:800; font-size:14px; border-radius:8px; padding:3px 10px; opacity:0; animation:a-bulle 8s infinite; left:250px; top:258px; }
-@keyframes a-souris {
-  0%, 8% { left:60px; top:330px; transform:scale(1); }
-  30% { left:220px; top:200px; transform:scale(1); }
-  33% { left:220px; top:200px; transform:scale(.8); }
-  36% { left:220px; top:200px; transform:scale(1); }
-  42% { left:220px; top:200px; }
-  62% { left:640px; top:262px; transform:scale(1); }
-  65% { left:640px; top:262px; transform:scale(.8); }
-  68%, 100% { left:640px; top:262px; transform:scale(1); }
-}
-@keyframes a-o1 { 0%, 32% { background:#27272a; border-color:#3f3f46; } 34%, 100% { background:transparent; border-color:transparent; } }
-@keyframes a-o3 { 0%, 32% { background:transparent; border-color:transparent; box-shadow:none; } 34%, 70% { background:#3a2a08; border-color:#f59e0b; box-shadow:0 0 0 4px rgba(245,158,11,.3); } 72%, 100% { background:#27272a; border-color:#3f3f46; box-shadow:none; } }
-@keyframes a-sub { 0%, 63% { box-shadow:none; transform:none; } 64%, 67% { box-shadow:0 0 0 5px rgba(59,130,246,.45); transform:scale(.95); } 69%, 100% { box-shadow:none; transform:none; } }
-@keyframes a-dlg { 0%, 70% { opacity:1; } 74%, 96% { opacity:0; } 100% { opacity:1; } }
-@keyframes a-ok { 0%, 72% { opacity:0; } 76%, 94% { opacity:1; } 98%, 100% { opacity:0; } }
-@keyframes a-bulle { 0%, 34% { opacity:0; } 37%, 58% { opacity:1; } 61%, 100% { opacity:0; } }
-.note { margin:8px 0 0; color:#a1a1aa; font-size:15px; }
-@media (prefers-reduced-motion: reduce) { .scene * { animation:none !important; } .o3 { background:#3a2a08; border-color:#f59e0b; } .o1 { background:transparent; } .souris { left:220px; top:200px; } }
-</style>
+<title>Atelier · Antigravity</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 <div class="fen">
   <div class="barre"><i></i><i></i><i></i><b>Atelier · Antigravity</b><a href="./">‹ Changer d'IA</a></div>
   <div class="corps">
-    <h1>🚀 Je démarre l'atelier avec Antigravity</h1>
-    <ol class="etapes">
-      <li>Ouvre <b class="cle">Antigravity</b>, puis clique sur <b class="cle">« + New Conversation »</b>, en haut à gauche.</li>
-      <li>Copie cette phrase, colle-la dans la zone de message, puis appuie sur <b class="cle">Entrée</b> :
-        <div class="phrase"><code>Lis https://atelier.rasf.fr et suis les instructions.</code><button type="button" class="copier">📋 Copier</button></div>
-      </li>
-      <li>Antigravity te demande l'autorisation de lire le site. Choisis <b class="cle">3 · Yes, and always allow</b>, puis clique sur <b class="cle">Submit</b> :
-        <div class="cadre" id="cadre">
-          <div class="scene" id="scene" role="img" aria-label="La fenêtre « Allow fetch atelier.rasf.fr content? » d'Antigravity : on clique sur le choix 3, Yes, and always allow, puis sur Submit">
-            <div class="dlg">
-              <div class="t">⌨️ Allow fetch atelier.rasf.fr content?</div>
-              <div class="cmd"><span>curl</span> -sL https://atelier.rasf.fr</div>
-              <div class="opt o1"><i>1</i>Yes, allow this time</div>
-              <div class="opt"><i>2</i>Yes, and always allow 'curl -sL https://atelier.rasf.fr' in this conversation</div>
-              <div class="opt o3"><i>3</i>Yes, and always allow 'curl -sL https://atelier.rasf.fr'</div>
-              <div class="opt o4"><i>4</i>No <em>(tell the agent what to do instead)</em></div>
-              <span class="skip">Skip</span><span class="sub">Submit ↵</span>
-            </div>
-            <div class="bulle">👆 puis Submit</div>
-            <div class="ok">✅ Antigravity lit l'atelier</div>
-            <svg class="souris" viewBox="0 0 14 21" width="22" height="33" aria-hidden="true"><path d="M0 0 L0 17 L4.5 13 L8 20 L11 18.5 L7.5 12 L13 12 Z" fill="#fff" stroke="#000" stroke-width="1.3"/></svg>
-          </div>
-        </div>
-        <p class="note">💡 Si Antigravity te le redemande plus tard, refais la même chose.</p>
-      </li>
-    </ol>
+    <h1><img src="logos/antigravity.png" alt="" style="width:34px;height:34px;vertical-align:-6px"> Je commence avec Antigravity</h1>
+    <div class="tuiles">
+      <button type="button" class="tuile" id="choix-configurer"><span class="ico">⚙️</span>Je veux configurer Antigravity</button>
+      <button type="button" class="tuile" disabled><span class="ico">✅</span>J'ai déjà configuré Antigravity<em>bientôt</em></button>
+    </div>
+
+    <section id="configurer" hidden>
+      <ol class="etapes">
+        <li>Ouvre <b class="cle">Antigravity</b>, puis clique sur <b class="cle">« + New Conversation »</b>, en haut à gauche.</li>
+        <li>Copie ce message, colle-le dans la zone de message, puis appuie sur <b class="cle">Entrée</b> :
+          <div class="phrase"><code>Sans rien lancer, écris seulement « 👉 Clique sur ce lien pour configurer Antigravity : https://atelier.rasf.fr/configuration.html », rien d'autre, puis attends ma réponse. Quand je t'écrirai « continue », réponds seulement « ✅ Antigravity est configuré. La suite arrive bientôt. »</code><button type="button" class="copier">📋 Copier</button></div>
+        </li>
+        <li>Antigravity te répond avec un lien : <b class="cle">clique dessus</b>. La page de configuration s'ouvre et te guide.</li>
+      </ol>
+    </section>
   </div>
 </div>
 <script>
+const section = document.getElementById("configurer"), bouton = document.getElementById("choix-configurer");
+const montrer = () => { section.hidden = false; bouton.setAttribute("aria-pressed", "true"); };
+bouton.addEventListener("click", () => { montrer(); history.replaceState(null, "", "#configurer"); section.scrollIntoView({ behavior: "smooth" }); });
+if (location.hash === "#configurer") montrer();
 document.querySelectorAll("button.copier").forEach((b) => b.addEventListener("click", async () => {
   const c = b.previousElementSibling;
   try { await navigator.clipboard.writeText(c.textContent); }
@@ -100,10 +39,6 @@ document.querySelectorAll("button.copier").forEach((b) => b.addEventListener("cl
   b.textContent = "✅ Copié";
   setTimeout(() => { b.textContent = "📋 Copier"; }, 2500);
 }));
-// L'animation garde sa taille (720 × 330) et se réduit sur les petits écrans
-const cadre = document.getElementById("cadre"), scene = document.getElementById("scene");
-const ajuster = () => { const k = Math.min(1, cadre.clientWidth / 722); scene.style.transform = `scale(${k})`; cadre.style.height = 332 * k + "px"; };
-new ResizeObserver(ajuster).observe(cadre); ajuster();
 </script>
 </body>
 </html>
