@@ -27,19 +27,20 @@ function montrerAllow(b) {
 }
 
 document.querySelectorAll("button.copier").forEach((b) => b.addEventListener("click", async () => {
-  const c = b.previousElementSibling, texte = b.textContent;
-  try { await navigator.clipboard.writeText(c.textContent); }
-  catch { const r = document.createRange(); r.selectNodeContents(c); getSelection().removeAllRanges(); getSelection().addRange(r); document.execCommand("copy"); }
-  b.textContent = "✅ Copié";
-  setTimeout(() => { b.textContent = texte; }, 2500);
-
-  // Le bandeau jaune « Colle le message dans Antigravity » : 10 secondes
+  const c = b.previousElementSibling;
+  if (!b.dataset.texte) b.dataset.texte = b.textContent;
+  // D'abord ce qu'on voit (bandeau 10 s, animation), puis la copie
   if (bande) {
     bande.hidden = false;
     clearTimeout(minuteurBande);
     minuteurBande = setTimeout(() => { bande.hidden = true; }, 10000);
   }
   if (b.hasAttribute("data-allow")) montrerAllow(b);
+  b.textContent = "✅ Copié";
+  setTimeout(() => { b.textContent = b.dataset.texte; }, 2500);
+  const copieManuelle = () => { const r = document.createRange(); r.selectNodeContents(c); getSelection().removeAllRanges(); getSelection().addRange(r); document.execCommand("copy"); getSelection().removeAllRanges(); };
+  try { await Promise.race([navigator.clipboard.writeText(c.textContent), new Promise((_, non) => setTimeout(non, 1500))]); }
+  catch { copieManuelle(); }
 
   if (!b.dataset.ouvrir) return;
   const retour = b.closest(".phrase").nextElementSibling;
