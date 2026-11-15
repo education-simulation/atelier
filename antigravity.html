@@ -49,12 +49,33 @@
 &gt; [!IMPORTANT]
 &gt; 👉 **Clique sur ce lien pour configurer Antigravity :** https://atelier.rasf.fr/configuration.html
 
-Puis attends ma réponse. Quand je t'écrirai « continue », réponds seulement par cet encadré :
+Puis attends ma réponse. Quand je t'écrirai « continue », vérifie ma configuration, toujours sans rien lancer :
+- le modèle : regarde le dernier changement de modèle signalé dans les informations de la conversation (« Model Selection »). Il doit être Gemini 3.8 Flash, niveau Low. S'il n'y a aucun changement, le modèle n'a pas été réglé ;
+- le mode « Auto » : tu ne le vois pas, demande-moi de le regarder.
+
+Réponds alors par cet encadré :
+
+&gt; [!NOTE]
+&gt; 🔎 **Je vérifie ta configuration**
+&gt;
+&gt; ✅ **Modèle :** Gemini 3.8 Flash, niveau Low
+&gt;
+&gt; 👀 **Mode :** en bas à droite de la zone de message, tu dois lire « Auto ».
+
+Si le modèle n'est pas le bon, remplace la ligne du modèle par « ⚠️ **Modèle :** » suivi du modèle trouvé, puis « : refais l'étape 2 de la page de configuration (Gemini 3.8 Flash, niveau Low) ». Sous l'encadré, écris : « ✍️ Écris 1 si tu vois « Auto », 2 si tu vois autre chose, puis Entrée. »
+
+Si je réponds 1 et que le modèle est bon, réponds seulement par cet encadré :
 
 &gt; [!TIP]
-&gt; ✅ **Antigravity est configuré.** La suite arrive bientôt.</code><button type="button" class="copier">📋 Copier</button></div>
+&gt; ✅ **Antigravity est configuré.** La suite arrive bientôt.
+
+Si je réponds 2, réponds par cet encadré, puis repose la question :
+
+&gt; [!WARNING]
+&gt; ⚠️ **Le mode n'est pas « Auto ».** Refais l'étape 3 de la page de configuration : https://atelier.rasf.fr/configuration.html</code><button type="button" class="copier">📋 Copier</button></div>
         </li>
         <li>Antigravity te répond avec un lien : <b class="cle">clique dessus</b>. La page de configuration s'ouvre et te guide.</li>
+        <li>À la fin de la page de configuration, écris <b class="cle">continue</b> dans Antigravity : il vérifie ta configuration (le modèle et le mode « Auto »).</li>
       </ol>
     </section>
   </div>
