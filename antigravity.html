@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Atelier · Antigravity</title>
-<link rel="stylesheet" href="style.css?v=3">
+<link rel="stylesheet" href="style.css?v=4">
 </head>
 <body>
 <div class="fen">
@@ -20,10 +20,12 @@
 
     <section id="installer" hidden>
       <ol class="etapes">
-        <li>Ouvre la page officielle de Google et télécharge Antigravity pour ton ordinateur (Mac ou Windows) :
+        <li>Ouvre la page officielle de Google et télécharge Antigravity <span class="os os-mac">pour <b class="cle">Mac</b></span><span class="os os-win">pour <b class="cle">Windows</b></span><span class="os os-linux">pour <b class="cle">Linux</b></span> :
           <div class="phrase"><a class="copier" href="https://antigravity.google/download" target="_blank" rel="noopener">⬇️ Télécharger Antigravity</a></div>
         </li>
-        <li>Installe-le : <b class="cle">sur Mac</b>, ouvre le fichier téléchargé et glisse Antigravity dans le dossier <b class="cle">Applications</b> ; <b class="cle">sur Windows</b>, double-clique sur le fichier téléchargé et suis l'installation.</li>
+        <li><span class="os os-mac">Ouvre le fichier téléchargé (dans <b class="cle">Téléchargements</b>), puis glisse l'icône d'Antigravity dans le dossier <b class="cle">Applications</b>.</span><span class="os os-win">Double-clique sur le fichier téléchargé (dans <b class="cle">Téléchargements</b>), puis suis l'installation en cliquant sur <b class="cle">Suivant</b>.</span><span class="os os-linux">Installe le paquet téléchargé comme d'habitude sur ton ordinateur.</span>
+          <p class="note">💻 Ton ordinateur : <button type="button" class="lien-os" data-os="mac">Mac</button> · <button type="button" class="lien-os" data-os="win">Windows</button> · <button type="button" class="lien-os" data-os="linux">Linux</button></p>
+        </li>
         <li>Ouvre Antigravity et connecte-toi avec ton <b class="cle">compte Google d'établissement</b>.</li>
         <li>Antigravity te demande « What best describes your work? » : clique simplement sur <b class="cle">Skip</b>, en bas.
           <img src="images/antigravity-bienvenue.webp" alt="L'écran d'accueil d'Antigravity : Hey education!, six choix, et Skip en bas" style="display:block;width:100%;max-width:520px;margin-top:10px;border-radius:12px;border:1px solid #3f3f46">
@@ -54,6 +56,16 @@ document.querySelectorAll("[data-choix]").forEach((b) => b.addEventListener("cli
   montrer(b.dataset.choix); history.replaceState(null, "", "#" + b.dataset.choix);
   document.getElementById(b.dataset.choix).scrollIntoView({ behavior: "smooth" });
 }));
+// Le système de l'ordinateur : deviné, puis modifiable (gardé dans le navigateur)
+const deviner = () => { const u = navigator.userAgent; return /Windows/i.test(u) ? "win" : /Mac/i.test(u) ? "mac" : /Linux|X11/i.test(u) ? "linux" : "mac"; };
+const choisirOs = (os) => {
+  document.body.dataset.os = os;
+  document.querySelectorAll(".lien-os").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.os === os)));
+  try { localStorage.setItem("atelier.os", os); } catch {}
+};
+let osDepart = null; try { osDepart = localStorage.getItem("atelier.os"); } catch {}
+choisirOs(osDepart || deviner());
+document.querySelectorAll(".lien-os").forEach((b) => b.addEventListener("click", () => choisirOs(b.dataset.os)));
 const depart = location.hash.slice(1);
 if (depart === "installer" || depart === "configurer") montrer(depart);
 document.querySelectorAll("button.copier").forEach((b) => b.addEventListener("click", async () => {
