@@ -143,21 +143,21 @@ body:has(.bande:not([hidden])) { padding-bottom:120px; }
 .scene-allow .opt { display:flex; align-items:center; gap:10px; height:34px; padding:0 10px; border-radius:10px; border:1px solid transparent; white-space:nowrap; }
 .scene-allow .opt i { font-style:normal; display:inline-grid; place-items:center; width:20px; height:20px; border-radius:5px; background:#27272a; color:#a1a1aa; font-size:12px; }
 .scene-allow .o1 { animation:al-o1 8s infinite; }
-.scene-allow .o2 { animation:al-o2 8s infinite; }
+.scene-allow .o3 { animation:al-o2 8s infinite; }
 .scene-allow .o4 em { color:#71717a; font-style:normal; }
 .scene-allow .sub { position:absolute; right:16px; bottom:14px; background:#3b82f6; color:#fff; font-weight:800; border-radius:12px; padding:6px 14px; animation:al-sub 8s infinite; }
 .scene-allow .skip { position:absolute; right:120px; bottom:20px; color:#a1a1aa; }
 .scene-allow .ok { position:absolute; left:0; right:0; top:140px; text-align:center; font:800 22px 'Outfit',system-ui,sans-serif; color:#86efac; opacity:0; animation:al-ok 8s infinite; }
 .scene-allow .souris { position:absolute; z-index:5; filter:drop-shadow(0 2px 3px rgba(0,0,0,.6)); left:60px; top:330px; animation:al-souris 8s infinite; }
 .scene-allow .bulle { position:absolute; z-index:6; background:#f59e0b; color:#1f1300; font-weight:800; font-size:14px; border-radius:8px; padding:3px 10px; opacity:0; animation:al-bulle 8s infinite; left:430px; top:150px; }
-@keyframes al-souris { 0%, 8% { left:60px; top:330px; transform:scale(1); } 30% { left:300px; top:160px; transform:scale(1); } 33% { left:300px; top:160px; transform:scale(.8); } 36%, 42% { left:300px; top:160px; transform:scale(1); } 62% { left:640px; top:262px; transform:scale(1); } 65% { left:640px; top:262px; transform:scale(.8); } 68%, 100% { left:640px; top:262px; transform:scale(1); } }
+@keyframes al-souris { 0%, 8% { left:60px; top:330px; transform:scale(1); } 30% { left:220px; top:196px; transform:scale(1); } 33% { left:220px; top:196px; transform:scale(.8); } 36%, 42% { left:220px; top:196px; transform:scale(1); } 62% { left:640px; top:262px; transform:scale(1); } 65% { left:640px; top:262px; transform:scale(.8); } 68%, 100% { left:640px; top:262px; transform:scale(1); } }
 @keyframes al-o1 { 0%, 32% { background:#27272a; border-color:#3f3f46; } 34%, 100% { background:transparent; border-color:transparent; } }
 @keyframes al-o2 { 0%, 32% { background:transparent; border-color:transparent; box-shadow:none; } 34%, 70% { background:#3a2a08; border-color:#f59e0b; box-shadow:0 0 0 4px rgba(245,158,11,.3); } 72%, 100% { background:#27272a; border-color:#3f3f46; box-shadow:none; } }
 @keyframes al-sub { 0%, 63% { box-shadow:none; transform:none; } 64%, 67% { box-shadow:0 0 0 5px rgba(59,130,246,.45); transform:scale(.95); } 69%, 100% { box-shadow:none; transform:none; } }
 @keyframes al-dlg { 0%, 70% { opacity:1; } 74%, 96% { opacity:0; } 100% { opacity:1; } }
 @keyframes al-ok { 0%, 72% { opacity:0; } 76%, 94% { opacity:1; } 98%, 100% { opacity:0; } }
 @keyframes al-bulle { 0%, 34% { opacity:0; } 37%, 58% { opacity:1; } 61%, 100% { opacity:0; } }
-@media (prefers-reduced-motion: reduce) { .scene-allow * { animation:none !important; } .scene-allow .o2 { background:#3a2a08; border-color:#f59e0b; } }
+@media (prefers-reduced-motion: reduce) { .scene-allow * { animation:none !important; } .scene-allow .o3 { background:#3a2a08; border-color:#f59e0b; } }
 .partie { margin:8px 0 0; font:800 19px 'Outfit',system-ui,sans-serif; color:#fff; padding-top:8px; border-top:1px solid #27272a; }
 .panneau > .partie:first-child { border-top:none; padding-top:0; }
 .voir { margin:0; padding-left:22px; display:grid; gap:6px; }
