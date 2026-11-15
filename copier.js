@@ -20,3 +20,10 @@ document.querySelectorAll("button.copier").forEach((b) => b.addEventListener("cl
     }
   }, 2500);
 }));
+
+// Le bandeau jaune « Colle le message dans Antigravity » : apparaît après chaque copie, se ferme avec ×
+const bande = document.getElementById("bande");
+if (bande) {
+  document.querySelectorAll("button.copier").forEach((b) => b.addEventListener("click", () => { bande.hidden = false; }));
+  bande.querySelector(".bande-x").addEventListener("click", () => { bande.hidden = true; });
+}

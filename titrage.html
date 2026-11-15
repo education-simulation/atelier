@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Atelier · Simulation d'un titrage</title>
-<link rel="stylesheet" href="style.css?v=18">
+<link rel="stylesheet" href="style.css?v=19">
 </head>
 <body>
 <div class="fen">
@@ -20,12 +20,11 @@
     <ol class="etapes">
       <li><b class="cle">Le wahou</b> : regarde la simulation finie que l'animateur te montre, et manipule-la. Note ce qui te plaît : c'est ce que tu demanderas à l'IA.</li>
 
-      <li><b class="cle">Le prompt court</b> : pour voir ce que l'IA fait avec presque rien. Clique sur le bouton, puis dans Antigravity, <b class="cle">reste dans la conversation de configuration</b> (celle qui t'a dit « Antigravity est configuré ») : colle (<b class="cle os os-mac">Cmd + V</b><b class="cle os os-win">Ctrl + V</b><b class="cle os os-linux">Ctrl + V</b>) et <b class="cle">Entrée</b>.
-        <div class="phrase"><code>Fais-moi une simulation de titrage dans un seul fichier HTML, enregistré dans un dossier « simulation-titrage-court » sur mon Bureau. Puis dis-moi de l'ouvrir d'un double-clic dans mon navigateur.</code><button type="button" class="copier" data-ouvrir="antigravity://">📋 Copier et ouvrir Antigravity</button></div>
-        <p class="note retour-ouvrir" hidden></p>
-      </li>
+      <li><b class="cle">Le prompt court</b> : pour voir ce que l'IA fait avec presque rien. Clique sur <b class="cle">📋 Copier</b>, puis colle le message dans la zone de message d'Antigravity, en bas à gauche, et appuie sur <b class="cle">Entrée</b>.
+        <div class="phrase"><code>Fais-moi une simulation de titrage dans un seul fichier HTML, enregistré dans un dossier « simulation-titrage-court » sur mon Bureau. Puis dis-moi de l'ouvrir d'un double-clic dans mon navigateur.</code><button type="button" class="copier">📋 Copier</button></div>
+              </li>
 
-      <li><b class="cle">Le prompt détaillé, en 3 temps</b> : les trois messages l'un après l'autre, toujours <b class="cle">dans la même conversation</b>. Attends la fin de chaque réponse, et ouvre la page pour voir le résultat avant de passer au message suivant.
+      <li><b class="cle">Le prompt détaillé, en 3 temps</b> : les trois messages l'un après l'autre, toujours <b class="cle">dans la même conversation</b> : clique sur <b class="cle">📋 Copier</b>, colle, puis <b class="cle">Entrée</b>. Attends la fin de chaque réponse, et ouvre la page pour voir le résultat avant de passer au message suivant.
         <p class="etiquette-prompt">① L'avancement d'une réaction</p>
         <div class="phrase"><code>Bonjour, je souhaiterais que tu m'aides à concevoir une simulation en HTML (donc un fichier texte avec l'extension .html, et pas un fichier Python) que je puisse facilement partager à mes collègues. Enregistre-la dans un dossier « simulation-titrage » sur mon Bureau, puis dis-moi de l'ouvrir d'un double-clic dans mon navigateur.
 
@@ -49,9 +48,8 @@ J'aimerais que la page affiche un graphique en histogramme, avec en abscisse les
 
 Il faudrait prévoir une saisie manuelle de la valeur de l'avancement X pour le faire évoluer entre 0 et Xf. Le graphique devrait alors se mettre à jour automatiquement (plus X augmente, plus les histogrammes des réactifs doivent diminuer et ceux des produits augmenter, jusqu'à disparition complète du réactif limitant !).
 
-En plus du graphique, la page doit bien sûr afficher l'équation de la réaction, les quantités de matière initiales et l'avancement final Xf ! Merci</code><button type="button" class="copier" data-ouvrir="antigravity://">📋 Copier et ouvrir Antigravity</button></div>
-        <p class="note retour-ouvrir" hidden></p>
-        <p class="etiquette-prompt">② Le dosage</p>
+En plus du graphique, la page doit bien sûr afficher l'équation de la réaction, les quantités de matière initiales et l'avancement final Xf ! Merci</code><button type="button" class="copier">📋 Copier</button></div>
+                <p class="etiquette-prompt">② Le dosage</p>
         <div class="phrase"><code>Merci. Tu peux maintenant générer un nouveau code, similaire au précédent, mais qui illustre le cas particulier d'un dosage. Dans un dosage, l'espèce A sera définie par défaut comme l'espèce titrée, et B comme l'espèce titrante. Cette fois-ci, ce n'est pas X l'avancement qu'on entrera, mais VB, le volume d'espèce titrante ajouté. VB varie entre 0 et Veq, le volume à l'équivalence versé d'espèce titrante.
 
 À l'état initial, on a une quantité de matière nA,0 = cA·VA (en mmol), avec cA la concentration en quantité de matière de A en mol/L et VA le volume en mL de A. Le volume Veq est défini de la manière suivante : Veq = cA·VA·b/(a·cB), avec cB la concentration en quantité de matière de B en mol/L (Veq est en mL). À l'état initial, nB,0 = nC,0 = nD,0 = 0 (les produits C et D sont absents, tout comme le réactif B, en dehors du bécher puisque dans la burette).
@@ -93,7 +91,10 @@ Le code doit être similaire au précédent : afficher l'équation de la réacti
     </ol>
   </div>
 </div>
-<script src="copier.js"></script>
+<div class="bande" id="bande" role="note" hidden><span class="bfleche" aria-hidden="true">⬅</span>
+  <span><b>Colle le message dans Antigravity</b> <em>dans la zone de message, en bas à gauche</em><span class="quoi">👉 <span class="os os-mac">Cmd + V</span><span class="os os-win">Ctrl + V</span><span class="os os-linux">Ctrl + V</span>, puis Entrée.</span></span>
+  <button type="button" class="bande-x" aria-label="Fermer">×</button></div>
+<script src="copier.js?v=2"></script>
 <script>
 // Le système de l'ordinateur (Mac, Windows, Linux), comme sur la page Antigravity
 let os = null; try { os = localStorage.getItem("atelier.os"); } catch {}
