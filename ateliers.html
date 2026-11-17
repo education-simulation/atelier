@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Atelier · Choisis ton atelier</title>
-<link rel="stylesheet" href="style.css?v=66">
-<link rel="stylesheet" href="clair.css?v=14" id="theme-clair">
+<link rel="stylesheet" href="style.css?v=67">
+<link rel="stylesheet" href="clair.css?v=15" id="theme-clair">
 <script src="theme.js?v=1"></script>
 </head>
 <body>
@@ -56,10 +56,11 @@
     <section id="page" hidden>
       <p class="question">Quelle simulation veux-tu essayer ?</p>
       <div class="sims">
-        <a class="sim" href="titrage.html#simple" data-sim="titrage"><span class="ico">⚗️</span><b>Simulation d'un titrage</b><span class="domaine">Analyse</span></a>
-        <a class="sim" href="metamerie.html#simple" data-sim="metamerie"><span class="ico">🎨</span><b>Simulation de la métamérie</b><span class="domaine">Formulation</span></a>
-        <a class="sim" href="cinetique.html#simple" data-sim="cinetique"><span class="ico">⏱️</span><b>Cinétique chimique</b><span class="domaine">Synthèse</span></a>
+        <a class="sim" href="titrage.html#simple" data-sim="titrage"><span class="ico">⚗️</span><b>Simulation d'un titrage</b><span class="domaine">Analyse</span><span class="sim-go">💬 nouvelle conversation dans le projet :<code>go titrage</code></span></a>
+        <a class="sim" href="metamerie.html#simple" data-sim="metamerie"><span class="ico">🎨</span><b>Simulation de la métamérie</b><span class="domaine">Formulation</span><span class="sim-go">💬 nouvelle conversation dans le projet :<code>go metamerie</code></span></a>
+        <a class="sim" href="cinetique.html#simple" data-sim="cinetique"><span class="ico">⏱️</span><b>Cinétique chimique</b><span class="domaine">Synthèse</span><span class="sim-go">💬 nouvelle conversation dans le projet :<code>go cinetique</code></span></a>
       </div>
+      <p class="sim-note">💡 Pour chaque simulation, démarre une <b class="cle">nouvelle conversation, séparée des autres</b>, dans ton projet « mes simulations », en écrivant <code>go titrage</code>, <code>go metamerie</code> ou <code>go cinetique</code>.</p>
       <p class="note" id="sim-retour" hidden>⏳ Le parcours de cette simulation arrive bientôt.</p>
     </section>
     </div>

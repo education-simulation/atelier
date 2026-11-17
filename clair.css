@@ -113,3 +113,4 @@ ol.etapes > li, .info { background:#fffbeb; }
 .cp-astuce { background:#fff; border-color:#e4e4e7; color:#3f3f46; box-shadow:0 8px 20px rgba(0,0,0,.12); } .cp-astuce b { color:#18181b; } .cp-astuce i { background:#f4f4f5; color:#18181b; }
 .cp-z { background:#fef3c7; color:#b45309; }
 img[src$="openai.svg"] { filter:invert(1); }   /* le logo ChatGPT est blanc : noir en mode clair */
+.sim .sim-go { color:#52525b; } .sim .sim-go code, .sim-note code { color:#92400e; background:#fffbeb; border:1px solid #fde68a; }

@@ -633,3 +633,7 @@ a.lien-etape { color:#f59e0b; font-weight:700; }
   .replie-ligne { flex-wrap:wrap; }
 }
 .nc-deja { justify-content:center; } .nc-deja-btn { background:#16a34a !important; color:#fff !important; border-color:#16a34a !important; font-size:17px; padding:10px 22px; }
+/* ateliers.html : sous chaque simulation, la commande à écrire dans une nouvelle conversation */
+.sim .sim-go { display:grid; justify-items:center; gap:4px; margin-top:8px; font-size:12.5px; color:#a1a1aa; font-weight:600; }
+.sim .sim-go code, .sim-note code { font:800 14px Menlo,Consolas,monospace; color:#fde68a; background:#3a2a08; border-radius:6px; padding:2px 8px; }
+.sim-note { margin:12px 0 0; font-size:15px; line-height:1.5; }
