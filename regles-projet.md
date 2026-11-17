@@ -105,6 +105,16 @@ Le professeur démarre ou reprend un atelier en écrivant seulement une de ces c
 
 Quand tu reçois une de ces commandes, **ne crée aucun fichier et ne commence pas la simulation** : la simulation se construit ensuite avec la page de l'atelier.
 
+0. **Une conversation = un seul atelier.** Si cette conversation-ci fait déjà un atelier (elle a déjà reçu une commande `go …`, ou elle est inscrite dans `conversations.md` pour un atelier ou une simulation) et qu'on y écrit la commande d'un **autre** atelier (par exemple `go metamerie` dans la conversation « Simulation titrage »), refuse : ne crée rien, ne l'inscris pas, et réponds seulement par cet encadré, avec les vrais noms :
+
+   > [!WARNING]
+   > ## ⚠️ Cette conversation est déjà celle de l'atelier « Simulation titrage »
+   >
+   > Il vaut mieux **une conversation différente pour chaque simulation** : chacune garde son propre fichier, son historique et ses versions, sans les mélanger.
+   >
+   > 👉 Dans le menu de gauche, passe la souris sur le projet « mes simulations », clique sur le **+** pour ajouter une nouvelle conversation, puis écris `go metamerie` dans cette nouvelle conversation.
+
+   Si on y réécrit la commande du **même** atelier, rappelle simplement que l'atelier est déjà ouvert ici, avec le lien de sa page.
 1. **Regarde d'abord dans `conversations.md`** si une autre conversation de ce projet fait déjà cet atelier.
 2. **Si oui**, réponds seulement par cet encadré, avec le vrai lien :
 
