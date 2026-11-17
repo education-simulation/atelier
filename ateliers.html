@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Atelier · Choisis ton atelier</title>
-<link rel="stylesheet" href="style.css?v=67">
+<link rel="stylesheet" href="style.css?v=68">
 <link rel="stylesheet" href="clair.css?v=15" id="theme-clair">
 <script src="theme.js?v=1"></script>
 </head>
@@ -61,6 +61,7 @@
         <a class="sim" href="cinetique.html#simple" data-sim="cinetique"><span class="ico">⏱️</span><b>Cinétique chimique</b><span class="domaine">Synthèse</span><span class="sim-go">💬 nouvelle conversation dans le projet :<code>go cinetique</code></span></a>
       </div>
       <p class="sim-note">💡 Pour chaque simulation, démarre une <b class="cle">nouvelle conversation, séparée des autres</b>, dans ton projet « mes simulations », en écrivant <code>go titrage</code>, <code>go metamerie</code> ou <code>go cinetique</code>, pour démarrer et paramétrer l'atelier.</p>
+      <p style="margin:10px 0 0"><button type="button" class="nc-comment">▶ Comment démarrer une nouvelle conversation dans le projet ?</button></p>
       <p class="note" id="sim-retour" hidden>⏳ Le parcours de cette simulation arrive bientôt.</p>
     </section>
     </div>
@@ -137,7 +138,6 @@ function montrer(choix, sim) {
   history.replaceState(null, "", choix ? "#" + choix + (sim ? "/" + sim : "") : location.pathname);
 }
 document.querySelectorAll("[data-choix]").forEach((b) => b.addEventListener("click", () => montrer(b.dataset.choix)));
-document.querySelectorAll("[data-sim]").forEach((b) => b.addEventListener("click", () => montrer("page", b.dataset.sim)));
 const [c, s] = location.hash.slice(1).split("/");
 if (c === "page") montrer("page", sims[s] ? s : undefined);
 
@@ -156,7 +156,7 @@ const copierTexte = async (b, texte, libelle) => {
   try { await Promise.race([navigator.clipboard.writeText(texte), new Promise((_, non) => setTimeout(non, 1500))]); }
   catch { const c = b.previousElementSibling, r = document.createRange(); r.selectNodeContents(c); getSelection().removeAllRanges(); getSelection().addRange(r); document.execCommand("copy"); getSelection().removeAllRanges(); }
 };
-function ouvrirConv(sim) {
+function ouvrirConv(sim, general) {
   document.querySelector(".nc-voile")?.remove();
   const v = document.getElementById("tpl-conv").content.firstElementChild.cloneNode(true);
   v.querySelector(".nc-ico").textContent = icones[sim];
@@ -167,9 +167,10 @@ function ouvrirConv(sim) {
   v.querySelector(".nc-info-2").innerHTML = "✍️ Écris <b>" + mots[sim] + "</b>, puis valide (Entrée) pour démarrer l'atelier " + ({ titrage: "titrage", metamerie: "métamérie", cinetique: "cinétique" })[sim];
   // « C'est fait » : la conversation est ajoutée, on va directement à la page de l'atelier
   const deja = document.createElement("div"); deja.className = "nc-deja";
-  deja.innerHTML = '<a class="nc-deja-btn" href="' + sim + '.html#simple">✅ C\'est fait</a>';   // la fenêtre se ferme : on va directement sur la page de l'atelier
+  deja.innerHTML = general ? '<button type="button" class="nc-deja-btn nc-fermer-ok">✅ C\'est fait</button>' : '<a class="nc-deja-btn" href="' + sim + '.html#simple">✅ C\'est fait</a>';
+  if (general) v.querySelector(".nc-nom").textContent = "Démarre une nouvelle conversation dans le projet « mes simulations »";   // la fenêtre se ferme : on va directement sur la page de l'atelier
   v.querySelector(".nc-fenetre").appendChild(deja);
-  v.addEventListener("click", (e) => { if (e.target === v || e.target.closest(".nc-fermer")) fermerConv(); });
+  v.addEventListener("click", (e) => { if (e.target === v || e.target.closest(".nc-fermer") || e.target.closest(".nc-fermer-ok")) fermerConv(); });
   document.body.appendChild(v);
 }
 document.addEventListener("keydown", (e) => { if (e.key === "Escape" && document.querySelector(".nc-voile")) fermerConv(); });
@@ -191,12 +192,8 @@ document.querySelectorAll(".hors-copier").forEach((b) => b.addEventListener("cli
     if (!ouvert && document.hasFocus() && retour) { retour.hidden = false; retour.innerHTML = "⚠️ Antigravity ne s'est pas ouvert ? Ouvre-le toi-même : le message est déjà copié."; }
   }, 2500);
 }));
-document.querySelectorAll("a.sim[data-sim]").forEach((a) => a.addEventListener("click", (e) => {
-  if (e.metaKey || e.ctrlKey || e.shiftKey) return;   // ouvrir dans un onglet : on laisse faire
-  e.preventDefault();
-  montrer("page", a.dataset.sim);
-  ouvrirConv(a.dataset.sim);
-}));
+// Les tuiles mènent directement à la page de la simulation ; le bouton en dessous montre comment démarrer une nouvelle conversation
+document.querySelector(".nc-comment").addEventListener("click", () => ouvrirConv("titrage", true));
 if (c === "page" && sims[s]) ouvrirConv(s);
 window.addEventListener("hashchange", () => { const [c2, s2] = location.hash.slice(1).split("/"); montrer(c2 === "page" ? "page" : undefined, sims[s2] ? s2 : undefined); });
 </script>
