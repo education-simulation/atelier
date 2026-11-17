@@ -124,9 +124,11 @@ voileCp.querySelector(".cp-ouvrir").addEventListener("click", () => {
   const parti = () => { ouvert = true; };
   window.addEventListener("blur", parti, { once: true });
   location.href = "antigravity://";
+  fermerColler();   // la fenêtre se ferme : on passe dans Antigravity
   setTimeout(() => {
     window.removeEventListener("blur", parti);
     if (!ouvert && document.hasFocus()) {
+      voileCp.hidden = false;   // Antigravity ne s'est pas ouvert : on rouvre la fenêtre avec le message d'aide
       retour.hidden = false;
       retour.innerHTML = "⚠️ Antigravity ne s'est pas ouvert ? Ouvre-le toi-même : le message est déjà copié. Pas encore installé ? Ouvre l'étape <a href=\"installer.html\">1 · Installer Antigravity</a>.";
     }
