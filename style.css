@@ -632,3 +632,4 @@ a.lien-etape { color:#f59e0b; font-weight:700; }
   .barre a.icone, .barre a.nouvel-atelier, .barre .token-btn { margin-left:4px; }
   .replie-ligne { flex-wrap:wrap; }
 }
+.nc-deja { justify-content:center; } .nc-deja-btn { background:#16a34a !important; color:#fff !important; border-color:#16a34a !important; font-size:17px; padding:10px 22px; }
