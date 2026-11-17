@@ -613,3 +613,5 @@ a.lien-etape { color:#f59e0b; font-weight:700; }
 .cp-sugg p { align-items:center; }
 /* antigravity.html : 1 à 4 sur une ligne, puis 5 et 6 dessous */
 .tuiles-ag { grid-template-columns:repeat(4,minmax(0,1fr)); } @media (max-width:560px) { .tuiles-ag { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+/* « On modifie » : comparer les niveaux du modèle, en premier */
+.niveau-modele { border:2px solid #8b5cf6; border-radius:14px; padding:12px 16px; margin:0 0 14px; display:grid; gap:8px; background:rgba(139,92,246,.08); } .niveau-modele p { margin:0; }

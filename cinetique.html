@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Atelier · Cinétique chimique</title>
-<link rel="stylesheet" href="style.css?v=79">
+<link rel="stylesheet" href="style.css?v=80">
 <link rel="stylesheet" href="clair.css?v=24" id="theme-clair">
 <script src="theme.js?v=1"></script>
 </head>
@@ -217,7 +217,12 @@ Exemple pour tester (CH3I + C2H5ONa → CH3OC2H5 + NaI) : T = 283, 293, 303 et 3
     </section>
 
     <section class="panneau" data-panneau="modifier" hidden>
-      <p>Demande des changements à l'IA, dans la même conversation. Quelques idées, à copier ou à écrire avec tes mots :</p>
+      <div class="niveau-modele">
+        <p><b>🎚️ D'abord, compare les niveaux du modèle.</b> En bas à gauche de la zone de message, clique sur <b class="cle">« Gemini 3.8 Flash Low »</b> et choisis <b class="cle">Medium</b> (ou <b class="cle">High</b>). Puis envoie ce message : l'IA refait la simulation avec <b class="cle">le même prompt</b>, dans une nouvelle version du même fichier, pour voir la différence de traitement.</p>
+        <div class="phrase"><code>Je viens de passer le modèle au niveau Medium. Refais la simulation à partir du même prompt de départ que la version 1, sans rien changer d'autre, dans une nouvelle version du même fichier nommée « même prompt, niveau Medium », pour comparer.</code><button type="button" class="copier" data-coche>📋 Copier</button></div>
+        <p class="note">Pour le niveau High, remplace « Medium » par « High » dans le message. Chaque niveau donne un nouvel onglet à comparer.</p>
+      </div>
+      <p>Puis demande des changements à l'IA, dans la même conversation. Quelques idées, à copier ou à écrire avec tes mots :</p>
       <ul class="idees">
         <li><div class="phrase"><code>Ajoute une animation : une bille qui roule sur le profil et ne franchit l'état de transition que si l'énergie apportée (réglable avec un curseur) dépasse Ea.</code><button type="button" class="copier" data-coche>📋 Copier</button></div></li>
         <li><div class="phrase"><code>Ajoute l'exemple du cours en une étape : CH3I + C2H5ONa → CH3OC2H5 + NaI, avec Ea = 80 kJ/mol, et affiche k à 20 °C et à 50 °C.</code><button type="button" class="copier" data-coche>📋 Copier</button></div></li>
