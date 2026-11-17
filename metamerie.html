@@ -4,89 +4,214 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Atelier · Simulation de la métamérie</title>
-<link rel="stylesheet" href="style.css?v=31">
+<link rel="stylesheet" href="style.css?v=79">
+<link rel="stylesheet" href="clair.css?v=24" id="theme-clair">
+<script src="theme.js?v=1"></script>
 </head>
 <body>
 <div class="fen">
   <header class="haut">
-  <div class="barre"><i></i><i></i><i></i><b>Atelier · Simulation de la métamérie</b><a href="ateliers.html#page">‹ Ateliers</a></div>
+  <div class="barre"><i></i><i></i><i></i><b>Atelier · Simulation de la métamérie</b><a class="icone" href="configurer.html" target="_blank" rel="noopener" data-info="Configurer Antigravity" aria-label="Configurer Antigravity">⚙️</a><a class="icone" href="decouvrir.html?mode=demo&amp;v=6" target="_blank" rel="noopener" data-info="Découvrir Antigravity" aria-label="Découvrir Antigravity">🧭</a><a class="nouvel-atelier" href="ateliers.html?ou=dans#page">＋ Nouvel atelier</a></div>
   <nav class="ariane" aria-label="Fil d'Ariane"><a href="./">🏠 Accueil</a><i class="sep">›</i><a href="antigravity.html">Antigravity</a><i class="sep">›</i><a href="ateliers.html">Ateliers</a><i class="sep">›</i><a href="ateliers.html#page">Simple page de simulation</a><i class="sep">›</i><span aria-current="page">Métamérie</span></nav>
     <div class="titre-haut"><h1>🎨 Simulation de la métamérie <span class="domaine-titre">Formulation</span></h1></div>
-  </header>
-  <div class="corps">
-    <div class="aides">
-      <a class="aide-bouton" href="antigravity.html#configurer">⚙️ Configurer Antigravity</a>
-      <a class="aide-bouton" href="decouvrir.html?mode=demo&amp;v=5">🧭 Découvrir Antigravity</a>
-    </div>
+    <div class="onglets-haut">
     <div class="onglets" role="tablist">
       <button type="button" role="tab" data-onglet="simple">✏️ Prompt simple</button>
       <button type="button" role="tab" data-onglet="modifier">🛠️ On modifie</button>
       <button type="button" role="tab" data-onglet="detaille">📝 Prompt détaillé</button>
       <button type="button" role="tab" data-onglet="verifier">⚠️ À vérifier</button>
     </div>
+    </div>
+  </header>
+  <div class="corps">
 
     <section class="panneau" data-panneau="simple">
       <div class="bloc-partie creer">
-      <h3 class="partie">① Créer la simulation <small>le code HTML s'écrit dans Antigravity</small></h3>
+      <h3 class="partie">① Créer la simulation <small>lance un premier prompt, minimal ou enrichi : observe ce qu'il produit, puis compare</small></h3>
       <p>Dans la conversation de configuration d'Antigravity, clique sur <b class="cle">📋 Copier</b>, colle le message dans la zone de message, en bas à gauche, puis appuie sur <b class="cle">Entrée</b>.</p>
-      <div class="phrase"><code>Fais-moi une simulation de la métamérie : deux échantillons de couleur côte à côte, qui paraissent identiques à la lumière du jour (illuminant D65) mais différents sous une lampe à incandescence (illuminant A) ou sous un tube fluorescent (illuminant F11). Affiche les courbes de réflectance des deux échantillons, le spectre de l'illuminant choisi, les coordonnées L*a*b* de chaque échantillon et l'écart de couleur ΔE*ab. Ajoute des boutons pour changer d'illuminant.</code><button type="button" class="copier" data-allow data-sim="metamerie">📋 Copier</button></div>
-          <div class="allow-zone" hidden></div>
+      <div class="phrase"><code class="prompt-plus" data-base="Fais-moi une simulation de la métamérie" data-details="[&quot;deux échantillons de couleur côte à côte, identiques à la lumière du jour (illuminant D65) mais différents sous une lampe à incandescence (illuminant A) ou sous un tube fluorescent (illuminant F11)&quot;, &quot;les courbes de réflectance des deux échantillons&quot;, &quot;le spectre de l&#x27;illuminant choisi&quot;, &quot;les coordonnées L*a*b* de chaque échantillon et l&#x27;écart de couleur ΔE*ab&quot;, &quot;des boutons pour changer d&#x27;illuminant&quot;, &quot;les tables officielles de la CIE (observateur 1931 2°, illuminants D65, A et F11, au pas de 10 nm)&quot;, &quot;une phrase qui dit si l&#x27;écart est visible (au-delà d&#x27;environ 1 à 2)&quot;, &quot;un indice de métamérie : l&#x27;écart ΔE*ab sous l&#x27;illuminant A&quot;]">Fais-moi une simulation de la métamérie.</code><button type="button" class="copier" data-allow data-sim="metamerie">📋 Copier</button></div>
+      <p class="note-nouvelle" hidden>🔀 <b class="cle">Nouvelle version à comparer :</b> change le message (ajoute ou retire des détails), puis copie-le dans la même conversation. Antigravity l'ajoutera <b class="cle">dans le même fichier, dans un nouvel onglet</b> « Version 2 », pour comparer.</p>
+      <div class="plus-details"><span class="prompt-tag"></span><button type="button" class="plus-btn">＋ Enrichir le prompt</button><span class="plus-compte"></span><button type="button" class="moins-btn" hidden>－ Retirer le dernier</button><button type="button" class="zero-btn" hidden title="Revenir au prompt minimal">↺ Revenir à zéro</button></div>
+      <p class="note plus-aide">💡 Commence par le <b class="cle">prompt minimal</b>, regarde ce que fait l'IA, puis <b class="cle">enrichis le prompt</b> pas à pas : chaque précision (le matériel, les espèces chimiques, les valeurs, les repères sur la courbe…) rend la simulation plus juste. Tu pourras comparer les versions dans le même fichier.</p>
       </div>
       <div class="bloc-partie attendre">
-      <h3 class="partie">⏳ Patiente <small>pendant qu'Antigravity écrit le code</small></h3>
-      <p>Cela peut prendre <b class="cle">quelques minutes</b>. S'il te demande une autorisation (« Allow… ? »), choisis <b class="cle">3 · Yes, and always allow</b>, puis <b class="cle">Submit</b>.</p>
-      <p>C'est prêt quand il te répond par l'encadré vert <b class="cle">« ✅ Ta simulation est prête »</b> avec <b class="cle">① ton code</b> (un lien qui l'ouvre dans Antigravity), suivi juste en dessous de <b class="cle">② le rendu</b> (comment le voir dans ton navigateur).</p>
-      <div><button type="button" class="pret">✅ Ma simulation est prête</button></div>
+      <h3 class="partie">⚙️ Antigravity travaille <small>il écrit le code de ta simulation</small></h3>
+      <div class="wk-travail">
+      <p>Cela peut prendre <b class="cle">quelques minutes</b>. <b class="cle">Tant qu'Antigravity affiche « Working »</b> (ou « Reading… », « Editing… »), il travaille : patiente.</p>
+      <div class="ecran-wk" aria-hidden="true">
+        <span class="wk-working wk-s1">Working</span><span class="wk-working wk-s2">Reading metamerie.html ›</span><span class="wk-working wk-s3">Editing metamerie.html ›</span>
+        <span class="wk-etiquette wk-e1">⏳ Il travaille : patiente</span>
+      </div>
+      <p class="allow-ligne">🔐 S'il te demande une autorisation (« Allow write access to this path? »), choisis <b class="cle">3 · Yes, and always allow</b>, puis <b class="cle">Submit</b>. <button type="button" class="allow-rejouer allow-popup">🔐 Voir quoi choisir</button></p>
+      <div><button type="button" class="fini-btn">✅ Antigravity a fini de travailler</button></div>
+      </div>
+      <div class="wk-verif" hidden>
+      <p class="replie-ligne vue"><span>✓</span> <b>Antigravity a fini de travailler</b> <button type="button" class="fini-retour">‹ revenir en arrière (il travaille encore)</button></p>
+      <p>Tu dois voir <b class="cle">l'équivalent de ceci</b> dans Antigravity :</p>
+      <div class="ecran-wk wk-fixe" aria-hidden="true">
+        <div class="wk-fini"><span class="wk-temps">Worked for 1m ›</span><div class="wk-tip"><b>TIP</b><br>✅ Ta simulation est prête.<br>① Ton code, dans Antigravity : <i>&lt;/&gt;</i> metamerie.html</div></div>
+      </div>
+      <div><button type="button" class="pret">✅ Je confirme : ma simulation est prête</button></div>
+      </div>
       </div>
       <div class="bloc-partie voir" hidden>
+      <p class="replie-ligne vue voir-ligne"><span>✓</span> <b>Ma simulation est prête</b> <button type="button" class="voir-retour">‹ revenir en arrière (elle n'est pas encore prête)</button></p>
+      <div class="voir-nav">
+      <h3 class="partie">👀 Voir ta simulation dans ton navigateur</h3>
+      <div class="ecran-va" role="img" aria-label="D'abord dans Antigravity : clic sur l'icône de copie à droite de l'adresse file:///… ; puis dans ton navigateur (Chrome, Firefox, Safari, Edge) : clic dans la barre d'adresse, coller, Entrée : la simulation s'affiche">
+        <div class="va-scene va-a">
+          <div class="va-etiq">① Dans <b>Antigravity</b> : copie l'adresse</div>
+          <div class="va-fen va-ag">
+            <div class="va-ag-gauche"><p>+ New Conversation</p><p class="va-gris">◷ Automations</p><p class="va-gris">⧉ Customizations</p><p class="va-gris va-petit">Projects</p><p>📁 mes simulations</p><p class="va-sel va-retrait">Simulation métamérie</p><p class="va-retrait va-gris">Préparation du projet</p><p class="va-gris va-petit">Conversations</p><p class="va-gris">Configuration…</p></div>
+            <div class="va-ag-milieu">
+              <div class="va-imp"><b>IMPORTANT</b> 🧪 Atelier « Simulation métamérie » · <u>atelier.rasf.fr/metamerie.html#simple</u></div>
+              <div class="va-moi">Fais-moi une simulation…</div>
+              <div class="va-tip"><b>TIP</b> ✅ Ta simulation est prête.</div>
+              <p class="va-ligne">② Le rendu de ton code, dans ton navigateur…</p>
+              <div class="va-code"><div class="va-code-tete"><span>text</span><span class="va-icones">@ <span class="va-copie">⧉</span><span class="va-ok">✓</span></span></div><div class="va-url">file:///Users/…/mes%20simulations/metamerie.html</div></div>
+              <span class="va-copie-bulle">Copié !</span>
+            </div>
+            <div class="va-ag-droite"><div class="va-ag-adresse">atelier.rasf.fr/metamerie.html#simple</div><div class="va-ag-page"><b>🎨 Simulation de la métamérie</b><i class="va-dom">Formulation</i><span class="va-mini o"></span><span class="va-mini b"></span><span class="va-mini b court"></span></div></div>
+          </div>
+        </div>
+        <div class="va-scene va-d">
+          <div class="va-etiq">② Ouvre <b>ton navigateur</b> (Chrome, Firefox, Safari, Edge)</div>
+          <div class="va-dock"><span class="va-app va-app-chrome"><i class="va-ico ico-chrome"></i>Chrome</span><span class="va-app va-app-firefox"><i class="va-ico ico-firefox"></i>Firefox</span></div>
+        </div>
+        <div class="va-scene va-b">
+          <div class="va-etiq">③ Dans <b>ton navigateur</b> : colle l'adresse</div>
+          <div class="va-fen va-nav">
+            <div class="va-onglets"><i></i><i></i><i></i><span class="va-onglet"><span class="va-titre-onglet">Nouvel onglet</span><span class="va-titre-sim">metamerie.html</span> ×</span><span class="va-plus">+</span><span class="va-logo"></span></div>
+            <div class="va-barre-nav"><span>←</span><span>→</span><span>↻</span><div class="va-adresse"><span class="va-vide">🔍 Rechercher ou saisir une adresse</span><span class="va-tape">file:///Users/…/mes%20simulations/metamerie.html</span></div></div>
+            <div class="va-accueil"><span class="va-recherche">🔍</span></div>
+            <div class="va-page"><b>🎨 Métamérie</b><svg viewBox="0 0 120 50" aria-hidden="true"><path d="M5 45 C40 44 50 40 58 25 C62 12 75 8 115 6" fill="none" stroke="#2563eb" stroke-width="3"/></svg></div>
+            <span class="va-badge va-cmdv">Cmd + V</span><span class="va-badge va-entree">Entrée ↵</span>
+          </div>
+        </div>
+        <svg class="souris" viewBox="0 0 14 21" width="22" height="33" aria-hidden="true"><path d="M0 0 L0 17 L4.5 13 L8 20 L11 18.5 L7.5 12 L13 12 Z" fill="#fff" stroke="#000" stroke-width="1.3"/></svg>
+      </div>
+      <ol class="va-etapes">
+        <li>Dans la réponse d'Antigravity, clique sur <b class="cle">l'icône de copie ⧉</b>, à droite de l'adresse <b class="cle">file:///…</b></li>
+        <li>Ouvre <b class="cle">ton navigateur habituel</b> (Chrome, Firefox, Safari, Edge), en dehors d'Antigravity, clique dans <b class="cle">la barre d'adresse</b>, colle (<b class="cle">Cmd + V</b> sur Mac, <b class="cle">Ctrl + V</b> sur Windows), puis <b class="cle">Entrée</b> : ta simulation s'affiche.</li>
+        <li>Après chaque modification, <b class="cle">recharge la page</b> (<b class="cle">Cmd + R</b> ou <b class="cle">F5</b>).</li>
+      </ol>
+      <div><button type="button" class="pret vu-btn">✅ J'ai visualisé ma simulation</button></div>
+      </div>
+      <p class="replie-ligne voir-vu-ligne"><span>✓</span> <b>J'ai visualisé ma simulation</b> <button type="button" class="vu-retour">‹ revenir en arrière</button></p>
+      <div class="voir-suite" hidden>
       <h3 class="partie">② Discutons ensemble des résultats obtenus</h3>
-      <div><button type="button" class="aller-onglet" data-aller="modifier">🛠️ On modifie la simulation ›</button></div>
+      <div class="discuter-boutons"><button type="button" class="aller-onglet" data-aller="modifier">🛠️ On modifie la simulation ›</button><button type="button" class="nouvelle-version">🔀 Créer une nouvelle version à comparer</button></div>
+      </div>
       </div>
     </section>
 
     <section class="panneau" data-panneau="detaille" hidden>
       <div class="bloc-partie creer">
-      <h3 class="partie">① Créer la simulation <small>le code HTML s'écrit dans Antigravity</small></h3>
+      <h3 class="partie">① Créer la simulation <small>un prompt très précis, à comparer avec ce que donne un prompt minimal</small></h3>
+      <p class="note-version">🔀 <b class="cle">Tu as déjà fait le prompt simple ?</b> Colle ces messages dans la même conversation : Antigravity en fera <b class="cle">une version 2 dans le même fichier</b> (les messages ② et ③ enrichiront cette même version), avec des onglets en haut de la page pour comparer les deux. Ensuite, pour chaque modification, il te demandera à quelle(s) version(s) l'appliquer.</p>
       <p>Les trois messages l'un après l'autre, <b class="cle">dans la même conversation</b> : clique sur <b class="cle">📋 Copier</b>, colle, puis <b class="cle">Entrée</b>. Attends la fin de chaque réponse, et ouvre la page pour voir le résultat avant de passer au message suivant.</p>
       <p class="etiquette-prompt">① La couleur d'un échantillon</p>
-      <div class="phrase"><code>Bonjour, je souhaiterais que tu m'aides à concevoir une simulation en HTML (donc un fichier texte avec l'extension .html, et pas un fichier Python) que je puisse facilement partager à mes collègues.
+      <div class="phrase"><code>Bonjour, je souhaiterais que tu m'aides à concevoir une simulation en HTML (un seul fichier .html, pas de Python), que je puisse facilement partager à mes collègues.
 
-Cette simulation doit calculer la couleur d'un échantillon à partir de son spectre de réflectance, comme le fait un spectrophotomètre.
+Cette simulation calcule la couleur d'un échantillon à partir de son spectre de réflectance, comme le fait un spectrophotomètre.
 
 Le domaine de longueurs d'onde va de 380 à 780 nm, au pas de 10 nm. Intègre dans le fichier les tables officielles de la CIE à ce pas : les fonctions colorimétriques de l'observateur de référence CIE 1931 (2°) x̄(λ), ȳ(λ), z̄(λ), et les répartitions spectrales des illuminants D65 (lumière du jour), A (lampe à incandescence) et F11 (tube fluorescent).
+Contrôle des tables : pour le blanc parfait (R = 1 partout), tu dois retrouver environ Xn = 95,05 ; Yn = 100 ; Zn = 108,88 sous D65, Xn = 109,85 ; Zn = 35,58 sous A, et Xn = 100,96 ; Zn = 64,35 sous F11. Affiche ces valeurs de contrôle dans un petit encadré.
 
-La réflectance R(λ) de l'échantillon (entre 0 et 1) doit être modifiable facilement : par exemple une courbe en cloche dont on règle le centre, la largeur et la hauteur, plus un niveau de fond.
+La réflectance R(λ) de l'échantillon (entre 0 et 1) se règle avec des curseurs : une courbe en cloche dont on règle le centre, la largeur et la hauteur, plus un niveau de fond.
 
 Pour l'illuminant choisi, de répartition spectrale S(λ), le programme calcule :
 X = k·Σ S(λ)·R(λ)·x̄(λ)·Δλ ; Y = k·Σ S(λ)·R(λ)·ȳ(λ)·Δλ ; Z = k·Σ S(λ)·R(λ)·z̄(λ)·Δλ, avec k = 100 / Σ S(λ)·ȳ(λ)·Δλ (ainsi, Y = 100 pour le blanc parfait).
-Puis les coordonnées CIELAB, avec Xn, Yn, Zn le blanc de référence du même illuminant (R = 1 partout) :
+Puis les coordonnées CIELAB, avec Xn, Yn, Zn le blanc de référence du même illuminant :
 L* = 116·f(Y/Yn) − 16 ; a* = 500·[f(X/Xn) − f(Y/Yn)] ; b* = 200·[f(Y/Yn) − f(Z/Zn)], avec f(t) = t^(1/3) si t &gt; (6/29)³, et f(t) = t/(3·(6/29)²) + 4/29 sinon.
 
-J'aimerais que la page affiche le graphique de la réflectance R(λ) et du spectre de l'illuminant, une pastille de la couleur obtenue (convertie en sRGB pour l'écran), et les valeurs de X, Y, Z, L*, a* et b*. On doit pouvoir changer d'illuminant (D65, A, F11) avec des boutons, et tout doit se mettre à jour automatiquement. Merci</code><button type="button" class="copier" data-allow data-sim="metamerie">📋 Copier</button></div>
-          <div class="allow-zone" hidden></div>
+La page affiche le graphique de la réflectance R(λ) et du spectre de l'illuminant, une pastille de la couleur obtenue et les valeurs de X, Y, Z, L*, a* et b*. Pour la pastille, convertis XYZ en sRGB (matrice sRGB et correction gamma) ; sous A et F11, fais d'abord une adaptation chromatique de Bradford vers D65, pour que le blanc reste blanc à l'écran. On change d'illuminant (D65, A, F11) avec des boutons, et tout se met à jour aussitôt. Merci !</code><button type="button" class="copier" data-allow data-sim="metamerie">📋 Copier</button></div>
       <p class="etiquette-prompt">② La paire métamère</p>
-      <div class="phrase"><code>Merci. Tu peux maintenant ajouter un deuxième échantillon pour illustrer la métamérie : deux couleurs qui paraissent identiques sous un illuminant, mais différentes sous un autre.
+      <div class="phrase"><code>Merci. Ajoute maintenant, dans la même page, un deuxième échantillon pour illustrer la métamérie : deux couleurs qui paraissent identiques sous un illuminant, mais différentes sous un autre.
 
-Construis la réflectance du deuxième échantillon ainsi : R2(λ) = R1(λ) + β(λ), où β(λ) est un « noir métamérique » : une courbe qui oscille, choisie pour que X, Y et Z sous D65 ne changent pas. Pour cela, pars d'une oscillation (par exemple une sinusoïde dont on règle l'amplitude et la période), puis retire-lui sa projection sur les trois fonctions S_D65(λ)·x̄(λ), S_D65(λ)·ȳ(λ) et S_D65(λ)·z̄(λ) (projection orthogonale, par les moindres carrés). Veille à ce que R2 reste entre 0 et 1.
+Construis la réflectance du deuxième échantillon ainsi : R2(λ) = R1(λ) + β(λ), où β(λ) est un « noir métamérique » : une courbe qui oscille, choisie pour que X, Y et Z sous D65 ne changent pas. Pour cela, pars d'une oscillation (une sinusoïde dont on règle l'amplitude et la période), puis retire-lui sa projection sur les trois fonctions S_D65(λ)·x̄(λ), S_D65(λ)·ȳ(λ) et S_D65(λ)·z̄(λ) (projection orthogonale, par les moindres carrés). Pour que R2 reste entre 0 et 1, réduis automatiquement l'amplitude au besoin, sans jamais écrêter la courbe (l'écrêtage casserait l'égalité sous D65), et signale-le.
 
-Pour chaque illuminant, affiche les L*a*b* des deux échantillons et l'écart de couleur ΔE*ab = √(ΔL*² + Δa*² + Δb*²). Sous D65, l'écart doit être quasi nul ; sous A et F11, il doit apparaître. Affiche aussi les deux pastilles côte à côte, les deux courbes de réflectance sur le même graphique (elles doivent se croiser au moins trois fois), et un indice de métamérie : le ΔE*ab sous l'illuminant A.
+Pour chaque illuminant, affiche les L*a*b* des deux échantillons et l'écart de couleur ΔE*ab = √(ΔL*² + Δa*² + Δb*²). Sous D65, l'écart doit être quasi nul (inférieur à 0,1) ; sous A et F11, il doit apparaître. Affiche aussi les deux pastilles côte à côte, les deux courbes de réflectance sur le même graphique (elles doivent se croiser au moins trois fois, et tu indiques le nombre de croisements), et un indice de métamérie : le ΔE*ab sous l'illuminant A.
 
-Le code doit être similaire au précédent : même graphique, mêmes boutons d'illuminant… etc. !</code><button type="button" class="copier" data-allow>📋 Copier</button></div>
-          <div class="allow-zone" hidden></div>
-      <p class="etiquette-prompt">③ L'exploitation de mesures (fichier Excel ou CSV du spectrophotomètre)</p>
-      <div class="phrase"><code>Merci. Parfait pour comprendre la métamérie ! Maintenant, j'aimerais que tu ajoutes un autre onglet où l'on puisse charger un fichier de type Excel ou CSV exporté d'un spectrophotomètre, et que la page reconnaisse la colonne des longueurs d'onde et les colonnes de réflectance (une par échantillon, en % ou entre 0 et 1), trace les courbes, puis calcule pour chaque échantillon les L*a*b* sous D65, A et F11, et pour chaque paire l'écart ΔE*ab sous chaque illuminant. Et qu'on puisse directement, dans cet onglet, dire si les deux échantillons sont métamères (écart faible sous D65, mais grand sous un autre illuminant) ?</code><button type="button" class="copier" data-allow>📋 Copier</button></div>
-          <div class="allow-zone" hidden></div>
+Garde le même graphique et les mêmes boutons d'illuminant. Merci !</code><button type="button" class="copier" data-allow>📋 Copier</button></div>
+      <p class="etiquette-prompt">③ L'exploitation de mesures (copier-coller depuis Excel ou fichier CSV du spectrophotomètre)</p>
+      <div class="phrase"><code>Merci, parfait pour comprendre la métamérie ! Maintenant, j'aimerais que tu ajoutes un onglet « Mes mesures » pour exploiter de vraies mesures de spectrophotomètre.
+
+On y colle ses mesures copiées depuis Excel, ou on charge un fichier CSV (séparateur « ; » ou « , », virgule décimale acceptée), sans aucune bibliothèque externe. La page reconnaît la colonne des longueurs d'onde et les colonnes de réflectance (une par échantillon, en % ou entre 0 et 1, détecté automatiquement) ; si les longueurs d'onde ne tombent pas au pas de 10 nm, elle interpole linéairement.
+
+Elle trace les courbes, calcule pour chaque échantillon les L*a*b* sous D65, A et F11, et pour chaque paire l'écart ΔE*ab sous chaque illuminant, dans un tableau. Pour chaque paire, elle conclut : « métamères » si ΔE*ab &lt; 1 sous D65 et ΔE*ab &gt; 2 sous A ou F11 ; sinon « couleurs différentes » ou « couleurs identiques sous tous les illuminants ».
+
+Ajoute un bouton qui télécharge un exemple de fichier CSV pour tester (par exemple les deux échantillons de l'onglet de simulation). Merci !</code><button type="button" class="copier" data-allow>📋 Copier</button></div>
       <p class="note">💡 Sois patient : chaque réponse peut prendre plusieurs minutes.</p>
       </div>
       <div class="bloc-partie attendre">
-      <h3 class="partie">⏳ Patiente <small>pendant qu'Antigravity écrit le code</small></h3>
-      <p>Cela peut prendre <b class="cle">quelques minutes</b>. S'il te demande une autorisation (« Allow… ? »), choisis <b class="cle">3 · Yes, and always allow</b>, puis <b class="cle">Submit</b>.</p>
-      <p>C'est prêt quand il te répond par l'encadré vert <b class="cle">« ✅ Ta simulation est prête »</b> avec <b class="cle">① ton code</b> (un lien qui l'ouvre dans Antigravity), suivi juste en dessous de <b class="cle">② le rendu</b> (comment le voir dans ton navigateur).</p>
-      <div><button type="button" class="pret">✅ Ma simulation est prête</button></div>
+      <h3 class="partie">⚙️ Antigravity travaille <small>il écrit le code de ta simulation</small></h3>
+      <div class="wk-travail">
+      <p>Cela peut prendre <b class="cle">quelques minutes</b>. <b class="cle">Tant qu'Antigravity affiche « Working »</b> (ou « Reading… », « Editing… »), il travaille : patiente.</p>
+      <div class="ecran-wk" aria-hidden="true">
+        <span class="wk-working wk-s1">Working</span><span class="wk-working wk-s2">Reading metamerie.html ›</span><span class="wk-working wk-s3">Editing metamerie.html ›</span>
+        <span class="wk-etiquette wk-e1">⏳ Il travaille : patiente</span>
+      </div>
+      <p class="allow-ligne">🔐 S'il te demande une autorisation (« Allow write access to this path? »), choisis <b class="cle">3 · Yes, and always allow</b>, puis <b class="cle">Submit</b>. <button type="button" class="allow-rejouer allow-popup">🔐 Voir quoi choisir</button></p>
+      <div><button type="button" class="fini-btn">✅ Antigravity a fini de travailler</button></div>
+      </div>
+      <div class="wk-verif" hidden>
+      <p class="replie-ligne vue"><span>✓</span> <b>Antigravity a fini de travailler</b> <button type="button" class="fini-retour">‹ revenir en arrière (il travaille encore)</button></p>
+      <p>Tu dois voir <b class="cle">l'équivalent de ceci</b> dans Antigravity :</p>
+      <div class="ecran-wk wk-fixe" aria-hidden="true">
+        <div class="wk-fini"><span class="wk-temps">Worked for 1m ›</span><div class="wk-tip"><b>TIP</b><br>✅ Ta simulation est prête.<br>① Ton code, dans Antigravity : <i>&lt;/&gt;</i> metamerie.html</div></div>
+      </div>
+      <div><button type="button" class="pret">✅ Je confirme : ma simulation est prête</button></div>
+      </div>
       </div>
       <div class="bloc-partie voir" hidden>
+      <p class="replie-ligne vue voir-ligne"><span>✓</span> <b>Ma simulation est prête</b> <button type="button" class="voir-retour">‹ revenir en arrière (elle n'est pas encore prête)</button></p>
+      <div class="voir-nav">
+      <h3 class="partie">👀 Voir ta simulation dans ton navigateur</h3>
+      <div class="ecran-va" role="img" aria-label="D'abord dans Antigravity : clic sur l'icône de copie à droite de l'adresse file:///… ; puis dans ton navigateur (Chrome, Firefox, Safari, Edge) : clic dans la barre d'adresse, coller, Entrée : la simulation s'affiche">
+        <div class="va-scene va-a">
+          <div class="va-etiq">① Dans <b>Antigravity</b> : copie l'adresse</div>
+          <div class="va-fen va-ag">
+            <div class="va-ag-gauche"><p>+ New Conversation</p><p class="va-gris">◷ Automations</p><p class="va-gris">⧉ Customizations</p><p class="va-gris va-petit">Projects</p><p>📁 mes simulations</p><p class="va-sel va-retrait">Simulation métamérie</p><p class="va-retrait va-gris">Préparation du projet</p><p class="va-gris va-petit">Conversations</p><p class="va-gris">Configuration…</p></div>
+            <div class="va-ag-milieu">
+              <div class="va-imp"><b>IMPORTANT</b> 🧪 Atelier « Simulation métamérie » · <u>atelier.rasf.fr/metamerie.html#simple</u></div>
+              <div class="va-moi">Fais-moi une simulation…</div>
+              <div class="va-tip"><b>TIP</b> ✅ Ta simulation est prête.</div>
+              <p class="va-ligne">② Le rendu de ton code, dans ton navigateur…</p>
+              <div class="va-code"><div class="va-code-tete"><span>text</span><span class="va-icones">@ <span class="va-copie">⧉</span><span class="va-ok">✓</span></span></div><div class="va-url">file:///Users/…/mes%20simulations/metamerie.html</div></div>
+              <span class="va-copie-bulle">Copié !</span>
+            </div>
+            <div class="va-ag-droite"><div class="va-ag-adresse">atelier.rasf.fr/metamerie.html#simple</div><div class="va-ag-page"><b>🎨 Simulation de la métamérie</b><i class="va-dom">Formulation</i><span class="va-mini o"></span><span class="va-mini b"></span><span class="va-mini b court"></span></div></div>
+          </div>
+        </div>
+        <div class="va-scene va-d">
+          <div class="va-etiq">② Ouvre <b>ton navigateur</b> (Chrome, Firefox, Safari, Edge)</div>
+          <div class="va-dock"><span class="va-app va-app-chrome"><i class="va-ico ico-chrome"></i>Chrome</span><span class="va-app va-app-firefox"><i class="va-ico ico-firefox"></i>Firefox</span></div>
+        </div>
+        <div class="va-scene va-b">
+          <div class="va-etiq">③ Dans <b>ton navigateur</b> : colle l'adresse</div>
+          <div class="va-fen va-nav">
+            <div class="va-onglets"><i></i><i></i><i></i><span class="va-onglet"><span class="va-titre-onglet">Nouvel onglet</span><span class="va-titre-sim">metamerie.html</span> ×</span><span class="va-plus">+</span><span class="va-logo"></span></div>
+            <div class="va-barre-nav"><span>←</span><span>→</span><span>↻</span><div class="va-adresse"><span class="va-vide">🔍 Rechercher ou saisir une adresse</span><span class="va-tape">file:///Users/…/mes%20simulations/metamerie.html</span></div></div>
+            <div class="va-accueil"><span class="va-recherche">🔍</span></div>
+            <div class="va-page"><b>🎨 Métamérie</b><svg viewBox="0 0 120 50" aria-hidden="true"><path d="M5 45 C40 44 50 40 58 25 C62 12 75 8 115 6" fill="none" stroke="#2563eb" stroke-width="3"/></svg></div>
+            <span class="va-badge va-cmdv">Cmd + V</span><span class="va-badge va-entree">Entrée ↵</span>
+          </div>
+        </div>
+        <svg class="souris" viewBox="0 0 14 21" width="22" height="33" aria-hidden="true"><path d="M0 0 L0 17 L4.5 13 L8 20 L11 18.5 L7.5 12 L13 12 Z" fill="#fff" stroke="#000" stroke-width="1.3"/></svg>
+      </div>
+      <ol class="va-etapes">
+        <li>Dans la réponse d'Antigravity, clique sur <b class="cle">l'icône de copie ⧉</b>, à droite de l'adresse <b class="cle">file:///…</b></li>
+        <li>Ouvre <b class="cle">ton navigateur habituel</b> (Chrome, Firefox, Safari, Edge), en dehors d'Antigravity, clique dans <b class="cle">la barre d'adresse</b>, colle (<b class="cle">Cmd + V</b> sur Mac, <b class="cle">Ctrl + V</b> sur Windows), puis <b class="cle">Entrée</b> : ta simulation s'affiche.</li>
+        <li>Après chaque modification, <b class="cle">recharge la page</b> (<b class="cle">Cmd + R</b> ou <b class="cle">F5</b>).</li>
+      </ol>
+      <div><button type="button" class="pret vu-btn">✅ J'ai visualisé ma simulation</button></div>
+      </div>
+      <p class="replie-ligne voir-vu-ligne"><span>✓</span> <b>J'ai visualisé ma simulation</b> <button type="button" class="vu-retour">‹ revenir en arrière</button></p>
+      <div class="voir-suite" hidden>
       <h3 class="partie">② Discutons ensemble des résultats obtenus</h3>
-      <div><button type="button" class="aller-onglet" data-aller="modifier">🛠️ On modifie la simulation ›</button></div>
+      <div class="discuter-boutons"><button type="button" class="aller-onglet" data-aller="modifier">🛠️ On modifie la simulation ›</button><button type="button" class="nouvelle-version">🔀 Créer une nouvelle version à comparer</button></div>
+      </div>
       </div>
     </section>
 
@@ -145,7 +270,8 @@ Le code doit être similaire au précédent : même graphique, mêmes boutons d'
 <div class="bande" id="bande" role="note" hidden><span class="bfleche" aria-hidden="true">⬅</span>
   <span><b>Colle le message dans Antigravity</b> <em>dans la zone de message, en bas à gauche</em><span class="quoi">👉 <span class="os os-mac">Cmd + V</span><span class="os os-win">Ctrl + V</span><span class="os os-linux">Ctrl + V</span>, puis Entrée.</span></span>
   <button type="button" class="bande-x" aria-label="Fermer">×</button></div>
-<script src="copier.js?v=8"></script>
+<script src="copier.js?v=14"></script>
+<script src="token.js?v=4"></script>
 <script>
 // Les onglets ; l'onglet ouvert reste dans l'adresse (#simple, #detaille…) pour survivre au rechargement
 const ongl = [...document.querySelectorAll("[data-onglet]")];
@@ -162,16 +288,71 @@ ouvrir(location.hash.slice(1));
 // Les cadres sous « Créer » : rien avant la copie ; « Patiente » après Copier ; « Discutons… » après « Ma simulation est prête »
 // L'étape (vide, "attente", "pret") est gardée dans le navigateur pour survivre au rechargement
 function etat(panneau, etape) {
-  panneau.querySelector(".bloc-partie.attendre").hidden = etape !== "attente";
-  panneau.querySelector(".bloc-partie.voir").hidden = etape !== "pret";
+  panneau.querySelector(".bloc-partie.attendre").hidden = etape !== "attente" && etape !== "fini";
+  // « Antigravity a fini de travailler » : on montre ce qu'il doit afficher, puis « Je confirme »
+  panneau.querySelector(".wk-travail").hidden = etape === "fini";
+  panneau.querySelector(".wk-verif").hidden = etape !== "fini";
+  if (etape === "attente") panneau.querySelectorAll(".ecran-wk *").forEach((el) => el.getAnimations().forEach((x) => { x.currentTime = 0; }));   // « Working » repart du début
+  panneau.querySelector(".bloc-partie.voir").hidden = etape !== "pret" && etape !== "vu";
+  // « J'ai visualisé ma simulation » : « Voir » se replie en une ligne verte, « Discutons » apparaît
+  panneau.querySelector(".voir-nav").hidden = etape === "vu";
+  panneau.querySelector(".voir-vu-ligne").classList.toggle("vue", etape === "vu");
+  panneau.querySelector(".voir-suite").hidden = etape !== "vu";
   try { localStorage.setItem("atelier.metamerie.etape." + panneau.dataset.panneau, etape); } catch {}
 }
 document.querySelectorAll("[data-panneau]").forEach((p) => {
   if (!p.querySelector(".bloc-partie.attendre")) return;
+  // « Créer une nouvelle version à comparer » : on revient au message de départ, déplié, pour en faire un autre
+  p.querySelector(".nouvelle-version")?.addEventListener("click", () => {
+    etat(p, "");
+    const creer = p.querySelector(".bloc-partie.creer");
+    creer.classList.remove("replie"); creer.querySelectorAll(".phrase.replie").forEach((x) => x.classList.remove("replie"));
+    creer.querySelectorAll(".replie-ligne").forEach((x) => x.classList.remove("vue"));
+    const note = creer.querySelector(".note-nouvelle"); if (note) note.hidden = false;
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+  p.querySelector(".fini-btn").addEventListener("click", () => etat(p, "fini"));
+  p.querySelector(".fini-retour").addEventListener("click", () => etat(p, "attente"));   // cliqué par erreur : on revient à « il travaille »
+  p.querySelector(".vu-btn").addEventListener("click", () => { etat(p, "vu"); p.querySelector(".voir-suite").scrollIntoView({ behavior: "smooth", block: "nearest" }); });
+  p.querySelector(".vu-retour").addEventListener("click", () => etat(p, "pret"));   // revenir en arrière : on revoit « Voir ta simulation »
+  p.querySelector(".voir-retour").addEventListener("click", () => { etat(p, "attente"); p.querySelector(".bloc-partie.attendre").scrollIntoView({ behavior: "smooth", block: "nearest" }); });   // « revenir en arrière » : on repatiente
   p.querySelector("button.pret").addEventListener("click", () => { etat(p, "pret"); p.querySelector(".bloc-partie.voir").scrollIntoView({ behavior: "smooth", block: "nearest" }); });
-  p.querySelectorAll("button.copier").forEach((b) => b.addEventListener("click", () => etat(p, "attente")));   // un nouveau message : on patiente
+  // un nouveau message : rien pendant les 10 s du bandeau jaune, puis « Patiente » (avec l'animation « Allow » dedans)
+  p.querySelectorAll("button.copier").forEach((b) => {
+    b.addEventListener("click", () => etat(p, ""));
+    b.addEventListener("apres-bande", () => { etat(p, "attente"); p.querySelector(".bloc-partie.attendre").scrollIntoView({ behavior: "smooth", block: "nearest" }); });
+  });
   let etape = ""; try { etape = localStorage.getItem("atelier.metamerie.etape." + p.dataset.panneau) || ""; } catch {}
   etat(p, etape);
+  // cohérence : le prompt simple n'a qu'un message ; s'il n'a pas été copié, on repart de zéro
+  let copieSimple = false; try { copieSimple = localStorage.getItem("atelier." + (location.pathname.split("/").pop().replace(".html", "") || "page") + ".copie.0") === "1"; } catch {}
+  if (p.dataset.panneau === "simple" && etape && !copieSimple) etat(p, "");
+});
+// Après Copier, le message se replie en une ligne « ✓ Message copié » (gardé dans le navigateur).
+// Un seul message dans le cadre ① : tout le cadre se replie ; plusieurs (prompt détaillé) : ce message seulement.
+const PAGE = location.pathname.split("/").pop().replace(".html", "") || "page";
+document.querySelectorAll("[data-panneau] .bloc-partie.creer .phrase").forEach((ph, i) => {
+  const b = ph.querySelector("button.copier");
+  if (!b) return;
+  const bloc = ph.closest(".bloc-partie.creer");
+  const unique = bloc.querySelectorAll(".phrase").length === 1;
+  const cible = unique ? bloc : ph;
+  const ligne = document.createElement("p");
+  ligne.className = "replie-ligne";
+  ligne.innerHTML = '<span>✓</span> <b>Message copié</b> <button type="button">voir le message ou le recopier</button>';
+  if (unique) bloc.querySelector("h3").after(ligne); else ph.before(ligne);
+  const cle = "atelier." + PAGE + ".copie." + i;
+  const replier = (oui) => { cible.classList.toggle("replie", oui); ligne.classList.toggle("vue", oui); try { localStorage.setItem(cle, oui ? "1" : ""); } catch {} };
+  ligne.querySelector("button").addEventListener("click", () => replier(false));
+  b.addEventListener("click", () => setTimeout(() => replier(true), 700));
+  let r = false; try { r = localStorage.getItem(cle) === "1"; } catch {}
+  replier(r);
+});
+// « Voir ta simulation » : à chaque tour, l'animation ouvre Chrome ou Firefox, au hasard
+document.querySelectorAll(".ecran-va").forEach((e) => {
+  const tirer = () => { e.dataset.nav = Math.random() < 0.5 ? "chrome" : "firefox"; };
+  tirer();
+  e.addEventListener("animationiteration", (ev) => { if (ev.target.classList.contains("va-a")) tirer(); });
 });
 // Le système de l'ordinateur (Mac, Windows, Linux), comme sur la page Antigravity
 let os = null; try { os = localStorage.getItem("atelier.os"); } catch {}

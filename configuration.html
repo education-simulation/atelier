@@ -14,7 +14,7 @@ body { margin:0; padding:22px 14px 150px; font-family:'Nunito',system-ui,-apple-
 .corps { padding:20px 22px 24px; display:grid; gap:16px; }
 h1 { margin:0; font:800 clamp(22px,3.4vw,30px)/1.2 'Outfit',system-ui,sans-serif; color:#fff; }
 /* les étapes, une à la fois */
-.st { list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); gap:4px; }
+.st { list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(7,minmax(0,1fr)); gap:4px; }
 .st li { display:flex; flex-direction:column; align-items:center; gap:6px; text-align:center; position:relative; font-size:12.5px; color:#a1a1aa; }
 .st li:not(:last-child)::after { content:""; position:absolute; top:16px; left:calc(50% + 20px); right:calc(-50% + 20px); height:3px; background:#3f3f46; }
 .st li.fait:not(:last-child)::after { background:#22c55e; }
@@ -227,17 +227,329 @@ b.cle { color:#fde68a; }
 .vers-atelier { display:inline-block; background:#f59e0b; color:#1f1300; font:800 20px 'Outfit',system-ui,sans-serif; text-decoration:none; border-radius:14px; padding:14px 26px; box-shadow:0 0 0 6px rgba(245,158,11,.25); }
 .vers-atelier:hover { background:#fbbf24; }
 .note-atelier { text-align:center; color:#a1a1aa; font-size:15px; }
+.etapes-projet { margin:14px 0 0; padding-left:26px; display:grid; gap:10px; font-size:18px; line-height:1.5; }
+.theme-bascule { all:unset; cursor:pointer; margin-left:auto; font-size:13px; font-weight:800; border-radius:999px; padding:3px 10px; background:#27272a; color:#e4e4e7; border:1px solid #3f3f46; white-space:nowrap; }
+
+/* étape 6 : créer le projet (14 s, en boucle) : 📁+, choisir ou créer un dossier, Ouvrir, la conversation du projet */
+.e6p { height:330px; }
+.p-gauche { position:absolute; left:0; top:0; bottom:0; width:200px; background:#16161b; padding:10px; box-sizing:border-box; font-size:13px; color:#d4d4d8; }
+.p-gauche p { margin:0 0 8px; padding:4px 8px; border-radius:6px; white-space:nowrap; }
+.p-new { background:#26262e; }
+.p-menu { color:#a1a1aa; }
+.p-titre { color:#71717a; font-size:12px; display:flex; justify-content:space-between; align-items:center; }
+.p-plus { border-radius:5px; padding:0 4px; font-size:12px; animation:p-plus 38s infinite; }
+.p-projet, .p-conv { opacity:0; }
+.p-projet { animation:p-apres 38s infinite, p-vise 38s infinite; }
+.p-conv { animation:p-apres 38s infinite; background:#3a3a44; }
+.p-saisie { position:absolute; left:216px; right:14px; bottom:14px; background:#1e1e25; border:1px solid #3f3f46; border-radius:14px; padding:10px 12px; font-size:13px; color:#71717a; }
+.p-chip { display:inline-block; opacity:0; margin-bottom:8px; background:#2e2e36; color:#e4e4e7; border-radius:999px; padding:3px 12px; font-weight:800; animation:p-apres 38s infinite, p-chip 38s infinite; }
+.p-bas { display:flex; justify-content:space-between; margin-top:12px; color:#d4d4d8; }
+.p-dlg { position:absolute; left:220px; top:14px; width:540px; height:296px; max-width:calc(100% - 230px); background:#26262e; border:1px solid #52525b; border-radius:12px; box-shadow:0 14px 34px rgba(0,0,0,.45); opacity:0; z-index:8; font-size:13px; color:#d4d4d8; animation:p-dlg 38s infinite; }
+.p-dlg-titre { padding:10px 14px; font-weight:800; color:#fff; border-bottom:1px solid #3f3f46; }
+.p-lieux { position:absolute; left:0; top:40px; bottom:52px; width:140px; border-right:1px solid #3f3f46; padding:8px; box-sizing:border-box; }
+.p-fichiers { position:absolute; left:150px; right:10px; top:48px; }
+.p-lieux p, .p-fichiers p { margin:0 0 6px; padding:3px 8px; border-radius:6px; white-space:nowrap; }
+.p-cree { opacity:0; animation:p-cree 38s infinite; }
+.p-btn { position:absolute; bottom:12px; border-radius:8px; padding:5px 12px; background:#3a3a44; color:#fff; font-weight:700; white-space:nowrap; }
+.p-nouveau { left:12px; animation:p-nouveau 38s infinite; }
+.p-annuler { right:96px; }
+.p-ouvrir { right:12px; background:#2563eb; animation:p-ouvrir 38s infinite; }
+.p-nom { position:absolute; left:110px; top:70px; width:300px; background:#2e2e36; border:1px solid #52525b; border-radius:12px; padding:12px 14px 50px; box-shadow:0 10px 26px rgba(0,0,0,.4); opacity:0; z-index:9; animation:p-nom 38s infinite; }
+.p-nom b { display:block; color:#fff; margin-bottom:8px; }
+.p-champ { display:block; border:2px solid #3b82f6; border-radius:8px; padding:5px 8px; background:#1c1c22; color:#fff; min-height:18px; }
+.p-tape { display:inline-block; overflow:hidden; white-space:nowrap; vertical-align:bottom; width:0; animation:p-tape 38s steps(15) infinite; }
+.p-creer { right:14px; background:#2563eb; }
+.e6p .souris { z-index:12; left:560px; top:250px; animation:p-souris 38s infinite; }
+.p-legende { margin:10px 0 0; padding-left:22px; display:grid; gap:6px; font-size:16px; }
+@keyframes p-souris {
+  0% { left:560px; top:250px; transform:scale(1); }
+  6% { left:166px; top:128px; transform:scale(1); } 7% { left:166px; top:128px; transform:scale(.8); } 8% { left:166px; top:128px; transform:scale(1); }
+  15% { left:300px; top:282px; transform:scale(1); } 17% { left:300px; top:282px; transform:scale(.8); } 18% { left:300px; top:282px; transform:scale(1); }
+  31% { left:300px; top:282px; } 35% { left:600px; top:176px; transform:scale(1); } 36% { left:600px; top:176px; transform:scale(.8); } 37% { left:600px; top:176px; transform:scale(1); }
+  42% { left:calc(100% - 60px); top:280px; transform:scale(1); } 44% { left:calc(100% - 60px); top:280px; transform:scale(.8); } 45% { left:calc(100% - 60px); top:280px; transform:scale(1); }
+  52%, 56% { left:330px; top:262px; transform:scale(1); }
+  66% { left:calc(100% - 44px); top:298px; transform:scale(1); } 68% { left:calc(100% - 44px); top:298px; transform:scale(.8); } 69%, 100% { left:calc(100% - 44px); top:298px; transform:scale(1); }
+}
+@keyframes p-plus { 0%, 4% { background:transparent; } 5%, 10% { background:#f59e0b; color:#1f1300; } 11%, 100% { background:transparent; } }
+@keyframes p-dlg { 0%, 8.2% { opacity:0; } 9.2%, 45% { opacity:1; } 47%, 100% { opacity:0; } }
+@keyframes p-nouveau { 0%, 14% { box-shadow:none; } 15%, 19% { box-shadow:0 0 0 3px #f59e0b; } 20%, 100% { box-shadow:none; } }
+@keyframes p-nom { 0%, 17% { opacity:0; } 19%, 36% { opacity:1; } 38%, 100% { opacity:0; } }
+@keyframes p-tape { 0%, 20% { width:0; } 31%, 100% { width:15ch; } }
+@keyframes p-cree { 0%, 36% { opacity:0; } 38%, 45% { opacity:1; background:#f59e0b; color:#1f1300; } 47%, 100% { opacity:0; } }
+@keyframes p-ouvrir { 0%, 41% { box-shadow:none; } 42%, 45% { box-shadow:0 0 0 3px #f59e0b; } 46%, 100% { box-shadow:none; } }
+@keyframes p-apres { 0%, 46% { opacity:0; } 48%, 98% { opacity:1; } 100% { opacity:0; } }
+@keyframes p-vise { 0%, 47% { background:transparent; } 49%, 98% { background:#3a2a08; outline:2px solid #f59e0b; } }
+@keyframes p-chip { 0%, 49% { box-shadow:none; } 51%, 56% { box-shadow:0 0 0 3px #f59e0b; } 58%, 100% { box-shadow:none; } }
+@keyframes p-cmdv { 0%, 56% { opacity:0; transform:scale(.6); } 58%, 62% { opacity:1; transform:scale(1); } 64%, 100% { opacity:0; } }
+@keyframes p-colle { 0%, 58% { opacity:0; } 60%, 68% { opacity:1; } 70%, 100% { opacity:0; } }
+@keyframes p-indice { 0%, 58% { opacity:1; } 60%, 68% { opacity:0; } 70%, 100% { opacity:1; } }
+@keyframes p-envoi { 0%, 65% { box-shadow:none; } 66%, 69% { box-shadow:0 0 0 4px rgba(245,158,11,.7); } 70%, 100% { box-shadow:none; } }
+@keyframes p-rep { 0%, 71% { opacity:0; } 74%, 98% { opacity:1; } 100% { opacity:0; } }
+.p-ask { position:relative; min-height:18px; }
+.p-colle { position:absolute; left:0; top:0; right:70px; color:#fff; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; opacity:0; animation:p-colle 38s infinite; }
+.p-indice { animation:p-indice 38s infinite; }
+.p-cmdv { position:absolute; right:0; top:-4px; background:#f59e0b; color:#1f1300; font-weight:800; border-radius:6px; padding:1px 8px; opacity:0; animation:p-cmdv 38s infinite; }
+.p-envoi { display:inline-grid; place-items:center; width:22px; height:22px; margin-left:8px; border-radius:50%; background:#fff; color:#0b0b0f; font-weight:800; animation:p-envoi 38s infinite; }
+.p-rep { position:absolute; left:226px; right:20px; top:16px; border-left:3px solid #22c55e; padding:4px 10px; font-size:13px; color:#e4e4e7; opacity:0; animation:p-rep 38s infinite; }
+.p-rep > b:first-child { color:#4ade80; font-size:11px; }
+.p-num { margin:14px 0 6px; }
+.p-num > span:first-child { width:26px; height:26px; margin-right:6px; vertical-align:1px; border-radius:50%; display:inline-grid; place-items:center; background:#f59e0b; color:#1f1300; font-weight:800; font-size:14px; }
+/* étape 7 : le message à copier */
+.p-phrase { display:flex; gap:10px; align-items:flex-start; flex-wrap:wrap; margin:10px 0; }
+.p-phrase code { flex:1 1 100%; max-height:170px; overflow-y:auto; background:#0b0b0f; border:1px dashed #f59e0b; border-radius:10px; padding:10px 12px; font:13.5px Menlo,Consolas,monospace; color:#fff; white-space:pre-wrap; overflow-wrap:anywhere; }
+.p-copier { all:unset; cursor:pointer; background:#16a34a; color:#fff; font-weight:800; border-radius:10px; padding:10px 16px; }
+.p-suite[hidden] { display:none; }
+.p-e1-fait { display:none; margin:6px 0; align-items:center; gap:8px; padding:8px 12px; border-radius:10px; background:#0c1a10; border:1px solid #166534; color:#bbf7d0; }
+.p-e1-fait > span { width:24px; height:24px; border-radius:50%; display:inline-grid; place-items:center; background:#22c55e; color:#052e14; font-weight:800; }
+.p-recopier { all:unset; cursor:pointer; margin-left:auto; font-size:14px; text-decoration:underline; color:#a1a1aa; }
+.p-e1.fait > .p-num, .p-e1.fait > .p-phrase { display:none; } .p-e1.fait > .p-e1-fait { display:flex; }
+.p-conv { margin-left:14px !important; }
+.p-script { background:#3a3a44; animation:p-script 38s infinite; }
+@keyframes p-script { 0%, 46% { background:#3a3a44; } 48%, 100% { background:transparent; } }
+.nav .suiv.bloque { opacity:.4; cursor:not-allowed; }
+.suiv-msg { margin:0; text-align:right; font-weight:800; color:#fbbf24; }
+.suiv-msg[hidden] { display:none; }
+.p-suite[hidden] ~ .vers-suivant { display:none; }
+/* étape 6 : les bulles d'explication, une fois le projet créé */
+.p-info { position:absolute; z-index:9; left:226px; right:20px; bottom:118px; background:#f59e0b; color:#1f1300; font-weight:800; font-size:13.5px; line-height:1.35; border-radius:10px; padding:7px 12px; box-shadow:0 6px 16px rgba(0,0,0,.3); opacity:0; pointer-events:none; }
+.p-info-1 { animation:p-info-1 38s infinite; } .p-info-2 { animation:p-info-2 38s infinite; }
+@keyframes p-info-1 { 0%, 47% { opacity:0; transform:translateY(6px); } 49%, 56% { opacity:1; transform:none; } 57%, 100% { opacity:0; } }
+@keyframes p-info-2 { 0%, 56% { opacity:0; transform:translateY(6px); } 58%, 69% { opacity:1; transform:none; } 70%, 100% { opacity:0; } }
+@keyframes p-chip { 0%, 48% { box-shadow:none; } 49%, 69% { box-shadow:0 0 0 3px #f59e0b; } 70%, 100% { box-shadow:none; } }
+.vers-zone-ag { display:flex; align-items:flex-end; gap:10px; margin:6px 0 0 -8px; color:#dc2626; font-weight:700; font-size:15px; }
+.vers-zone-ag svg { flex:none; animation:vza 1.4s ease-in-out infinite; }
+@keyframes vza { 0%,100% { transform:translate(0,0); } 50% { transform:translate(-10px,9px); } }
+/* étape 5 : confirmer « Low » et « Auto » par deux clics */
+.vz { border-radius:8px; padding:2px 6px; } .zone-ag.verif .vz-low { animation:vz 2s infinite; } .zone-ag.verif .vz-auto { animation:vz 2s 1s infinite; }
+.zone-ag.verif.ok-low .vz-low, .zone-ag.verif.ok-auto .vz-auto { animation:none; box-shadow:0 0 0 2px #22c55e; }
+@keyframes vz { 0%,100% { box-shadow:0 0 0 0 rgba(245,158,11,0); } 50% { box-shadow:0 0 0 3px #f59e0b; } }
+.verif-btns { display:grid; gap:10px; margin:4px 0 0 38px; } .verif-l { display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
+.verif-btn { all:unset; cursor:pointer; border:2px solid #f59e0b; border-radius:12px; padding:9px 14px; font-weight:800; background:#1f1a10; color:#fff; }
+.verif-btn.ok { border-color:#22c55e; background:#0c1a10; color:#bbf7d0; }
+.verif-non { font-size:14px; color:#a1a1aa; }
+.zone-ag.verif .indice { animation:none; opacity:1; }
+.zone-ag.verif .vz-low, .zone-ag.verif .vz-auto, .zone-ag.verif .envoyer, .zone-ag.verif .curseur { animation:none; } .zone-ag.verif .vz { box-shadow:0 0 0 2px #f59e0b; } .zone-ag.verif.ok-low .vz-low, .zone-ag.verif.ok-auto .vz-auto { box-shadow:0 0 0 2px #22c55e; }
+/* étape 5 : les deux réglages s'allument l'un après l'autre (Low, puis Auto), tant qu'ils ne sont pas confirmés */
+.zone-ag.verif .vz { box-shadow:none; } .zone-ag.verif .vz-low { animation:vz-a 3s infinite; } .zone-ag.verif .vz-auto { animation:vz-b 3s infinite; }
+@keyframes vz-a { 0%,45% { box-shadow:0 0 0 3px #f59e0b; background:rgba(245,158,11,.15); } 50%,100% { box-shadow:none; background:none; } }
+@keyframes vz-b { 0%,45% { box-shadow:none; background:none; } 50%,95% { box-shadow:0 0 0 3px #f59e0b; background:rgba(245,158,11,.15); } 100% { box-shadow:none; } }
+.zone-ag.verif.ok-low .vz-low, .zone-ag.verif.ok-auto .vz-auto { animation:none; box-shadow:0 0 0 2px #22c55e; background:none; }
+.verif-btn[data-verif="low"]:not(.ok) { animation:vb-a 3s infinite; } .verif-btn[data-verif="auto"]:not(.ok) { animation:vb-b 3s infinite; }
+@keyframes vb-a { 0%,45% { box-shadow:0 0 0 3px rgba(245,158,11,.35); } 50%,100% { box-shadow:none; } }
+@keyframes vb-b { 0%,45% { box-shadow:none; } 50%,95% { box-shadow:0 0 0 3px rgba(245,158,11,.35); } 100% { box-shadow:none; } }
+/* étape 5, un réglage après l'autre : d'abord « Low » (seul animé, seul bouton), puis « Auto » */
+.zone-ag.verif .vz-low { animation:vz-1 1.4s ease-in-out infinite; } .zone-ag.verif .vz-auto { animation:none; box-shadow:none; background:none; }
+.zone-ag.verif.ok-low .vz-auto { animation:vz-1 1.4s ease-in-out infinite; }
+.zone-ag.verif.ok-low .vz-low, .zone-ag.verif.ok-low.ok-auto .vz-auto { animation:none; box-shadow:0 0 0 2px #22c55e; background:none; }
+@keyframes vz-1 { 0%,100% { box-shadow:0 0 0 2px #f59e0b; background:rgba(245,158,11,.08); } 50% { box-shadow:0 0 0 4px #f59e0b; background:rgba(245,158,11,.22); } }
+.verif-btn[data-verif]:not(.ok) { animation:vb-1 1.4s ease-in-out infinite; }
+@keyframes vb-1 { 50% { box-shadow:0 0 0 4px rgba(245,158,11,.35); } }
+.verif-l[hidden] { display:none; }
+/* étape 6 : la fenêtre ② ③ */
+.pj-voile { position:fixed; inset:0; z-index:150; background:rgba(15,23,42,.6); display:grid; place-items:center; padding:14px; overflow:auto; } .pj-voile[hidden] { display:none; }
+.pj-fen { position:relative; width:min(820px,100%); max-height:calc(100vh - 28px); overflow:auto; box-sizing:border-box; background:#0b0b0f; color:#e4e4e7; border:2px solid #f59e0b; border-radius:16px; padding:16px 20px; }
+.pj-fen h2 { margin:0 0 6px; padding-right:34px; font:800 20px 'Outfit',system-ui,sans-serif; color:#fff; }
+.pj-fermer { all:unset; cursor:pointer; position:absolute; top:12px; right:16px; font-size:18px; color:#a1a1aa; }
+.pj-actions { display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:12px; }
+.pj-ok { all:unset; cursor:pointer; background:#f59e0b; color:#1f1300; font-weight:800; border-radius:10px; padding:10px 16px; }
+.p-revoir { all:unset; cursor:pointer; background:#f59e0b; color:#1f1300; font-weight:800; border-radius:10px; padding:10px 16px; margin-top:4px; }
+.p-num-in > span { width:26px; height:26px; margin:0 4px; vertical-align:1px; border-radius:50%; display:inline-grid; place-items:center; background:#f59e0b; color:#1f1300; font-weight:800; font-size:14px; }
+/* zoom : sur « Projects » quand la souris approche, sur le nouveau projet, puis sur la zone où coller */
+.p-zoom { position:absolute; inset:0; animation:p-zoom 38s ease-in-out infinite; }
+@keyframes p-zoom {
+  0%, 2% { transform:scale(1); transform-origin:0 125px; }
+  6%, 8% { transform:scale(1.6); transform-origin:0 125px; }
+  10%, 100% { transform:scale(1); transform-origin:0 125px; }
+}
+/* avant la création, « Conversations » est juste sous « Projects » ; la place du projet s'ouvre seulement à sa création */
+.p-projet, .p-conv { opacity:1; overflow:hidden; }
+.p-projet { animation:p-ouvre 38s infinite, p-vise 38s infinite; } .p-conv { animation:p-ouvre 38s infinite; }
+@keyframes p-ouvre { 0%, 46% { max-height:0; padding-top:0; padding-bottom:0; margin-bottom:0; opacity:0; } 48%, 98% { max-height:30px; padding-top:4px; padding-bottom:4px; margin-bottom:8px; opacity:1; } 100% { max-height:0; padding-top:0; padding-bottom:0; margin-bottom:0; opacity:0; } }
+/* étape 6 : bulles jaunes lisibles pendant le zoom ; la nouvelle conversation du projet en couleur à sa création */
+.p-info-1 { left:212px; right:auto; width:205px; box-sizing:border-box; top:50px; bottom:auto; font-size:12.5px; }
+.p-info-2 { display:grid; gap:4px; }
+.p-conv { animation:p-ouvre 38s infinite, p-conv-neuve 38s infinite !important; }
+@keyframes p-conv-neuve { 0%, 47% { background:transparent; box-shadow:none; } 49%, 70% { background:#22c55e; color:#052e14; box-shadow:0 0 0 2px #16a34a; } 74%, 100% { background:#3a3a44; color:inherit; box-shadow:none; } }
+/* étape 6 : au survol de l'icône, l'infobulle « Create New Project » d'Antigravity */
+.p-plus { position:relative; }
+.p-tip { position:absolute; right:-6px; bottom:calc(100% + 6px); white-space:nowrap; background:#1c1c22; color:#e4e4e7; border:1px solid #3f3f46; border-radius:999px; padding:3px 10px; font-size:11.5px; font-weight:600; opacity:0; pointer-events:none; animation:p-tip 38s infinite; z-index:5; }
+@keyframes p-tip { 0%, 3.5% { opacity:0; } 4.5%, 8% { opacity:1; } 9%, 100% { opacity:0; } }
+/* étape 6 : la nouvelle conversation du projet telle qu'Antigravity l'affiche (suggestions, « mes simulations », « Local Checkout », Default) */
+.p-haut { display:flex; gap:14px; align-items:center; margin-bottom:8px; }
+.p-haut .p-chip { margin-bottom:0; }
+.p-local { opacity:0; color:#a1a1aa; font-weight:600; animation:p-apres 38s infinite; }
+.p-bas i { font-style:normal; color:#a1a1aa; }
+.p-sugg { position:absolute; left:232px; top:22px; display:grid; gap:6px; font-size:12.5px; color:#e4e4e7; opacity:0; animation:p-sugg 38s infinite; }
+.p-sugg p { margin:0; display:flex; gap:8px; } .p-sugg span { width:14px; text-align:center; }
+@keyframes p-sugg { 0%, 56% { opacity:0; } 58%, 70% { opacity:1; } 72%, 100% { opacity:0; } }
+/* étape 6 : les boutons numérotés sous l'animation */
+.p-pas { display:flex; flex-wrap:wrap; gap:6px; margin-top:10px; }
+.p-pas button { all:unset; cursor:pointer; display:inline-flex; align-items:center; gap:6px; border:1px solid #52525b; border-radius:999px; padding:4px 10px 4px 4px; font-size:13.5px; font-weight:700; }
+.p-pas button b { width:20px; height:20px; border-radius:50%; display:grid; place-items:center; background:#3f3f46; color:#fff; font-size:12px; }
+.p-pas button.ici { border-color:#f59e0b; background:rgba(245,158,11,.15); } .p-pas button.ici b { background:#f59e0b; color:#1f1300; }
+.p-pas .p-tout { padding:4px 12px; border-color:#f59e0b; }
+/* étape 6 : mode « Auto » dans la nouvelle conversation (57-66 %), puis coller (66-80 %), puis la réponse (80-100 %) */
+.p-mode { position:relative; } .p-def { display:inline-block; } .p-aut { position:absolute; left:0; top:0; white-space:nowrap; font-weight:800; color:#16a34a; opacity:0; }
+.p-def { animation:p-def 38s infinite; } .p-aut { animation:p-aut 38s infinite; }
+@keyframes p-def { 0%, 62.8% { opacity:1; } 63%, 99% { opacity:0; } 100% { opacity:1; } }
+@keyframes p-aut { 0%, 62.8% { opacity:0; } 63%, 99% { opacity:1; } 100% { opacity:0; } }
+.p-modemenu { position:absolute; z-index:10; right:30px; bottom:62px; background:#26262e; border:1px solid #52525b; border-radius:10px; padding:6px; font-size:12px; color:#e4e4e7; opacity:0; animation:p-modemenu 38s infinite; box-shadow:0 10px 24px rgba(0,0,0,.4); }
+.p-modemenu p { margin:0; padding:4px 10px; border-radius:6px; }
+.p-mm-auto { animation:p-mm-auto 38s infinite; }
+@keyframes p-modemenu { 0%, 59.5% { opacity:0; } 60%, 63% { opacity:1; } 63.5%, 100% { opacity:0; } }
+@keyframes p-mm-auto { 0%, 61.5% { background:transparent; } 62%, 63% { background:#f59e0b; color:#1f1300; } 63.5%, 100% { background:transparent; } }
+.p-info-3 { animation:p-info-3 38s infinite; top:104px; bottom:auto; right:170px; }
+@keyframes p-info-3 { 0%, 57% { opacity:0; transform:translateY(6px); } 58%, 65.5% { opacity:1; transform:none; } 66%, 100% { opacity:0; } }
+@keyframes p-info-2 { 0%, 66% { opacity:0; transform:translateY(6px); } 67%, 79% { opacity:1; transform:none; } 80%, 100% { opacity:0; } }
+@keyframes p-cmdv { 0%, 69% { opacity:0; transform:scale(.6); } 70%, 74% { opacity:1; transform:scale(1); } 75%, 100% { opacity:0; } }
+@keyframes p-colle { 0%, 70% { opacity:0; } 72%, 79% { opacity:1; } 80%, 100% { opacity:0; } }
+@keyframes p-indice { 0%, 70% { opacity:1; } 72%, 79% { opacity:0; } 80%, 100% { opacity:1; } }
+@keyframes p-envoi { 0%, 76% { box-shadow:none; } 77%, 79% { box-shadow:0 0 0 4px rgba(245,158,11,.7); } 80%, 100% { box-shadow:none; } }
+@keyframes p-rep { 0%, 80% { opacity:0; } 82%, 98% { opacity:1; } 100% { opacity:0; } }
+@keyframes p-sugg { 0%, 56% { opacity:0; } 58%, 80% { opacity:1; } 81%, 100% { opacity:0; } }
+@keyframes p-chip { 0%, 48% { box-shadow:none; } 49%, 79% { box-shadow:0 0 0 3px #f59e0b; } 80%, 100% { box-shadow:none; } }
+@keyframes p-conv-neuve { 0%, 47% { background:transparent; box-shadow:none; } 49%, 80% { background:#22c55e; color:#052e14; box-shadow:0 0 0 2px #16a34a; } 83%, 100% { background:#3a3a44; color:inherit; box-shadow:none; } }
+@keyframes p-souris {
+  0% { left:560px; top:250px; transform:scale(1); }
+  6% { left:166px; top:128px; transform:scale(1); } 7% { left:166px; top:128px; transform:scale(.8); } 8% { left:166px; top:128px; transform:scale(1); }
+  15% { left:300px; top:282px; transform:scale(1); } 17% { left:300px; top:282px; transform:scale(.8); } 18% { left:300px; top:282px; transform:scale(1); }
+  31% { left:300px; top:282px; } 35% { left:600px; top:176px; transform:scale(1); } 36% { left:600px; top:176px; transform:scale(.8); } 37% { left:600px; top:176px; transform:scale(1); }
+  42% { left:calc(100% - 60px); top:280px; transform:scale(1); } 44% { left:calc(100% - 60px); top:280px; transform:scale(.8); } 45% { left:calc(100% - 60px); top:280px; transform:scale(1); }
+  52%, 57% { left:330px; top:262px; transform:scale(1); }
+  59% { left:calc(100% - 120px); top:300px; transform:scale(1); } 59.5% { transform:scale(.8); } 60% { left:calc(100% - 120px); top:300px; transform:scale(1); }
+  61.5% { left:calc(100% - 90px); top:212px; transform:scale(1); } 62.2% { left:calc(100% - 90px); top:212px; transform:scale(.8); } 63% { left:calc(100% - 90px); top:212px; transform:scale(1); }
+  68%, 70% { left:330px; top:262px; transform:scale(1); }
+  76% { left:calc(100% - 44px); top:298px; transform:scale(1); } 77% { left:calc(100% - 44px); top:298px; transform:scale(.8); } 78%, 100% { left:calc(100% - 44px); top:298px; transform:scale(1); }
+}
+/* le bouton pour recopier, dans la page */
+.p-allow { display:flex; gap:12px; align-items:center; flex-wrap:wrap; margin:6px 0 10px; } .p-allow img { width:min(340px,100%); border-radius:10px; border:1px solid #3f3f46; } .p-allow p { flex:1 1 220px; margin:0; }
+.p-suite .pj-actions { justify-content:flex-start; }
+/* étape 6 : une fois le message copié, le bloc ① disparaît (le bouton « Copier à nouveau » reste en bas) */
+.p-e1.fait { display:none; }
+/* étape 6, point 5 : pas de zoom ; la zone de message de la nouvelle conversation entourée en vert, comme « Nouvelle conversation » ; point 6 : l'animation seule, sans bulle */
+.p-saisie { animation:p-saisie-verte 38s infinite; }
+@keyframes p-saisie-verte { 0%, 47% { box-shadow:none; } 49%, 80% { box-shadow:0 0 0 3px #22c55e; } 83%, 100% { box-shadow:none; } }
+.p-info-3 { display:none !important; }
+/* étape 6 : seul le bouton de l'étape montrée par l'animation affiche son nom ; les autres, juste leur numéro */
+.p-pas [data-de] .lbl { display:none; } .p-pas [data-de].ici .lbl { display:inline; }
+.p-pas [data-de] { padding:4px; } .p-pas [data-de].ici { padding:4px 10px 4px 4px; }
+/* étape 6 : pas de réponse de l'IA dans l'animation */
+.p-rep { display:none !important; }
+.p-pas { margin:10px 0 0; }
+/* étape 6 : fenêtre « colle ce message » */
+.cm-voile { position:fixed; inset:0; z-index:150; background:rgba(15,23,42,.6); display:grid; place-items:center; padding:14px; overflow:auto; } .cm-voile[hidden] { display:none; }
+.cm-fen { position:relative; width:min(720px,100%); max-height:calc(100vh - 28px); overflow:auto; box-sizing:border-box; background:#0b0b0f; color:#e4e4e7; border:2px solid #f59e0b; border-radius:16px; padding:16px 20px; display:grid; gap:12px; }
+.cm-fen h2 { margin:0; padding-right:34px; font:800 20px 'Outfit',system-ui,sans-serif; color:#fff; }
+.cm-fermer { all:unset; cursor:pointer; position:absolute; top:12px; right:16px; font-size:18px; color:#a1a1aa; }
+.cm-msg { display:grid; gap:8px; justify-items:start; } .cm-msg code { width:100%; box-sizing:border-box; max-height:120px; overflow-y:auto; background:#18181b; border:1px dashed #f59e0b; border-radius:10px; padding:10px 12px; font:13px Menlo,Consolas,monospace; color:#fff; white-space:pre-wrap; }
+.cm-copier { all:unset; cursor:pointer; background:#16a34a; color:#fff; font-weight:800; border-radius:10px; padding:9px 16px; }
+.cm-ecran { position:relative; height:268px; background:#0a0a0a; border:1px solid #27272a; border-radius:12px; overflow:hidden; font:13px system-ui,sans-serif; color:#e4e4e7; }
+.cm-sugg { position:absolute; left:20px; top:16px; display:grid; gap:6px; font-size:12.5px; } .cm-sugg p { margin:0; display:flex; gap:8px; } .cm-sugg span { width:14px; text-align:center; }
+.cm-boite { position:absolute; left:14px; right:14px; bottom:12px; border:1px solid #27272a; border-radius:14px; background:#111113; padding:6px; display:grid; gap:4px; }
+.cm-haut { margin:0 0 0 6px; display:flex; gap:14px; font-size:12px; color:#a1a1aa; } .cm-chip { color:#fff; font-weight:700; }
+.cm-saisie { position:relative; border:1px solid #27272a; border-radius:12px; background:#18181b; padding:8px 10px; display:grid; gap:6px; box-shadow:0 0 0 3px #22c55e; }
+.cm-indice { color:#a1a1aa; animation:cm-indice 6s infinite; } .cm-colle { position:absolute; left:10px; top:8px; right:10px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; color:#fafafa; opacity:0; animation:cm-colle 6s infinite; }
+.cm-bas { display:flex; gap:10px; font-size:11.5px; color:#d4d4d8; } .cm-bas i { font-style:normal; color:#a1a1aa; } .cm-esp { flex:1; } .cm-env { background:#fff; color:#0b0b0f; border-radius:50%; width:18px; height:18px; display:grid; place-items:center; animation:cm-env 6s infinite; }
+.cm-ici { position:absolute; left:50%; bottom:92px; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; gap:2px; pointer-events:none; }
+.cm-ici span { background:#dc2626; color:#fff; font-weight:800; font-size:15px; border-radius:10px; padding:5px 12px; white-space:nowrap; } .cm-ici svg { animation:cm-fleche 1s ease-in-out infinite; }
+@keyframes cm-fleche { 50% { transform:translateY(6px); } }
+@keyframes cm-indice { 0%, 40% { opacity:1; } 45%, 90% { opacity:0; } 95%, 100% { opacity:1; } }
+@keyframes cm-colle { 0%, 40% { opacity:0; } 45%, 90% { opacity:1; } 95%, 100% { opacity:0; } }
+@keyframes cm-env { 0%, 65% { box-shadow:none; } 70%, 85% { box-shadow:0 0 0 4px rgba(245,158,11,.8); } 90%, 100% { box-shadow:none; } }
+.cm-toast { position:fixed; left:50%; bottom:28px; transform:translate(-50%,20px); z-index:200; background:#16a34a; color:#fff; font-weight:800; border-radius:12px; padding:12px 18px; box-shadow:0 10px 30px rgba(0,0,0,.3); opacity:0; pointer-events:none; transition:opacity .3s, transform .3s; max-width:calc(100% - 32px); text-align:center; }
+.cm-toast.on { opacity:1; transform:translate(-50%,0); }
+/* les vrais logos des suggestions d'Antigravity */
+.lg-chrome { display:inline-block; width:13px; height:13px; border-radius:50%; background:conic-gradient(from -60deg,#ea4335 0 120deg,#fbbc05 0 240deg,#34a853 0); position:relative; flex:none; }
+.lg-chrome::after { content:""; position:absolute; inset:3.5px; border-radius:50%; background:#4285f4; box-shadow:0 0 0 1.3px #fff; }
+.lg { width:14px; height:14px; flex:none; } .lg-ag { filter:grayscale(1); opacity:.75; object-fit:contain; }
+/* les suggestions juste au-dessus de la zone de message ; la bulle « colle » passe en haut */
+.p-sugg { top:auto !important; bottom:132px; } .p-sugg p { align-items:center; }
+.p-info-2 { top:16px; bottom:auto; }
+/* étape 5 : de vrais boutons, pleins, qu'on a envie de cliquer */
+.verif-btn { background:#f59e0b !important; color:#1f1300 !important; border-color:#d97706 !important; box-shadow:0 3px 0 #b45309; padding:11px 18px; font-size:16.5px; }
+.verif-btn:hover { background:#fbbf24 !important; } .verif-btn:active { transform:translateY(2px); box-shadow:0 1px 0 #b45309; }
+.verif-btn.ok { background:#22c55e !important; color:#052e14 !important; border-color:#16a34a !important; box-shadow:none; }
+/* étape 5 : plus aucune pulsation (c'était instable) ; le réglage à vérifier est simplement entouré en orange, fixe */
+.zone-ag.verif .vz-low, .zone-ag.verif.ok-low .vz-auto { animation:none !important; box-shadow:0 0 0 3px #f59e0b; background:rgba(245,158,11,.12); }
+.zone-ag.verif .vz-auto { animation:none !important; }
+.zone-ag.verif.ok-low .vz-low, .zone-ag.verif.ok-low.ok-auto .vz-auto { box-shadow:0 0 0 2px #22c55e; background:none; }
+.verif-btn { animation:none !important; }
 </style>
+<style id="theme-clair">
+.theme-bascule { background:#fff; color:#3f3f46; border-color:#d4d4d8; }
+/* ===== atelier2 : la page en blanc partout (comme Antigravity en thème clair) ===== */
+body { color:#27272a; }
+.fen { background:#fff; box-shadow:0 18px 50px rgba(15,23,42,.15); }
+.barre { background:#f4f4f5; border-bottom-color:#e4e4e7; } .barre i { background:#d4d4d8; } .barre b { color:#18181b; }
+h1, .etape h2 { color:#18181b; }
+.titre-haut { background:#fff; border-bottom-color:#e4e4e7; }
+.ariane { background:#fafafa; border-bottom-color:#e4e4e7; color:#a1a1aa; } .ariane a { color:#52525b; } .ariane a:hover, .ariane span[aria-current] { color:#b45309; } .ariane i.sep { color:#d4d4d8; }
+.st li { color:#71717a; } .st li:not(:last-child)::after { background:#e4e4e7; } .st .rond { background:#f4f4f5; border-color:#d4d4d8; color:#52525b; }
+.st .ici { color:#b45309; } .st .ici .rond { border-color:#fcd34d; }
+.etape { background:#fffbeb; }
+b.cle, .dec-carte b { color:#b45309; }
+.nav .prec { background:#f4f4f5; color:#3f3f46; border-color:#d4d4d8; }
+.fini { color:#15803d; } .absent, .note-atelier { color:#71717a; }
+.mot-continue { background:#fef3c7; }
+/* les écrans d'Antigravity, en clair */
+.ecran { background:#fff; border-color:#e4e4e7; }
+.saisie { background:#fff; border-color:#d4d4d8; color:#71717a; box-shadow:0 2px 8px rgba(0,0,0,.06); } .saisie .bas { color:#3f3f46; }
+.bouton-ag { color:#18181b; }
+.menu { background:#fff; border-color:#e4e4e7; box-shadow:0 12px 30px rgba(0,0,0,.15) !important; } .menu p { color:#71717a; } .menu p b { color:#18181b; } .menu .titre { color:#a1a1aa; }
+.e2 .menu .ligne { color:#27272a; } .e2 .menu .ligne.off, .e2 .menu .off .tag { color:#a1a1aa; } .e2 .menu .ligne.usage { border-top-color:#e4e4e7; }
+.e2 .menu .tag { background:#f4f4f5; color:#71717a; } .e2 .menu .niv, .e2 .menu .chev { color:#71717a; }
+.carte-ag { background:#fff; border-color:#e4e4e7; color:#71717a; box-shadow:0 6px 18px rgba(0,0,0,.1); } .carte-ag b { color:#18181b; } .carte-ag i { background:#f4f4f5; color:#3f3f46; } .carte-ag i.dismiss { color:#18181b; }
+.zone-ag { background:#fff; border-color:#d4d4d8; } .zone-haut { color:#18181b; } .zone-haut .curseur { background:#18181b; } .zone-bas { color:#3f3f46; } .zone-bas i { color:#71717a; }
+.zone-bas .envoyer { background:#18181b; color:#fff; }
+.dec-carte { background:#fff; color:#3f3f46; border-color:#e4e4e7; box-shadow:0 10px 30px rgba(0,0,0,.08); } .dec-titre { color:#18181b; }
+.e6s { background:#fff; } .ag-titre, .ag-gauche { background:#f4f4f5; } .ag-gauche { color:#27272a; } .ag-new, .ag-conv { background:#e4e4e7; }
+.ag-msg { color:#18181b; } .ag-ligne { background:#e4e4e7; } .ag-saisie { background:#fff; border-color:#d4d4d8; } .onglets-ag { background:#f4f4f5; } .og { background:#fff; color:#18181b; } .og .x { color:#18181b; } .og-plus { color:#52525b; }
+@keyframes m-flash { 0%, 36% { background:transparent; } 38%, 66% { background:#f4f4f5; } 69%, 100% { background:transparent; } }
+@keyframes m-lowb { 0%, 58% { color:#18181b; } 60%, 100% { color:#1f1300; } }
+@keyframes a-autob { 0%, 53% { color:#18181b; } 55%, 100% { color:#1f1300; } }
+@keyframes z-envoyer { 0%, 55% { background:#18181b; transform:scale(1); box-shadow:none; } 60% { background:#f59e0b; transform:scale(.88); box-shadow:0 0 0 6px rgba(245,158,11,.4); } 66%, 100% { background:#18181b; transform:scale(1); box-shadow:none; } }
+
+/* étapes 6 et 7, en clair */
+.p-gauche { background:#f4f4f5; color:#27272a; } .p-new, .p-conv { background:#e4e4e7; } .p-titre { color:#71717a; }
+.p-saisie { background:#fff; border-color:#d4d4d8; } .p-bas { color:#3f3f46; } .p-chip { background:#f4f4f5; color:#18181b; }
+.p-dlg { background:#fff; border-color:#d4d4d8; color:#27272a; box-shadow:0 14px 34px rgba(0,0,0,.15); } .p-dlg-titre { color:#18181b; border-bottom-color:#e4e4e7; } .p-lieux { border-right-color:#e4e4e7; }
+.p-btn { background:#f4f4f5; color:#18181b; border:1px solid #d4d4d8; } .p-ouvrir, .p-creer { background:#2563eb; color:#fff; border-color:#2563eb; }
+.p-nom { background:#fff; border-color:#d4d4d8; box-shadow:0 10px 26px rgba(0,0,0,.15); } .p-nom b { color:#18181b; } .p-champ { background:#fff; color:#18181b; }
+.p-phrase code { background:#fafafa; color:#18181b; }
+.p-menu { color:#52525b; }
+.p-colle { color:#18181b; } .p-envoi { background:#18181b; color:#fff; } .p-rep { color:#27272a; } .p-rep > b:first-child { color:#15803d; }
+@keyframes p-vise { 0%, 47% { background:transparent; } 49%, 98% { background:#fef3c7; outline:2px solid #f59e0b; } }
+.p-e1-fait { background:#f0fdf4; border-color:#86efac; color:#14532d; } .p-recopier { color:#71717a; }
+@keyframes p-script { 0%, 46% { background:#e4e4e7; } 48%, 100% { background:transparent; } }
+.suiv-msg { color:#b45309; }
+.verif-btn { background:#fffbeb; color:#18181b; } .verif-btn.ok { background:#f0fdf4; color:#14532d; } .verif-non { color:#71717a; }
+.pj-fen { background:#fff; color:#27272a; } .pj-fen h2 { color:#18181b; } .pj-fermer:hover { color:#18181b; }
+.p-sugg { color:#27272a; } .p-local { color:#52525b; }
+.p-pas button { border-color:#d4d4d8; } .p-pas button b { background:#e4e4e7; color:#18181b; }
+.p-modemenu { background:#fff; border-color:#d4d4d8; color:#27272a; box-shadow:0 10px 24px rgba(0,0,0,.15); }
+.cm-fen { background:#fff; color:#27272a; } .cm-fen h2 { color:#18181b; } .cm-msg code { background:#fafafa; color:#18181b; }
+@keyframes p-conv-neuve { 0%, 47% { background:transparent; box-shadow:none; } 49%, 80% { background:#fff; color:#14532d; box-shadow:0 0 0 2px #22c55e; } 83%, 100% { background:transparent; color:inherit; box-shadow:none; } }
+/* étape 5 : de vrais boutons, pleins, qu'on a envie de cliquer */
+.verif-btn { background:#f59e0b !important; color:#1f1300 !important; border-color:#d97706 !important; box-shadow:0 3px 0 #b45309; padding:11px 18px; font-size:16.5px; }
+.verif-btn:hover { background:#fbbf24 !important; } .verif-btn:active { transform:translateY(2px); box-shadow:0 1px 0 #b45309; }
+.verif-btn.ok { background:#22c55e !important; color:#052e14 !important; border-color:#16a34a !important; box-shadow:none; }
+/* étape 5 : plus aucune pulsation (c'était instable) ; le réglage à vérifier est simplement entouré en orange, fixe */
+.zone-ag.verif .vz-low, .zone-ag.verif.ok-low .vz-auto { animation:none !important; box-shadow:0 0 0 3px #f59e0b; background:rgba(245,158,11,.12); }
+.zone-ag.verif .vz-auto { animation:none !important; }
+.zone-ag.verif.ok-low .vz-low, .zone-ag.verif.ok-low.ok-auto .vz-auto { box-shadow:0 0 0 2px #22c55e; background:none; }
+.verif-btn { animation:none !important; }
+</style>
+<script src="theme.js?v=1"></script>
 </head>
 <body>
 <div class="fen">
   <header class="haut">
   <div class="barre"><i></i><i></i><i></i><b>Atelier · Configuration d'Antigravity</b></div>
-  <nav class="ariane" aria-label="Fil d'Ariane"><a href="./">🏠 Accueil</a><i class="sep">›</i><a href="antigravity.html">Antigravity</a><i class="sep">›</i><a href="antigravity.html#configurer">Configurer</a><i class="sep">›</i><span aria-current="page">Configuration</span></nav>
+  <nav class="ariane" aria-label="Fil d'Ariane"><a href="./">🏠 Accueil</a><i class="sep">›</i><a href="antigravity.html">Antigravity</a><i class="sep">›</i><a href="configurer.html">Configurer</a><i class="sep">›</i><span aria-current="page">Configuration</span></nav>
     <div class="titre-haut"><h1>Configuration d'Antigravity</h1></div>
   </header>
   <div class="corps">
-    <ol class="st" id="st"><li><span class="rond">1</span>Fermer les fenêtres</li><li><span class="rond">2</span>Le modèle</li><li><span class="rond">3</span>Le mode Auto</li><li><span class="rond">4</span>Découvrir Antigravity</li><li><span class="rond">5</span>C'est prêt</li><li><span class="rond">✓</span>Atelier</li></ol>
+    <ol class="st" id="st"><li><span class="rond">1</span>Fermer les fenêtres</li><li><span class="rond">2</span>Le modèle</li><li><span class="rond">3</span>Le mode Auto</li><li><span class="rond">4</span>Découvrir Antigravity</li><li><span class="rond">5</span>C'est prêt</li></ol>
 
     <section class="etape">
       <h2>1. Fermer les petites fenêtres</h2>
@@ -297,54 +609,88 @@ b.cle { color:#fde68a; }
       <div class="dec-carte">
         <span class="dec-ic" aria-hidden="true">🧭</span>
         <p class="dec-titre">Découvre Antigravity</p>
-        <p>Deux façons de le découvrir : la <b>démo</b>, une présentation animée d'environ 1 minute, ou <b>explorer</b> l'écran toi-même, partie par partie, avec les numéros. Tu peux aussi passer cette étape.</p>
-        <div class="rangee-dec"><button type="button" class="btn-dec" data-popup="decouvrir.html?mode=demo&amp;v=5">▶ Démo</button><button type="button" class="btn-dec orange" data-popup="decouvrir.html?mode=explorer&amp;v=5">🔢 Explorer</button></div>
+        <p>La <b>démo</b> te fait faire le tour de l'écran d'Antigravity, partie par partie, et de chaque élément du menu. Tu peux aussi passer cette étape.</p>
+        <div class="rangee-dec"><button type="button" class="btn-dec" data-popup="decouvrir.html?mode=demo&amp;v=6">▶ Démo</button></div>
       </div>
       <p class="vers-suivant">Quand c'est fait, clique sur <b class="cle">« Suivant »</b> <span class="fleche-bas" aria-hidden="true">↘</span></p>
     </section>
 
     <section class="etape e5">
       <p class="fini">✅ Antigravity est prêt.</p>
-      <p class="fermer-onglet"><span class="num">✍️</span><span>Dans la zone de message, en bas à gauche, écris <b class="cle mot-continue">continue</b>, puis Entrée.</span></p>
-      <div class="zone-ag" aria-hidden="true">
-        <div class="zone-haut"><span class="indice">Ask anything, @ to mention, / for actions</span><span class="tape">continue</span><span class="curseur"></span></div>
-        <div class="zone-bas"><span>+</span><span>Gemini 3.8 Flash <i>Low</i> ⌃</span><span class="esp"></span><span>🛡 Auto ⌃</span><span>🎤</span><span class="envoyer">⏎</span></div>
+      <p class="fermer-onglet"><span class="num">🔎</span><span>Vérifie ta configuration, <b class="cle">en bas de la zone de message</b> d'Antigravity, puis confirme chaque réglage :</span></p>
+      <div class="zone-ag verif" aria-hidden="true">
+        <div class="zone-haut"><span class="indice">Ask anything, @ to mention, / for actions</span></div>
+        <div class="zone-bas"><span>+</span><span class="vz vz-low">Gemini 3.8 Flash <i>Low</i> ⌃</span><span class="esp"></span><span class="vz vz-auto">🛡 Auto ⌃</span><span>🎤</span><span class="envoyer">⏎</span></div>
       </div>
-      <p class="vers-suivant">Quand c'est fait, clique sur <b class="cle">« Suivant »</b> <span class="fleche-bas" aria-hidden="true">↘</span></p>
+      <div class="verif-btns">
+        <div class="verif-l"><button type="button" class="verif-btn" data-verif="low">👀 À gauche, je vois « Gemini 3.8 Flash Low »</button><a class="verif-non" href="#2">Non ? Refais l'étape 2</a></div>
+        <div class="verif-l"><button type="button" class="verif-btn" data-verif="auto">👀 À droite, je vois « Auto »</button><a class="verif-non" href="#3">Non ? Refais l'étape 3</a></div>
+      </div>
+      <div class="verif-ok" hidden><p class="fini">✅ Antigravity est configuré.</p><p style="text-align:center;margin:10px 0 0"><a class="vers-atelier" href="projet.html">📁 Étape suivante : préparer mon projet ›</a></p></div>
     </section>
 
-    <section class="etape e6">
-      <h2>6. Choisis ton atelier</h2>
-      <p>Antigravity est configuré ✅ Place à la simulation : choisis ce que tu veux construire.</p>
-      <p style="text-align:center;margin:28px 0"><a class="vers-atelier" href="ateliers.html?ou=dans">🧪 Choisir mon atelier ›</a></p>
-      <p class="note-atelier">Tu pourras aussi y revenir plus tard : <b class="cle">atelier.rasf.fr/ateliers.html</b></p>
-    </section>
 
     <div class="nav"><button type="button" class="prec" id="prec">‹ Précédent</button><button type="button" class="suiv" id="suiv">Suivant ›</button></div>
+    <p class="suiv-msg" id="suiv-msg" hidden>📋 Copie d'abord le message de l'étape ①, puis crée ton projet : le bouton « Suivant » se débloque ensuite.</p>
   </div>
 </div>
 
-<div class="bande" id="bande" role="note" hidden><span class="bfleche" aria-hidden="true">⬅</span>
-  <span><b>Réponds à l'IA</b> <em>dans la zone de message d'Antigravity, en bas à gauche</em><span class="quoi">👉 Écris « continue », puis Entrée.</span></span></div>
+
+<div class="cm-voile" hidden>
+  <div class="cm-fen" role="dialog" aria-modal="true" aria-labelledby="cm-titre">
+    <button type="button" class="cm-fermer" aria-label="Fermer">✕</button>
+    <h2 id="cm-titre">📋 Colle ce message dans la nouvelle conversation du projet</h2>
+    <div class="cm-msg"><code>Prépare ce projet pour mes simulations. Lis les instructions complètes sur https://atelier.rasf.fr/regles-projet.md et suis-les exactement : elles te disent quels fichiers créer (AGENTS.md, .agent/rules/simulations.md et le registre conversations.md) et comment me répondre. Ne fais rien d'autre.</code><button type="button" class="cm-copier">📋 Copier</button></div>
+  </div>
+</div>
 <script>
+// la création du projet a sa propre page : les anciens liens #6 et #7 y mènent
+if (/^#[67]$/.test(location.hash)) location.replace("projet.html");
 const etapes = [...document.querySelectorAll(".etape")], ronds = [...document.querySelectorAll("#st li")];
-let n = 0;
+// étape 5 : deux clics pour confirmer « Low » et « Auto » (gardés dans le navigateur)
+const verif = { low:false, auto:false };
+try { verif.low = localStorage.getItem("atelier.verif.low") === "1"; verif.auto = localStorage.getItem("atelier.verif.auto") === "1"; } catch {}
+const verifOk = () => verif.low && verif.auto;
+function majVerif() {
+  if (!document.querySelector(".verif-ok")) return;   // page sans l'étape « C'est prêt »
+  document.querySelectorAll(".verif-btn").forEach((b) => { const k = b.dataset.verif; b.classList.toggle("ok", verif[k]); b.textContent = verif[k] ? (k === "low" ? "✅ Confirmé : « Gemini 3.8 Flash Low »" : "✅ Confirmé : « Auto »") : (k === "low" ? "👆 Clique ici si tu vois « Gemini 3.8 Flash Low » à gauche" : "👆 Clique ici si tu vois « Auto » à droite"); });
+  document.querySelector(".verif-ok").hidden = !verifOk();
+  // un réglage confirmé disparaît ; « Auto » n'apparaît qu'une fois « Low » confirmé
+  document.querySelector('[data-verif="low"]').closest(".verif-l").hidden = verif.low;
+  document.querySelector('[data-verif="auto"]').closest(".verif-l").hidden = !verif.low || verif.auto;
+  document.querySelector(".zone-ag.verif").classList.toggle("ok-low", verif.low); document.querySelector(".zone-ag.verif").classList.toggle("ok-auto", verif.auto);
+}
+// L'étape ouverte est dans l'adresse (#1 … #7) : un lien peut ouvrir directement une étape, et le rechargement la garde
+let n = Math.max(0, Math.min(etapes.length - 1, (parseInt(location.hash.slice(1), 10) || 1) - 1));
+window.addEventListener("hashchange", () => { const k = parseInt(location.hash.slice(1), 10); if (k >= 1 && k <= etapes.length && k - 1 !== n) { n = k - 1; montrer(); } });
 function montrer() {
+  history.replaceState(null, "", "#" + (n + 1));
   etapes.forEach((e, i) => e.classList.toggle("ici", i === n));
   ronds.forEach((r, i) => { r.className = i < n ? "fait" : i === n ? "ici" : ""; });
   document.getElementById("prec").hidden = n === 0;
   document.getElementById("suiv").hidden = n === etapes.length - 1;
-  // le bandeau jaune : seulement à l'étape « C'est prêt », et 10 secondes
-  const bandeau = document.getElementById("bande");
-  clearTimeout(window.minuteurBande);
-  bandeau.hidden = !etapes[n].classList.contains("e5");
-  if (!bandeau.hidden) window.minuteurBande = setTimeout(() => { bandeau.hidden = true; }, 10000);
+  // étape 6 : « Suivant » reste bloqué tant que le message n'a pas été copié
+  // étape 5 : « Suivant » reste bloqué tant que les deux réglages ne sont pas confirmés
+  document.getElementById("suiv").classList.toggle("bloque", (etapes[n].classList.contains("e6") && !document.querySelector(".p-e1")?.classList.contains("fait")) || (etapes[n].classList.contains("e5") && !verifOk()));
+  document.getElementById("suiv-msg").hidden = true;
+  document.getElementById("suiv-msg").textContent = etapes[n].classList.contains("e5") ? "👀 Confirme d'abord les deux réglages (le modèle « Low » et le mode « Auto ») : le bouton « Suivant » se débloque ensuite." : "📋 Copie d'abord le message de l'étape ①, puis crée ton projet : le bouton « Suivant » se débloque ensuite.";
   // chaque animation repart du début quand on arrive sur son étape
   etapes[n].querySelectorAll("*").forEach((el) => el.getAnimations().forEach((a) => { a.currentTime = 0; }));
 }
-document.getElementById("suiv").addEventListener("click", () => { n = Math.min(etapes.length - 1, n + 1); montrer(); });
+document.getElementById("suiv").addEventListener("click", (e) => {
+  if (e.currentTarget.classList.contains("bloque")) { document.getElementById("suiv-msg").hidden = false; return; }
+  n = Math.min(etapes.length - 1, n + 1); montrer();
+});
 document.getElementById("prec").addEventListener("click", () => { n = Math.max(0, n - 1); montrer(); });
 montrer();
+document.querySelectorAll(".verif-btn").forEach((b) => b.addEventListener("click", () => {
+  const k = b.dataset.verif; verif[k] = !verif[k];
+  if (k === "low" && !verif.low) { verif.auto = false; try { localStorage.setItem("atelier.verif.auto", ""); } catch {} }
+  try { localStorage.setItem("atelier.verif." + k, verif[k] ? "1" : ""); } catch {}
+  majVerif();
+  if (etapes[n].classList.contains("e5")) { document.getElementById("suiv").classList.toggle("bloque", !verifOk()); if (verifOk()) document.getElementById("suiv-msg").hidden = true; }
+}));
+majVerif();
 document.addEventListener("click", (ev) => {
   const b = ev.target.closest("[data-popup]");
   if (!b) return;
@@ -354,6 +700,70 @@ document.addEventListener("click", (ev) => {
   v.addEventListener("click", (e) => { if (e.target === v || e.target.closest(".revenir")) v.remove(); });
   document.body.appendChild(v);
 });
+if (document.querySelector(".e6")) {   // la création du projet (page projet.html)
+// étape 6 : une fois le message copié, ① se replie et la création du projet apparaît (gardé dans le navigateur)
+const pE1 = document.querySelector(".p-e1"), pSuite = document.querySelector(".p-suite");
+// la fenêtre « Crée ton projet, puis colle le message » (② et ③), l'animation repart du début à chaque ouverture
+const pjVoile = document.querySelector(".p-suite");
+function ouvrirProjet() { finPas = null; pjVoile.querySelectorAll(".e6p *").forEach((el) => el.getAnimations().forEach((a) => { a.currentTime = 0; a.play(); })); }
+
+// Fenêtre « Colle ce message dans la nouvelle conversation du projet » : le message, un bouton Copier, et où le coller
+const cmVoile = document.querySelector(".cm-voile");
+function ouvrirColler() { cmVoile.hidden = false; cmVoile.querySelectorAll("*").forEach((el) => el.getAnimations().forEach((a) => { a.currentTime = 0; })); cmVoile.querySelector(".cm-fen").scrollTop = 0; }
+const fermerColler = () => { cmVoile.hidden = true; };
+cmVoile.querySelector(".cm-fermer").addEventListener("click", fermerColler);
+cmVoile.addEventListener("click", (e) => { if (e.target === cmVoile) fermerColler(); });
+document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !cmVoile.hidden) fermerColler(); });
+cmVoile.querySelector(".cm-copier").addEventListener("click", async (e) => {
+  const b = e.currentTarget, c = cmVoile.querySelector(".cm-msg code");
+  try { await navigator.clipboard.writeText(c.textContent); }
+  catch { const r = document.createRange(); r.selectNodeContents(c); getSelection().removeAllRanges(); getSelection().addRange(r); document.execCommand("copy"); getSelection().removeAllRanges(); }
+  fermerColler();
+  // message furtif
+  let t = document.querySelector(".cm-toast");
+  if (!t) { t = document.createElement("div"); t.className = "cm-toast"; t.setAttribute("role", "status"); document.body.appendChild(t); }
+  t.textContent = "✅ Message copié : colle-le dans la conversation du projet « mes simulations »";
+  t.classList.remove("on"); void t.offsetWidth; t.classList.add("on");
+  clearTimeout(window.minuteurToast); window.minuteurToast = setTimeout(() => t.classList.remove("on"), 3500);
+});
+// Animation de l'étape 6 : boutons numérotés pour revoir une seule étape (elle se joue puis s'arrête), ou tout revoir
+const pjAnims = () => [...pjVoile.querySelectorAll(".e6p *")].flatMap((el) => el.getAnimations()).filter((a) => a.effect?.getTiming().duration >= 30000);
+const D = 38000; let finPas = null;
+const pjBoutons = [...pjVoile.querySelectorAll(".p-pas [data-de]")];
+function allerA(t) { pjAnims().forEach((a) => { a.currentTime = t; a.play(); }); }
+pjBoutons.forEach((b) => b.addEventListener("click", () => { finPas = parseFloat(b.dataset.a) * D - 60; allerA(parseFloat(b.dataset.de) * D); }));
+pjVoile.querySelector(".p-tout").addEventListener("click", () => { finPas = null; allerA(0); });
+(function suivre() {
+  const a = pjAnims()[0];
+  if (a && !pjVoile.hidden) {
+    const t = (a.currentTime || 0) % D;
+    if (finPas !== null && t >= finPas && a.playState === "running") pjAnims().forEach((x) => x.pause());
+    pjBoutons.forEach((b) => b.classList.toggle("ici", t >= parseFloat(b.dataset.de) * D && t < parseFloat(b.dataset.a) * D));
+  }
+  requestAnimationFrame(suivre);
+})();
+
+const pCopie = (oui) => { pE1.classList.toggle("fait", oui); pSuite.hidden = !oui; if (etapes[n].classList.contains("e6")) { document.getElementById("suiv").classList.toggle("bloque", !oui); if (oui) document.getElementById("suiv-msg").hidden = true; } try { localStorage.setItem("atelier.copie.projet", oui ? "1" : ""); } catch {} };
+let pDeja = false; try { pDeja = localStorage.getItem("atelier.copie.projet") === "1"; } catch {}
+pCopie(pDeja);
+document.querySelector(".p-recopier").addEventListener("click", () => pE1.classList.remove("fait"));
+document.querySelector(".pj-voir").addEventListener("click", () => ouvrirColler());
+document.querySelectorAll(".p-copier:not(.pj-voir)").forEach((b) => b.addEventListener("click", async () => {
+  const c = document.querySelector(".p-phrase code"), texte = b.textContent;
+  setTimeout(() => {
+    pCopie(true);
+    if (!b.classList.contains("pj-voir")) {   // ② ③ ④ apparaissent sous la ligne « Message copié », l'animation part du début
+      ouvrirProjet();
+      const haut = document.querySelector(".haut")?.offsetHeight || 0;
+      window.scrollTo({ top: pSuite.getBoundingClientRect().top + window.scrollY - haut - 12, behavior: "smooth" });
+    }
+  }, 700);
+  b.textContent = "✅ Copié";
+  setTimeout(() => { b.textContent = texte; }, 2500);
+  try { await Promise.race([navigator.clipboard.writeText(c.textContent), new Promise((_, non) => setTimeout(non, 1500))]); }
+  catch { const r = document.createRange(); r.selectNodeContents(c); getSelection().removeAllRanges(); getSelection().addRange(r); document.execCommand("copy"); getSelection().removeAllRanges(); }
+}));
+}
 document.addEventListener("keydown", (e) => { if (e.key === "Escape") document.querySelector(".voile")?.remove(); });
 </script>
 </body>

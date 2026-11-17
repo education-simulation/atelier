@@ -4,7 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Atelier · Antigravity</title>
-<link rel="stylesheet" href="style.css?v=31">
+<link rel="stylesheet" href="style.css?v=44">
+<link rel="stylesheet" href="clair.css?v=3" id="theme-clair">
+<script src="theme.js?v=1"></script>
 </head>
 <body>
 <div class="fen">
@@ -14,138 +16,22 @@
     <div class="titre-haut"><h1><img src="logos/antigravity.png" alt="" style="width:34px;height:34px;vertical-align:-6px"> Je commence avec Antigravity</h1></div>
   </header>
   <div class="corps">
-    <p class="question">Où en es-tu ?</p>
-    <div class="choix">
-      <button type="button" class="carte" data-choix="installer"><span class="num">1</span><span class="rond"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 20h14"/></svg></span><span class="txt"><b>Installer Antigravity</b><small>Télécharger, installer et se connecter</small></span></button>
-      <button type="button" class="carte" data-choix="configurer"><span class="num">2</span><span class="rond"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h10"/><path d="M18 6h2"/><circle cx="16" cy="6" r="2"/><path d="M4 12h4"/><path d="M12 12h8"/><circle cx="10" cy="12" r="2"/><path d="M4 18h12"/><path d="M20 18h0"/><circle cx="18" cy="18" r="2"/></svg></span><span class="txt"><b>Configurer Antigravity</b><small>Le modèle, le mode Auto, la découverte</small></span></button>
-      <a class="carte" href="ateliers.html"><span class="num">3</span><span class="rond"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg></span><span class="txt"><b>Antigravity est déjà configuré</b><small>Aller directement aux ateliers</small></span></a>
-    </div>
+    <nav class="tuiles-ag" aria-label="Les étapes">
+      <a class="tuile-ag" href="installer.html"><span class="pas-num">1</span><b>Installer Antigravity</b><small>sur ton ordinateur</small></a>
+      <a class="tuile-ag" href="configurer.html"><span class="pas-num">2</span><b>Configurer Antigravity</b><small>le modèle et le mode</small></a>
+      <a class="tuile-ag" href="projet.html"><span class="pas-num">3</span><b>Préparer mon projet</b><small>le dossier « mes simulations »</small></a>
+      <a class="tuile-ag" href="ateliers.html?ou=dans"><span class="pas-num">4</span><b>Démarrer l'atelier</b><small>titrage, métamérie, cinétique</small></a>
+      <a class="tuile-ag" href="token.html"><span class="pas-num">5</span><b>Je n'ai plus de token</b><small>recharger avec un nouveau compte</small></a>
+      <a class="tuile-ag" href="faq.html"><span class="pas-num">6</span><b>FAQ</b><small>les questions fréquentes</small></a>
+    </nav>
 
-    <section id="installer" hidden>
-      <ol class="etapes">
-        <li>Ouvre la page officielle de Google et télécharge Antigravity <span class="os os-mac">pour <b class="cle">Mac</b></span><span class="os os-win">pour <b class="cle">Windows</b></span><span class="os os-linux">pour <b class="cle">Linux</b></span> :
-          <div class="phrase"><a class="copier" href="https://antigravity.google/download" target="_blank" rel="noopener">⬇️ Télécharger Antigravity</a></div>
-        </li>
-        <li><span class="os os-mac">Ouvre le fichier téléchargé (dans <b class="cle">Téléchargements</b>), puis glisse l'icône d'Antigravity dans le dossier <b class="cle">Applications</b>.</span><span class="os os-win">Double-clique sur le fichier téléchargé (dans <b class="cle">Téléchargements</b>), puis suis l'installation en cliquant sur <b class="cle">Suivant</b>.</span><span class="os os-linux">Installe le paquet téléchargé comme d'habitude sur ton ordinateur.</span>
-          <p class="note">💻 Ton ordinateur : <button type="button" class="lien-os" data-os="mac">Mac</button> · <button type="button" class="lien-os" data-os="win">Windows</button> · <button type="button" class="lien-os" data-os="linux">Linux</button></p>
-        </li>
-        <li>Ouvre Antigravity et connecte-toi avec ton <b class="cle">compte Google d'établissement</b>.</li>
-        <li>Deux écrans d'accueil en anglais s'affichent : clique sur <b class="cle">Skip</b>, puis sur <b class="cle">Continue</b>. Avant Continue, <b class="cle">décoche la première case</b> si elle est cochée : elle partage tes échanges avec Google.
-          <div class="deux-images">
-            <figure><img src="images/antigravity-bienvenue.webp" alt="L'écran « Hey education! What best describes your work? », avec Skip en bas"><figcaption>① Clique sur <b class="cle">Skip</b>, en bas</figcaption></figure>
-            <figure><img src="images/antigravity-continue.jpg" alt="L'écran « One last thing before getting started… », deux cases et le bouton Continue"><figcaption>② Décoche la 1<sup>re</sup> case si elle est cochée, puis <b class="cle">Continue</b></figcaption></figure>
-          </div>
-        </li>
-        <li>C'est installé ✅ Clique maintenant sur <b class="cle">« 2 · Configurer Antigravity »</b>, plus haut.</li>
-      </ol>
-    </section>
-
-    <section id="configurer" hidden>
-      <ol class="etapes">
-        <li>Clique sur <b class="cle">« 📋 Copier et ouvrir Antigravity »</b> : le message est copié et Antigravity s'ouvre. Si ton navigateur demande d'ouvrir Antigravity, accepte.
-          <div class="phrase"><code>Sans rien lancer, réponds seulement par cet encadré d'alerte, rien d'autre :
-
-&gt; [!IMPORTANT]
-&gt; 👉 **Clique sur ce lien pour configurer Antigravity :** https://atelier.rasf.fr/configuration.html
-
-Puis attends ma réponse. Quand je t'écrirai « continue », toujours sans rien lancer, réponds par cet encadré, puis par la question en dessous :
-
-&gt; [!NOTE]
-&gt; 🔎 **Vérifie ta configuration, en bas de la zone de message**
-&gt;
-&gt; 👀 **À gauche, le modèle :** tu dois lire « Gemini 3.8 Flash Low »
-&gt;
-&gt; 👀 **À droite, le mode :** tu dois lire « Auto »
-
-✍️ Écris 1 si tu vois les deux, 2 si tu vois autre chose, puis Entrée.
-
-Si je réponds 1, réponds seulement par cet encadré :
-
-&gt; [!TIP]
-&gt; ✅ **Antigravity est configuré.**
-&gt;
-&gt; 👉 **Choisis ton atelier :** https://atelier.rasf.fr/ateliers.html?ou=dans
-
-Si je réponds 2, réponds par cet encadré, puis repose la même question :
-
-&gt; [!WARNING]
-&gt; ⚠️ **Un réglage n'est pas le bon.** Refais l'étape 2 (le modèle : Gemini 3.8 Flash, niveau Low) ou l'étape 3 (le mode : Auto) de la page de configuration : https://atelier.rasf.fr/configuration.html
-
-Enfin, retiens ces règles pour toutes les simulations que je te demanderai ensuite dans cette conversation (ne fais rien maintenant) :
-- chaque simulation est un seul fichier HTML, en français, sans aucune ressource externe ;
-- enregistre-la sur mon Bureau dans un nouveau dossier dont le nom finit par la date et l'heure de création, par exemple « simulation-titrage-15nov-18h45 » (regarde l'heure de l'ordinateur) : ainsi, chaque simulation a son propre dossier. Pour une modification, garde le même dossier et le même fichier ;
-- tout en haut du fichier, juste après &lt;!DOCTYPE html&gt;, mets ce commentaire, avec le vrai nom du dossier et la vraie adresse complète du fichier : &lt;!-- Ceci est le CODE de la simulation : ne la regarde pas ici. Pour la voir, ouvre le dossier « nom du dossier » sur ton Bureau et double-clique sur ce fichier, ou copie cette adresse dans la barre d'adresse de ton navigateur (Chrome, Firefox, Safari, Edge) : file:///chemin/complet/du/fichier.html --&gt; ;
-- quand je te demande une modification, garde ce commentaire à jour (dossier et adresse) ;
-- quand une simulation est prête (création ou modification), réponds seulement par ces deux parties, avec les vrais noms du dossier et du fichier, et le vrai chemin complet du fichier dans le lien et dans l'adresse (ils changent à chaque simulation). Garde la partie ② EN DEHORS de l'encadré, avec l'adresse seule dans un vrai bloc de code, pour qu'elle ait son bouton de copie :
-
-&gt; [!TIP]
-&gt; ✅ **Ta simulation est prête.**
-&gt;
-&gt; **① Ton code, dans Antigravity :** [nom du fichier.html](file:///chemin/complet/du/fichier.html)
-
-**② Le rendu de ton code, dans ton navigateur :** ouvre le dossier « nom du dossier » sur ton Bureau, puis **double-clique sur le fichier** nom du fichier.html (Chrome, Firefox, Safari, Edge), ou copie cette adresse (bouton de copie à droite) et colle-la dans la barre d'adresse de ton navigateur :
-
-```text
-file:///chemin/complet/du/fichier.html
-```
-
-*S'il est déjà ouvert, recharge la page.*</code><button type="button" class="copier" data-ouvrir="antigravity://">📋 Copier et ouvrir Antigravity</button></div>
-          <p class="note" id="ouvrir-retour" hidden></p>
-        </li>
-        <li>Dans Antigravity, clique sur <b class="cle">« + New Conversation »</b>, en haut à gauche, colle le message (<b class="cle os os-mac">Cmd + V</b><b class="cle os os-win">Ctrl + V</b><b class="cle os os-linux">Ctrl + V</b>), puis appuie sur <b class="cle">Entrée</b>.</li>
-        <li>Antigravity te répond avec un lien : <b class="cle">clique dessus</b>. La page de configuration s'ouvre et te guide.</li>
-        <li>À la fin de la page de configuration, écris <b class="cle">continue</b> dans Antigravity : il te fait vérifier ta configuration (le modèle et le mode « Auto »).</li>
-      </ol>
-    </section>
+    
   </div>
 </div>
 <script>
-// Un choix à la fois ; le choix reste dans l'adresse (#installer, #configurer) pour survivre au rechargement
-const etapes = { installer:"Installer", configurer:"Configurer" };
-const montrer = (id) => {
-  document.getElementById("ariane-ag").outerHTML = '<a href="antigravity.html" id="ariane-ag">Antigravity</a>';
-  document.getElementById("ariane-choix").innerHTML = '<i class="sep"> › </i><span aria-current="page">' + etapes[id] + '</span>';
-  document.querySelectorAll("section[id]").forEach((s) => { s.hidden = s.id !== id; });
-  document.querySelectorAll("[data-choix]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.choix === id)));
-};
-document.querySelectorAll("[data-choix]").forEach((b) => b.addEventListener("click", () => {
-  montrer(b.dataset.choix); history.replaceState(null, "", "#" + b.dataset.choix);
-  document.getElementById(b.dataset.choix).scrollIntoView({ behavior: "smooth" });
-}));
-// Le système de l'ordinateur : deviné, puis modifiable (gardé dans le navigateur)
-const deviner = () => { const u = navigator.userAgent; return /Windows/i.test(u) ? "win" : /Mac/i.test(u) ? "mac" : /Linux|X11/i.test(u) ? "linux" : "mac"; };
-const choisirOs = (os) => {
-  document.body.dataset.os = os;
-  document.querySelectorAll(".lien-os").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.os === os)));
-  try { localStorage.setItem("atelier.os", os); } catch {}
-};
-let osDepart = null; try { osDepart = localStorage.getItem("atelier.os"); } catch {}
-choisirOs(osDepart || deviner());
-document.querySelectorAll(".lien-os").forEach((b) => b.addEventListener("click", () => choisirOs(b.dataset.os)));
-const depart = location.hash.slice(1);
-if (depart === "installer" || depart === "configurer") montrer(depart);
-document.querySelectorAll("button.copier").forEach((b) => b.addEventListener("click", async () => {
-  const c = b.previousElementSibling, texte = b.textContent;
-  try { await navigator.clipboard.writeText(c.textContent); }
-  catch { const r = document.createRange(); r.selectNodeContents(c); getSelection().removeAllRanges(); getSelection().addRange(r); document.execCommand("copy"); }
-  b.textContent = "✅ Copié";
-  setTimeout(() => { b.textContent = texte; }, 2500);
-  // « Copier et ouvrir » : ouvre l'application Antigravity (adresse antigravity://), puis vérifie qu'elle s'est ouverte
-  if (b.dataset.ouvrir) {
-    const retour = document.getElementById("ouvrir-retour");
-    let ouvert = false;
-    const parti = () => { ouvert = true; };
-    window.addEventListener("blur", parti, { once: true });
-    setTimeout(() => { location.href = b.dataset.ouvrir; }, 300);
-    setTimeout(() => {
-      window.removeEventListener("blur", parti);
-      if (!ouvert && document.hasFocus()) {
-        retour.hidden = false;
-        retour.innerHTML = "⚠️ Antigravity ne s'est pas ouvert ? Ouvre-le toi-même : le message est déjà copié. Pas encore installé ? Clique sur <b class=\"cle\">« 1 · Installer Antigravity »</b>, plus haut.";
-      }
-    }, 2500);
-  }
-}));
+// Chaque étape a sa page ; les anciens liens (antigravity.html#installer, #installe, #configurer…) y mènent encore
+const pages = { installer:"installer.html", installe:"configurer.html", configurer:"configurer.html", projet:"projet.html", token:"token.html", faq:"faq.html" };
+const h = location.hash.slice(1); if (pages[h]) location.replace(pages[h]);
 </script>
 </body>
 </html>

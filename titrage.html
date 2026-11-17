@@ -4,98 +4,233 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Atelier · Simulation d'un titrage</title>
-<link rel="stylesheet" href="style.css?v=31">
+<link rel="stylesheet" href="style.css?v=79">
+<link rel="stylesheet" href="clair.css?v=24" id="theme-clair">
+<script src="theme.js?v=1"></script>
 </head>
 <body>
 <div class="fen">
   <header class="haut">
-  <div class="barre"><i></i><i></i><i></i><b>Atelier · Simulation d'un titrage</b><a href="ateliers.html#page">‹ Ateliers</a></div>
+  <div class="barre"><i></i><i></i><i></i><b>Atelier · Simulation d'un titrage</b><a class="icone" href="configurer.html" target="_blank" rel="noopener" data-info="Configurer Antigravity" aria-label="Configurer Antigravity">⚙️</a><a class="icone" href="decouvrir.html?mode=demo&amp;v=6" target="_blank" rel="noopener" data-info="Découvrir Antigravity" aria-label="Découvrir Antigravity">🧭</a><a class="nouvel-atelier" href="ateliers.html?ou=dans#page">＋ Nouvel atelier</a></div>
   <nav class="ariane" aria-label="Fil d'Ariane"><a href="./">🏠 Accueil</a><i class="sep">›</i><a href="antigravity.html">Antigravity</a><i class="sep">›</i><a href="ateliers.html">Ateliers</a><i class="sep">›</i><a href="ateliers.html#page">Simple page de simulation</a><i class="sep">›</i><span aria-current="page">Titrage</span></nav>
     <div class="titre-haut"><h1>⚗️ Simulation d'un titrage <span class="domaine-titre">Analyse</span></h1></div>
-  </header>
-  <div class="corps">
-    <div class="aides">
-      <a class="aide-bouton" href="antigravity.html#configurer">⚙️ Configurer Antigravity</a>
-      <a class="aide-bouton" href="decouvrir.html?mode=demo&amp;v=5">🧭 Découvrir Antigravity</a>
-    </div>
+    <div class="onglets-haut">
     <div class="onglets" role="tablist">
       <button type="button" role="tab" data-onglet="simple">✏️ Prompt simple</button>
       <button type="button" role="tab" data-onglet="modifier">🛠️ On modifie</button>
       <button type="button" role="tab" data-onglet="detaille">📝 Prompt détaillé</button>
       <button type="button" role="tab" data-onglet="verifier">⚠️ À vérifier</button>
     </div>
+    </div>
+  </header>
+  <div class="corps">
 
     <section class="panneau" data-panneau="simple">
       <div class="bloc-partie creer">
-      <h3 class="partie">① Créer la simulation <small>le code HTML s'écrit dans Antigravity</small></h3>
+      <h3 class="partie">① Créer la simulation <small>lance un premier prompt, minimal ou enrichi : observe ce qu'il produit, puis compare</small></h3>
       <p>Dans la conversation de configuration d'Antigravity, clique sur <b class="cle">📋 Copier</b>, colle le message dans la zone de message, en bas à gauche, puis appuie sur <b class="cle">Entrée</b>.</p>
-      <div class="phrase"><code>Fais-moi une simulation de titrage acido-basique : une burette au-dessus d'un bécher, un indicateur coloré qui change de couleur, l'affichage du pH, et la courbe pH = f(V) qui se trace au fur et à mesure que je verse. Ajoute des boutons pour verser et pour recommencer.</code><button type="button" class="copier" data-allow data-sim="titrage">📋 Copier</button></div>
-          <div class="allow-zone" hidden></div>
+      <div class="phrase"><code class="prompt-plus" data-base="Fais-moi une simulation de titrage acido-basique" data-details="[&quot;une burette au-dessus d&#x27;un bécher&quot;, &quot;un indicateur coloré qui change de couleur&quot;, &quot;l&#x27;affichage du pH&quot;, &quot;la courbe pH = f(V) qui se trace au fur et à mesure que je verse&quot;, &quot;des boutons pour verser et pour recommencer&quot;, &quot;le titrage d&#x27;un acide fort (HCl) par une base forte (NaOH), avec des concentrations et des volumes réglables&quot;, &quot;le volume à l&#x27;équivalence, calculé et repéré sur la courbe&quot;, &quot;le choix de l&#x27;indicateur (phénolphtaléine, bleu de bromothymol, hélianthine), avec sa zone de virage sur la courbe&quot;, &quot;un deuxième cas : un acide faible (acide éthanoïque, pKa = 4,8), avec la demi-équivalence repérée&quot;]">Fais-moi une simulation de titrage acido-basique.</code><button type="button" class="copier" data-allow data-sim="titrage">📋 Copier</button></div>
+      <p class="note-nouvelle" hidden>🔀 <b class="cle">Nouvelle version à comparer :</b> change le message (ajoute ou retire des détails), puis copie-le dans la même conversation. Antigravity l'ajoutera <b class="cle">dans le même fichier, dans un nouvel onglet</b> « Version 2 », pour comparer.</p>
+      <div class="plus-details"><span class="prompt-tag"></span><button type="button" class="plus-btn">＋ Enrichir le prompt</button><span class="plus-compte"></span><button type="button" class="moins-btn" hidden>－ Retirer le dernier</button><button type="button" class="zero-btn" hidden title="Revenir au prompt minimal">↺ Revenir à zéro</button></div>
+      <p class="note plus-aide">💡 Commence par le <b class="cle">prompt minimal</b>, regarde ce que fait l'IA, puis <b class="cle">enrichis le prompt</b> pas à pas : chaque précision (le matériel, les espèces chimiques, les valeurs, les repères sur la courbe…) rend la simulation plus juste. Tu pourras comparer les versions dans le même fichier.</p>
       </div>
       <div class="bloc-partie attendre">
-      <h3 class="partie">⏳ Patiente <small>pendant qu'Antigravity écrit le code</small></h3>
-      <p>Cela peut prendre <b class="cle">quelques minutes</b>. S'il te demande une autorisation (« Allow… ? »), choisis <b class="cle">3 · Yes, and always allow</b>, puis <b class="cle">Submit</b>.</p>
-      <p>C'est prêt quand il te répond par l'encadré vert <b class="cle">« ✅ Ta simulation est prête »</b> avec <b class="cle">① ton code</b> (un lien qui l'ouvre dans Antigravity), suivi juste en dessous de <b class="cle">② le rendu</b> (comment le voir dans ton navigateur).</p>
-      <div><button type="button" class="pret">✅ Ma simulation est prête</button></div>
+      <h3 class="partie">⚙️ Antigravity travaille <small>il écrit le code de ta simulation</small></h3>
+      <div class="wk-travail">
+      <p>Cela peut prendre <b class="cle">quelques minutes</b>. <b class="cle">Tant qu'Antigravity affiche « Working »</b> (ou « Reading… », « Editing… »), il travaille : patiente.</p>
+      <div class="ecran-wk" aria-hidden="true">
+        <span class="wk-working wk-s1">Working</span><span class="wk-working wk-s2">Reading titrage.html ›</span><span class="wk-working wk-s3">Editing titrage.html ›</span>
+        <span class="wk-etiquette wk-e1">⏳ Il travaille : patiente</span>
+      </div>
+      <p class="allow-ligne">🔐 S'il te demande une autorisation (« Allow write access to this path? »), choisis <b class="cle">3 · Yes, and always allow</b>, puis <b class="cle">Submit</b>. <button type="button" class="allow-rejouer allow-popup">🔐 Voir quoi choisir</button></p>
+      <div><button type="button" class="fini-btn">✅ Antigravity a fini de travailler</button></div>
+      </div>
+      <div class="wk-verif" hidden>
+      <p class="replie-ligne vue"><span>✓</span> <b>Antigravity a fini de travailler</b> <button type="button" class="fini-retour">‹ revenir en arrière (il travaille encore)</button></p>
+      <p>Tu dois voir <b class="cle">l'équivalent de ceci</b> dans Antigravity :</p>
+      <div class="ecran-wk wk-fixe" aria-hidden="true">
+        <div class="wk-fini"><span class="wk-temps">Worked for 1m ›</span><div class="wk-tip"><b>TIP</b><br>✅ Ta simulation est prête.<br>① Ton code, dans Antigravity : <i>&lt;/&gt;</i> titrage.html</div></div>
+      </div>
+      <div><button type="button" class="pret">✅ Je confirme : ma simulation est prête</button></div>
+      </div>
       </div>
       <div class="bloc-partie voir" hidden>
+      <p class="replie-ligne vue voir-ligne"><span>✓</span> <b>Ma simulation est prête</b> <button type="button" class="voir-retour">‹ revenir en arrière (elle n'est pas encore prête)</button></p>
+      <div class="voir-nav">
+      <h3 class="partie">👀 Voir ta simulation dans ton navigateur</h3>
+      <div class="ecran-va" role="img" aria-label="D'abord dans Antigravity : clic sur l'icône de copie à droite de l'adresse file:///… ; puis dans ton navigateur (Chrome, Firefox, Safari, Edge) : clic dans la barre d'adresse, coller, Entrée : la simulation s'affiche">
+        <div class="va-scene va-a">
+          <div class="va-etiq">① Dans <b>Antigravity</b> : copie l'adresse</div>
+          <div class="va-fen va-ag">
+            <div class="va-ag-gauche"><p>+ New Conversation</p><p class="va-gris">◷ Automations</p><p class="va-gris">⧉ Customizations</p><p class="va-gris va-petit">Projects</p><p>📁 mes simulations</p><p class="va-sel va-retrait">Simulation titrage</p><p class="va-retrait va-gris">Préparation du projet</p><p class="va-gris va-petit">Conversations</p><p class="va-gris">Configuration…</p></div>
+            <div class="va-ag-milieu">
+              <div class="va-imp"><b>IMPORTANT</b> 🧪 Atelier « Simulation titrage » · <u>atelier.rasf.fr/titrage.html#simple</u></div>
+              <div class="va-moi">Fais-moi une simulation…</div>
+              <div class="va-tip"><b>TIP</b> ✅ Ta simulation est prête.</div>
+              <p class="va-ligne">② Le rendu de ton code, dans ton navigateur…</p>
+              <div class="va-code"><div class="va-code-tete"><span>text</span><span class="va-icones">@ <span class="va-copie">⧉</span><span class="va-ok">✓</span></span></div><div class="va-url">file:///Users/…/mes%20simulations/titrage.html</div></div>
+              <span class="va-copie-bulle">Copié !</span>
+            </div>
+            <div class="va-ag-droite"><div class="va-ag-adresse">atelier.rasf.fr/titrage.html#simple</div><div class="va-ag-page"><b>⚗️ Simulation d'un titrage</b><i class="va-dom">Analyse</i><span class="va-mini o"></span><span class="va-mini b"></span><span class="va-mini b court"></span></div></div>
+          </div>
+        </div>
+        <div class="va-scene va-d">
+          <div class="va-etiq">② Ouvre <b>ton navigateur</b> (Chrome, Firefox, Safari, Edge)</div>
+          <div class="va-dock"><span class="va-app va-app-chrome"><i class="va-ico ico-chrome"></i>Chrome</span><span class="va-app va-app-firefox"><i class="va-ico ico-firefox"></i>Firefox</span></div>
+        </div>
+        <div class="va-scene va-b">
+          <div class="va-etiq">③ Dans <b>ton navigateur</b> : colle l'adresse</div>
+          <div class="va-fen va-nav">
+            <div class="va-onglets"><i></i><i></i><i></i><span class="va-onglet"><span class="va-titre-onglet">Nouvel onglet</span><span class="va-titre-sim">titrage.html</span> ×</span><span class="va-plus">+</span><span class="va-logo"></span></div>
+            <div class="va-barre-nav"><span>←</span><span>→</span><span>↻</span><div class="va-adresse"><span class="va-vide">🔍 Rechercher ou saisir une adresse</span><span class="va-tape">file:///Users/…/mes%20simulations/titrage.html</span></div></div>
+            <div class="va-accueil"><span class="va-recherche">🔍</span></div>
+            <div class="va-page"><b>⚗️ Titrage</b><svg viewBox="0 0 120 50" aria-hidden="true"><path d="M5 45 C40 44 50 40 58 25 C62 12 75 8 115 6" fill="none" stroke="#2563eb" stroke-width="3"/></svg></div>
+            <span class="va-badge va-cmdv">Cmd + V</span><span class="va-badge va-entree">Entrée ↵</span>
+          </div>
+        </div>
+        <svg class="souris" viewBox="0 0 14 21" width="22" height="33" aria-hidden="true"><path d="M0 0 L0 17 L4.5 13 L8 20 L11 18.5 L7.5 12 L13 12 Z" fill="#fff" stroke="#000" stroke-width="1.3"/></svg>
+      </div>
+      <ol class="va-etapes">
+        <li>Dans la réponse d'Antigravity, clique sur <b class="cle">l'icône de copie ⧉</b>, à droite de l'adresse <b class="cle">file:///…</b></li>
+        <li>Ouvre <b class="cle">ton navigateur habituel</b> (Chrome, Firefox, Safari, Edge), en dehors d'Antigravity, clique dans <b class="cle">la barre d'adresse</b>, colle (<b class="cle">Cmd + V</b> sur Mac, <b class="cle">Ctrl + V</b> sur Windows), puis <b class="cle">Entrée</b> : ta simulation s'affiche.</li>
+        <li>Après chaque modification, <b class="cle">recharge la page</b> (<b class="cle">Cmd + R</b> ou <b class="cle">F5</b>).</li>
+      </ol>
+      <div><button type="button" class="pret vu-btn">✅ J'ai visualisé ma simulation</button></div>
+      </div>
+      <p class="replie-ligne voir-vu-ligne"><span>✓</span> <b>J'ai visualisé ma simulation</b> <button type="button" class="vu-retour">‹ revenir en arrière</button></p>
+      <div class="voir-suite" hidden>
       <h3 class="partie">② Discutons ensemble des résultats obtenus</h3>
-      <div><button type="button" class="aller-onglet" data-aller="modifier">🛠️ On modifie la simulation ›</button></div>
+      <div class="discuter-boutons"><button type="button" class="aller-onglet" data-aller="modifier">🛠️ On modifie la simulation ›</button><button type="button" class="nouvelle-version">🔀 Créer une nouvelle version à comparer</button></div>
+      </div>
       </div>
     </section>
 
     <section class="panneau" data-panneau="detaille" hidden>
       <div class="bloc-partie creer">
-      <h3 class="partie">① Créer la simulation <small>le code HTML s'écrit dans Antigravity</small></h3>
+      <h3 class="partie">① Créer la simulation <small>un prompt très précis, à comparer avec ce que donne un prompt minimal</small></h3>
+      <p class="note-version">🔀 <b class="cle">Tu as déjà fait le prompt simple ?</b> Colle ces messages dans la même conversation : Antigravity en fera <b class="cle">une version 2 dans le même fichier</b> (le message ② en fera une version 3, le ③ l'enrichira), avec des onglets en haut de la page pour comparer les deux. Ensuite, pour chaque modification, il te demandera à quelle(s) version(s) l'appliquer.</p>
       <p>Les trois messages l'un après l'autre, <b class="cle">dans la même conversation</b> : clique sur <b class="cle">📋 Copier</b>, colle, puis <b class="cle">Entrée</b>. Attends la fin de chaque réponse, et ouvre la page pour voir le résultat avant de passer au message suivant.</p>
       <p class="etiquette-prompt">① L'avancement d'une réaction</p>
-      <div class="phrase"><code>Bonjour, je souhaiterais que tu m'aides à concevoir une simulation en HTML (donc un fichier texte avec l'extension .html, et pas un fichier Python) que je puisse facilement partager à mes collègues.
+      <div class="phrase"><code>Bonjour, je souhaiterais que tu m'aides à concevoir une simulation en HTML (un seul fichier .html, pas de Python), que je puisse facilement partager à mes collègues.
 
-Cette simulation doit permettre de modéliser une réaction chimique et de déterminer son état final. On utilisera la notation suivante : aA + bB → cC + dD.
-A et B sont les réactifs, C et D sont les produits. Les grandeurs a, b, c et d sont les coefficients stœchiométriques associés respectivement aux espèces chimiques A, B, C et D : ce sont des grandeurs d'entrée qui doivent être modifiables facilement.
+Cette simulation modélise une réaction chimique et détermine son état final. Notation : aA + bB → cC + dD.
+A et B sont les réactifs, C et D les produits. Les coefficients stœchiométriques a, b, c et d sont des grandeurs d'entrée, modifiables facilement.
 
-On doit ensuite pouvoir entrer les quantités de matière initiales nA,0, nB,0, nC,0 et nD,0 (en mol) (les « 0 » permettent de comprendre que ce sont bien les quantités de matière initiales), quantités de matière respectivement des espèces chimiques A, B, C et D.
+On entre ensuite les quantités de matière initiales nA,0, nB,0, nC,0 et nD,0 (en mol ; l'indice 0 signifie « initial »).
 
-Le programme doit alors calculer xa = nA,0/a et xb = nB,0/b, puis la grandeur Xf = min(xa, xb) (Xf est l'avancement final) : le minimum des deux grandeurs xa et xb.
-Xf permet de définir le réactif limitant.
-Si Xf = xa, alors le réactif limitant est A.
-Si Xf = xb, alors le réactif limitant est B.
+Le programme calcule xa = nA,0/a et xb = nB,0/b, puis l'avancement final Xf = min(xa, xb), qui désigne le réactif limitant :
+- si Xf = xa, le réactif limitant est A ;
+- si Xf = xb, le réactif limitant est B ;
+- si xa = xb, le mélange est stœchiométrique : A et B sont limitants tous les deux.
 
-J'aimerais que le programme calcule les quantités de matière nA, nB, nC et nD pour n'importe quel avancement X, compris entre 0 et Xf :
+Pour tout avancement X compris entre 0 et Xf, le programme calcule :
 nA = nA,0 − a·X ;
 nB = nB,0 − b·X ;
 nC = nC,0 + c·X ;
 nD = nD,0 + d·X.
 
-J'aimerais que la page affiche un graphique en histogramme, avec en abscisse les 4 espèces chimiques A, B, C et D, et en ordonnée les quantités de matière respectives.
+La page affiche un diagramme en barres : en abscisse les 4 espèces A, B, C et D, en ordonnée leurs quantités de matière. On fait varier X entre 0 et Xf avec un curseur et avec une saisie au clavier ; le diagramme se met à jour aussitôt (les barres des réactifs baissent, celles des produits montent, jusqu'à la disparition du réactif limitant).
 
-Il faudrait prévoir une saisie manuelle de la valeur de l'avancement X pour le faire évoluer entre 0 et Xf. Le graphique devrait alors se mettre à jour automatiquement (plus X augmente, plus les histogrammes des réactifs doivent diminuer et ceux des produits augmenter, jusqu'à disparition complète du réactif limitant !).
+La page affiche aussi l'équation de la réaction, les quantités de matière initiales, l'avancement final Xf et le réactif limitant. Merci !</code><button type="button" class="copier" data-allow data-sim="titrage">📋 Copier</button></div>
+      <p class="etiquette-prompt">② Le titrage : quantités de matière et courbe de pH</p>
+      <div class="phrase"><code>Merci. Génère maintenant un nouveau code, similaire au précédent, qui illustre un titrage acido-basique.
 
-En plus du graphique, la page doit bien sûr afficher l'équation de la réaction, les quantités de matière initiales et l'avancement final Xf ! Merci</code><button type="button" class="copier" data-allow data-sim="titrage">📋 Copier</button></div>
-          <div class="allow-zone" hidden></div>
-      <p class="etiquette-prompt">② Le dosage</p>
-      <div class="phrase"><code>Merci. Tu peux maintenant générer un nouveau code, similaire au précédent, mais qui illustre le cas particulier d'un dosage. Dans un dosage, l'espèce A sera définie par défaut comme l'espèce titrée, et B comme l'espèce titrante. Cette fois-ci, ce n'est pas X l'avancement qu'on entrera, mais VB, le volume d'espèce titrante ajouté. VB varie entre 0 et Veq, le volume à l'équivalence versé d'espèce titrante.
+L'espèce A est l'espèce titrée (dans le bécher), B l'espèce titrante (dans la burette). On n'entre plus l'avancement X mais le volume versé VB (en mL), avec un curseur et une saisie, de 0 à 2·Veq, pour voir aussi ce qui se passe après l'équivalence.
 
-À l'état initial, on a une quantité de matière nA,0 = cA·VA (en mmol), avec cA la concentration en quantité de matière de A en mol/L et VA le volume en mL de A. Le volume Veq est défini de la manière suivante : Veq = cA·VA·b/(a·cB), avec cB la concentration en quantité de matière de B en mol/L (Veq est en mL). À l'état initial, nB,0 = nC,0 = nD,0 = 0 (les produits C et D sont absents, tout comme le réactif B, en dehors du bécher puisque dans la burette).
+Données d'entrée : cA (mol/L), VA (mL), cB (mol/L), et les coefficients a et b.
+À l'état initial : nA,0 = cA·VA (en mmol) et nB,0 = nC,0 = nD,0 = 0 (B est encore dans la burette).
+Volume à l'équivalence : Veq = cA·VA·b/(a·cB) (en mL).
 
-Avant l'équivalence (pour un volume VB donné, compris entre 0 et Veq), le réactif titrant B est toujours limitant, donc nB = cB·VB − b·X = 0, donc X = cB·VB/b, avec VB le volume en mL de B versé dans le bécher. On a donc nA = nA,0 − a·X, nC = c·X et nD = d·X. Lorsque VB = Veq, X = Xeq = cB·Veq/b : normalement, on doit donc avoir nA,eq = nB,eq = 0. Pour VB &gt; Veq, le réactif titrant s'accumule : nB = cB·(VB − Veq), nA = 0, nC = c·Xeq et nD = d·Xeq.
+Avant l'équivalence (0 ≤ VB ≤ Veq), B est limitant : X = cB·VB/b, nA = nA,0 − a·X, nB = 0, nC = c·X et nD = d·X. À l'équivalence, nA = nB = 0.
+Après l'équivalence (VB &gt; Veq), A a disparu et B s'accumule : nA = 0, nB = cB·(VB − Veq), nC = c·Xeq et nD = d·Xeq, avec Xeq = cB·Veq/b.
 
-Le code doit être similaire au précédent : afficher l'équation de la réaction, la concentration de l'espèce titrée A, le volume de A, la concentration de l'espèce titrante B, le même graphique qu'avant… etc. !</code><button type="button" class="copier" data-allow>📋 Copier</button></div>
-          <div class="allow-zone" hidden></div>
-      <p class="etiquette-prompt">③ L'exploitation de mesures (fichier Excel ou CSV)</p>
-      <div class="phrase"><code>Merci. Parfait pour prévoir le volume à l'équivalence ! Maintenant, j'aimerais que tu ajoutes un autre onglet où l'on puisse charger un fichier de type Excel ou CSV, et que la page reconnaisse la colonne du volume V et celle de la grandeur mesurée (par exemple le pH ou un potentiel), et trace l'évolution de la grandeur mesurée en fonction du volume. Et qu'on puisse directement, dans cet onglet, faire l'exploitation, avec le tracé de la dérivée première, de la dérivée seconde, et éventuellement des tangentes ?</code><button type="button" class="copier" data-allow>📋 Copier</button></div>
-          <div class="allow-zone" hidden></div>
+Garde le diagramme en barres des quantités de matière, et ajoute à côté la courbe pH = f(VB), tracée de 0 à 2·Veq, avec un point qui suit le volume choisi et une ligne verticale à Veq. Pour cette courbe, on se limite à a = b = 1 (25 °C, pKe = 14), en tenant compte de la dilution (volume total VA + VB) :
+- acide fort titré par une base forte : avant l'équivalence [H3O+] = (cA·VA − cB·VB)/(VA + VB) ; à l'équivalence pH = 7 ; après, [HO−] = (cB·VB − cA·VA)/(VA + VB) et pH = 14 + log[HO−] ;
+- acide faible (pKa modifiable, par exemple 4,8 pour l'acide éthanoïque) titré par une base forte : à VB = 0, pH = ½(pKa − log cA) ; entre les deux, pH = pKa + log(VB/(Veq − VB)) ; à l'équivalence, pH = 7 + ½pKa + ½log(cA·VA/(VA + Veq)) ; après, comme pour l'acide fort.
+Un menu permet de choisir le type d'acide.
+
+La page affiche l'équation de la réaction, cA, VA, cB, Veq, le pH et les quantités de matière pour le volume choisi. Merci !</code><button type="button" class="copier" data-allow>📋 Copier</button></div>
+      <p class="etiquette-prompt">③ L'exploitation de mesures (copier-coller depuis Excel ou fichier CSV)</p>
+      <div class="phrase"><code>Merci, parfait pour prévoir le volume à l'équivalence ! Maintenant, j'aimerais que tu ajoutes un onglet « Mes mesures » pour exploiter un vrai titrage.
+
+On y colle ses mesures copiées depuis Excel (deux colonnes), ou on charge un fichier CSV (séparateur « ; » ou « , », virgule décimale acceptée), sans aucune bibliothèque externe. La page reconnaît d'après les en-têtes la colonne du volume V (mL) et celle de la grandeur mesurée (pH, ou potentiel E en mV), et on peut corriger ce choix avec deux menus.
+
+Elle trace alors la grandeur mesurée en fonction de V, et propose trois exploitations, chacune avec le Veq trouvé :
+- la dérivée première dpH/dV : Veq au maximum du pic ;
+- la dérivée seconde : Veq là où elle s'annule en changeant de signe ;
+- la méthode des tangentes parallèles : deux tangentes à placer avec des curseurs, la parallèle à égale distance, et Veq à son intersection avec la courbe.
+
+Compare ces Veq entre eux et avec le Veq théorique de l'onglet de simulation, et ajoute un bouton qui télécharge un exemple de fichier CSV pour tester. Merci !</code><button type="button" class="copier" data-allow>📋 Copier</button></div>
       <p class="note">💡 Sois patient : chaque réponse peut prendre plusieurs minutes.</p>
       </div>
       <div class="bloc-partie attendre">
-      <h3 class="partie">⏳ Patiente <small>pendant qu'Antigravity écrit le code</small></h3>
-      <p>Cela peut prendre <b class="cle">quelques minutes</b>. S'il te demande une autorisation (« Allow… ? »), choisis <b class="cle">3 · Yes, and always allow</b>, puis <b class="cle">Submit</b>.</p>
-      <p>C'est prêt quand il te répond par l'encadré vert <b class="cle">« ✅ Ta simulation est prête »</b> avec <b class="cle">① ton code</b> (un lien qui l'ouvre dans Antigravity), suivi juste en dessous de <b class="cle">② le rendu</b> (comment le voir dans ton navigateur).</p>
-      <div><button type="button" class="pret">✅ Ma simulation est prête</button></div>
+      <h3 class="partie">⚙️ Antigravity travaille <small>il écrit le code de ta simulation</small></h3>
+      <div class="wk-travail">
+      <p>Cela peut prendre <b class="cle">quelques minutes</b>. <b class="cle">Tant qu'Antigravity affiche « Working »</b> (ou « Reading… », « Editing… »), il travaille : patiente.</p>
+      <div class="ecran-wk" aria-hidden="true">
+        <span class="wk-working wk-s1">Working</span><span class="wk-working wk-s2">Reading titrage.html ›</span><span class="wk-working wk-s3">Editing titrage.html ›</span>
+        <span class="wk-etiquette wk-e1">⏳ Il travaille : patiente</span>
+      </div>
+      <p class="allow-ligne">🔐 S'il te demande une autorisation (« Allow write access to this path? »), choisis <b class="cle">3 · Yes, and always allow</b>, puis <b class="cle">Submit</b>. <button type="button" class="allow-rejouer allow-popup">🔐 Voir quoi choisir</button></p>
+      <div><button type="button" class="fini-btn">✅ Antigravity a fini de travailler</button></div>
+      </div>
+      <div class="wk-verif" hidden>
+      <p class="replie-ligne vue"><span>✓</span> <b>Antigravity a fini de travailler</b> <button type="button" class="fini-retour">‹ revenir en arrière (il travaille encore)</button></p>
+      <p>Tu dois voir <b class="cle">l'équivalent de ceci</b> dans Antigravity :</p>
+      <div class="ecran-wk wk-fixe" aria-hidden="true">
+        <div class="wk-fini"><span class="wk-temps">Worked for 1m ›</span><div class="wk-tip"><b>TIP</b><br>✅ Ta simulation est prête.<br>① Ton code, dans Antigravity : <i>&lt;/&gt;</i> titrage.html</div></div>
+      </div>
+      <div><button type="button" class="pret">✅ Je confirme : ma simulation est prête</button></div>
+      </div>
       </div>
       <div class="bloc-partie voir" hidden>
+      <p class="replie-ligne vue voir-ligne"><span>✓</span> <b>Ma simulation est prête</b> <button type="button" class="voir-retour">‹ revenir en arrière (elle n'est pas encore prête)</button></p>
+      <div class="voir-nav">
+      <h3 class="partie">👀 Voir ta simulation dans ton navigateur</h3>
+      <div class="ecran-va" role="img" aria-label="D'abord dans Antigravity : clic sur l'icône de copie à droite de l'adresse file:///… ; puis dans ton navigateur (Chrome, Firefox, Safari, Edge) : clic dans la barre d'adresse, coller, Entrée : la simulation s'affiche">
+        <div class="va-scene va-a">
+          <div class="va-etiq">① Dans <b>Antigravity</b> : copie l'adresse</div>
+          <div class="va-fen va-ag">
+            <div class="va-ag-gauche"><p>+ New Conversation</p><p class="va-gris">◷ Automations</p><p class="va-gris">⧉ Customizations</p><p class="va-gris va-petit">Projects</p><p>📁 mes simulations</p><p class="va-sel va-retrait">Simulation titrage</p><p class="va-retrait va-gris">Préparation du projet</p><p class="va-gris va-petit">Conversations</p><p class="va-gris">Configuration…</p></div>
+            <div class="va-ag-milieu">
+              <div class="va-imp"><b>IMPORTANT</b> 🧪 Atelier « Simulation titrage » · <u>atelier.rasf.fr/titrage.html#simple</u></div>
+              <div class="va-moi">Fais-moi une simulation…</div>
+              <div class="va-tip"><b>TIP</b> ✅ Ta simulation est prête.</div>
+              <p class="va-ligne">② Le rendu de ton code, dans ton navigateur…</p>
+              <div class="va-code"><div class="va-code-tete"><span>text</span><span class="va-icones">@ <span class="va-copie">⧉</span><span class="va-ok">✓</span></span></div><div class="va-url">file:///Users/…/mes%20simulations/titrage.html</div></div>
+              <span class="va-copie-bulle">Copié !</span>
+            </div>
+            <div class="va-ag-droite"><div class="va-ag-adresse">atelier.rasf.fr/titrage.html#simple</div><div class="va-ag-page"><b>⚗️ Simulation d'un titrage</b><i class="va-dom">Analyse</i><span class="va-mini o"></span><span class="va-mini b"></span><span class="va-mini b court"></span></div></div>
+          </div>
+        </div>
+        <div class="va-scene va-d">
+          <div class="va-etiq">② Ouvre <b>ton navigateur</b> (Chrome, Firefox, Safari, Edge)</div>
+          <div class="va-dock"><span class="va-app va-app-chrome"><i class="va-ico ico-chrome"></i>Chrome</span><span class="va-app va-app-firefox"><i class="va-ico ico-firefox"></i>Firefox</span></div>
+        </div>
+        <div class="va-scene va-b">
+          <div class="va-etiq">③ Dans <b>ton navigateur</b> : colle l'adresse</div>
+          <div class="va-fen va-nav">
+            <div class="va-onglets"><i></i><i></i><i></i><span class="va-onglet"><span class="va-titre-onglet">Nouvel onglet</span><span class="va-titre-sim">titrage.html</span> ×</span><span class="va-plus">+</span><span class="va-logo"></span></div>
+            <div class="va-barre-nav"><span>←</span><span>→</span><span>↻</span><div class="va-adresse"><span class="va-vide">🔍 Rechercher ou saisir une adresse</span><span class="va-tape">file:///Users/…/mes%20simulations/titrage.html</span></div></div>
+            <div class="va-accueil"><span class="va-recherche">🔍</span></div>
+            <div class="va-page"><b>⚗️ Titrage</b><svg viewBox="0 0 120 50" aria-hidden="true"><path d="M5 45 C40 44 50 40 58 25 C62 12 75 8 115 6" fill="none" stroke="#2563eb" stroke-width="3"/></svg></div>
+            <span class="va-badge va-cmdv">Cmd + V</span><span class="va-badge va-entree">Entrée ↵</span>
+          </div>
+        </div>
+        <svg class="souris" viewBox="0 0 14 21" width="22" height="33" aria-hidden="true"><path d="M0 0 L0 17 L4.5 13 L8 20 L11 18.5 L7.5 12 L13 12 Z" fill="#fff" stroke="#000" stroke-width="1.3"/></svg>
+      </div>
+      <ol class="va-etapes">
+        <li>Dans la réponse d'Antigravity, clique sur <b class="cle">l'icône de copie ⧉</b>, à droite de l'adresse <b class="cle">file:///…</b></li>
+        <li>Ouvre <b class="cle">ton navigateur habituel</b> (Chrome, Firefox, Safari, Edge), en dehors d'Antigravity, clique dans <b class="cle">la barre d'adresse</b>, colle (<b class="cle">Cmd + V</b> sur Mac, <b class="cle">Ctrl + V</b> sur Windows), puis <b class="cle">Entrée</b> : ta simulation s'affiche.</li>
+        <li>Après chaque modification, <b class="cle">recharge la page</b> (<b class="cle">Cmd + R</b> ou <b class="cle">F5</b>).</li>
+      </ol>
+      <div><button type="button" class="pret vu-btn">✅ J'ai visualisé ma simulation</button></div>
+      </div>
+      <p class="replie-ligne voir-vu-ligne"><span>✓</span> <b>J'ai visualisé ma simulation</b> <button type="button" class="vu-retour">‹ revenir en arrière</button></p>
+      <div class="voir-suite" hidden>
       <h3 class="partie">② Discutons ensemble des résultats obtenus</h3>
-      <div><button type="button" class="aller-onglet" data-aller="modifier">🛠️ On modifie la simulation ›</button></div>
+      <div class="discuter-boutons"><button type="button" class="aller-onglet" data-aller="modifier">🛠️ On modifie la simulation ›</button><button type="button" class="nouvelle-version">🔀 Créer une nouvelle version à comparer</button></div>
+      </div>
       </div>
     </section>
 
@@ -152,7 +287,8 @@ Le code doit être similaire au précédent : afficher l'équation de la réacti
 <div class="bande" id="bande" role="note" hidden><span class="bfleche" aria-hidden="true">⬅</span>
   <span><b>Colle le message dans Antigravity</b> <em>dans la zone de message, en bas à gauche</em><span class="quoi">👉 <span class="os os-mac">Cmd + V</span><span class="os os-win">Ctrl + V</span><span class="os os-linux">Ctrl + V</span>, puis Entrée.</span></span>
   <button type="button" class="bande-x" aria-label="Fermer">×</button></div>
-<script src="copier.js?v=8"></script>
+<script src="copier.js?v=14"></script>
+<script src="token.js?v=4"></script>
 <script>
 // Les onglets ; l'onglet ouvert reste dans l'adresse (#simple, #detaille…) pour survivre au rechargement
 const ongl = [...document.querySelectorAll("[data-onglet]")];
@@ -169,16 +305,71 @@ ouvrir(location.hash.slice(1));
 // Les cadres sous « Créer » : rien avant la copie ; « Patiente » après Copier ; « Discutons… » après « Ma simulation est prête »
 // L'étape (vide, "attente", "pret") est gardée dans le navigateur pour survivre au rechargement
 function etat(panneau, etape) {
-  panneau.querySelector(".bloc-partie.attendre").hidden = etape !== "attente";
-  panneau.querySelector(".bloc-partie.voir").hidden = etape !== "pret";
+  panneau.querySelector(".bloc-partie.attendre").hidden = etape !== "attente" && etape !== "fini";
+  // « Antigravity a fini de travailler » : on montre ce qu'il doit afficher, puis « Je confirme »
+  panneau.querySelector(".wk-travail").hidden = etape === "fini";
+  panneau.querySelector(".wk-verif").hidden = etape !== "fini";
+  if (etape === "attente") panneau.querySelectorAll(".ecran-wk *").forEach((el) => el.getAnimations().forEach((x) => { x.currentTime = 0; }));   // « Working » repart du début
+  panneau.querySelector(".bloc-partie.voir").hidden = etape !== "pret" && etape !== "vu";
+  // « J'ai visualisé ma simulation » : « Voir » se replie en une ligne verte, « Discutons » apparaît
+  panneau.querySelector(".voir-nav").hidden = etape === "vu";
+  panneau.querySelector(".voir-vu-ligne").classList.toggle("vue", etape === "vu");
+  panneau.querySelector(".voir-suite").hidden = etape !== "vu";
   try { localStorage.setItem("atelier.titrage.etape." + panneau.dataset.panneau, etape); } catch {}
 }
 document.querySelectorAll("[data-panneau]").forEach((p) => {
   if (!p.querySelector(".bloc-partie.attendre")) return;
+  // « Créer une nouvelle version à comparer » : on revient au message de départ, déplié, pour en faire un autre
+  p.querySelector(".nouvelle-version")?.addEventListener("click", () => {
+    etat(p, "");
+    const creer = p.querySelector(".bloc-partie.creer");
+    creer.classList.remove("replie"); creer.querySelectorAll(".phrase.replie").forEach((x) => x.classList.remove("replie"));
+    creer.querySelectorAll(".replie-ligne").forEach((x) => x.classList.remove("vue"));
+    const note = creer.querySelector(".note-nouvelle"); if (note) note.hidden = false;
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+  p.querySelector(".fini-btn").addEventListener("click", () => etat(p, "fini"));
+  p.querySelector(".fini-retour").addEventListener("click", () => etat(p, "attente"));   // cliqué par erreur : on revient à « il travaille »
+  p.querySelector(".vu-btn").addEventListener("click", () => { etat(p, "vu"); p.querySelector(".voir-suite").scrollIntoView({ behavior: "smooth", block: "nearest" }); });
+  p.querySelector(".vu-retour").addEventListener("click", () => etat(p, "pret"));   // revenir en arrière : on revoit « Voir ta simulation »
+  p.querySelector(".voir-retour").addEventListener("click", () => { etat(p, "attente"); p.querySelector(".bloc-partie.attendre").scrollIntoView({ behavior: "smooth", block: "nearest" }); });   // « revenir en arrière » : on repatiente
   p.querySelector("button.pret").addEventListener("click", () => { etat(p, "pret"); p.querySelector(".bloc-partie.voir").scrollIntoView({ behavior: "smooth", block: "nearest" }); });
-  p.querySelectorAll("button.copier").forEach((b) => b.addEventListener("click", () => etat(p, "attente")));   // un nouveau message : on patiente
+  // un nouveau message : rien pendant les 10 s du bandeau jaune, puis « Patiente » (avec l'animation « Allow » dedans)
+  p.querySelectorAll("button.copier").forEach((b) => {
+    b.addEventListener("click", () => etat(p, ""));
+    b.addEventListener("apres-bande", () => { etat(p, "attente"); p.querySelector(".bloc-partie.attendre").scrollIntoView({ behavior: "smooth", block: "nearest" }); });
+  });
   let etape = ""; try { etape = localStorage.getItem("atelier.titrage.etape." + p.dataset.panneau) || ""; } catch {}
   etat(p, etape);
+  // cohérence : le prompt simple n'a qu'un message ; s'il n'a pas été copié, on repart de zéro
+  let copieSimple = false; try { copieSimple = localStorage.getItem("atelier." + (location.pathname.split("/").pop().replace(".html", "") || "page") + ".copie.0") === "1"; } catch {}
+  if (p.dataset.panneau === "simple" && etape && !copieSimple) etat(p, "");
+});
+// Après Copier, le message se replie en une ligne « ✓ Message copié » (gardé dans le navigateur).
+// Un seul message dans le cadre ① : tout le cadre se replie ; plusieurs (prompt détaillé) : ce message seulement.
+const PAGE = location.pathname.split("/").pop().replace(".html", "") || "page";
+document.querySelectorAll("[data-panneau] .bloc-partie.creer .phrase").forEach((ph, i) => {
+  const b = ph.querySelector("button.copier");
+  if (!b) return;
+  const bloc = ph.closest(".bloc-partie.creer");
+  const unique = bloc.querySelectorAll(".phrase").length === 1;
+  const cible = unique ? bloc : ph;
+  const ligne = document.createElement("p");
+  ligne.className = "replie-ligne";
+  ligne.innerHTML = '<span>✓</span> <b>Message copié</b> <button type="button">voir le message ou le recopier</button>';
+  if (unique) bloc.querySelector("h3").after(ligne); else ph.before(ligne);
+  const cle = "atelier." + PAGE + ".copie." + i;
+  const replier = (oui) => { cible.classList.toggle("replie", oui); ligne.classList.toggle("vue", oui); try { localStorage.setItem(cle, oui ? "1" : ""); } catch {} };
+  ligne.querySelector("button").addEventListener("click", () => replier(false));
+  b.addEventListener("click", () => setTimeout(() => replier(true), 700));
+  let r = false; try { r = localStorage.getItem(cle) === "1"; } catch {}
+  replier(r);
+});
+// « Voir ta simulation » : à chaque tour, l'animation ouvre Chrome ou Firefox, au hasard
+document.querySelectorAll(".ecran-va").forEach((e) => {
+  const tirer = () => { e.dataset.nav = Math.random() < 0.5 ? "chrome" : "firefox"; };
+  tirer();
+  e.addEventListener("animationiteration", (ev) => { if (ev.target.classList.contains("va-a")) tirer(); });
 });
 // Le système de l'ordinateur (Mac, Windows, Linux), comme sur la page Antigravity
 let os = null; try { os = localStorage.getItem("atelier.os"); } catch {}

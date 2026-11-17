@@ -6,7 +6,12 @@ let minuteurBande = null;
 let enAttente = null;   // le bouton dont l'animation attend la fin du bandeau
 function finBande() {
   if (bande) bande.hidden = true;
-  if (enAttente) { montrerAllow(enAttente); enAttente = null; }
+  if (enAttente) {
+    // la fin du bandeau : la page montre alors « Patiente » (événement « apres-bande »), puis l'animation « Allow » dedans
+    enAttente.dispatchEvent(new CustomEvent("apres-bande", { bubbles: true }));
+    if (enAttente.hasAttribute("data-allow")) montrerAllow(enAttente);
+    enAttente = null;
+  }
 }
 const tpl = document.getElementById("tpl-allow");
 
@@ -19,7 +24,8 @@ function ajuster(cadre) {
 }
 
 function montrerAllow(b) {
-  const zone = b.closest(".phrase").nextElementSibling;
+  // l'animation va dans le cadre « Patiente » du même onglet s'il en a un, sinon juste sous le message
+  const zone = b.closest("[data-panneau]")?.querySelector(".bloc-partie.attendre .allow-zone") || b.closest(".phrase").nextElementSibling;
   if (!tpl || !zone || !zone.classList.contains("allow-zone")) return;
   if (!zone.firstElementChild) {
     const anim = document.createElement("div");
@@ -86,7 +92,7 @@ document.querySelectorAll("button.copier").forEach((b) => b.addEventListener("cl
   if (!b.dataset.texte) b.dataset.texte = b.textContent;
   // D'abord ce qu'on voit (bandeau 10 s, animation), puis la copie
   // Puis, quand le bandeau disparaît (10 s, ou fermé à la main), l'animation « Allow write access »
-  enAttente = b.hasAttribute("data-allow") ? b : null;
+  enAttente = b;
   if (bande) {
     bande.hidden = false;
     clearTimeout(minuteurBande);
@@ -116,3 +122,49 @@ document.querySelectorAll("button.copier").forEach((b) => b.addEventListener("cl
   }, 2500);
 }));
 if (bande) bande.querySelector(".bande-x").addEventListener("click", () => { clearTimeout(minuteurBande); finBande(); });
+
+// « Voir quoi choisir » : l'animation « Allow write access » dans une fenêtre par-dessus la page
+document.addEventListener("click", (e) => {
+  if (!e.target.closest(".allow-popup") || !tpl) return;
+  const v = document.createElement("div");
+  v.className = "allow-voile";
+  v.innerHTML = '<div class="allow-fenetre"><button type="button" class="allow-fermer" aria-label="Fermer">×</button><div class="allow-zone"></div></div>';
+  const zone = v.querySelector(".allow-zone");
+  const anim = document.createElement("div");
+  anim.className = "allow-anim";
+  anim.appendChild(tpl.content.cloneNode(true));
+  zone.appendChild(anim);
+  document.body.appendChild(v);
+  const cadre = zone.querySelector(".cadre-allow");
+  new ResizeObserver(() => ajuster(cadre)).observe(cadre);
+  ajuster(cadre);
+  const fermer = () => v.remove();
+  v.addEventListener("click", (ev) => { if (ev.target === v || ev.target.closest(".allow-fermer")) fermer(); });
+  document.addEventListener("keydown", function esc(ev) { if (ev.key === "Escape") { fermer(); document.removeEventListener("keydown", esc); } });
+});
+
+// Prompt simple : une phrase courte, et un bouton « ＋ Ajouter un détail » qui ajoute les précisions une à une,
+// chacune sur sa ligne, sous la phrase ; une étiquette dit le niveau du prompt (minimal → enrichi → détaillé).
+// Le nombre de détails est gardé dans le navigateur, par page.
+document.querySelectorAll("code.prompt-plus").forEach((code) => {
+  const base = code.dataset.base, details = JSON.parse(code.dataset.details);
+  const bloc = code.closest(".bloc-partie").querySelector(".plus-details");
+  const plus = bloc.querySelector(".plus-btn"), moins = bloc.querySelector(".moins-btn"), zero = bloc.querySelector(".zero-btn"), compte = bloc.querySelector(".plus-compte"), tag = bloc.querySelector(".prompt-tag");
+  const cle = "atelier." + (location.pathname.split("/").pop().replace(".html", "") || "page") + ".details";
+  let n = 0; try { n = Math.min(details.length, parseInt(localStorage.getItem(cle), 10) || 0); } catch {}
+  const rendre = () => {
+    code.textContent = n ? base + ", avec :\n" + details.slice(0, n).map((d) => "- " + d + " ;").join("\n").replace(/ ;$/, ".") : base + ".";
+    plus.hidden = n >= details.length;
+    moins.hidden = n === 0;
+    zero.hidden = n === 0;
+    compte.textContent = n + " / " + details.length;   // le compteur, toujours visible
+    const niveau = n === 0 ? ["minimal", "Prompt minimal"] : n < details.length / 2 ? ["enrichi", "Prompt enrichi"] : n < details.length ? ["precis", "Prompt précis"] : ["detaille", "Prompt détaillé"];
+    tag.className = "prompt-tag " + niveau[0];
+    tag.textContent = "🏷️ " + niveau[1];
+    try { localStorage.setItem(cle, String(n)); } catch {}
+  };
+  plus.addEventListener("click", () => { n = Math.min(details.length, n + 1); rendre(); });
+  moins.addEventListener("click", () => { n = Math.max(0, n - 1); rendre(); });
+  zero.addEventListener("click", () => { n = 0; rendre(); });
+  rendre();
+});

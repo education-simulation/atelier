@@ -1,0 +1,115 @@
+/* atelier2 : le thème blanc (par défaut). Le bouton 🌙 / ☀️ de la barre du haut le désactive (theme.js). */
+/* ===== atelier2 : tout en blanc (comme Antigravity en thème clair) ===== */
+body { color:#27272a; }
+.fen { background:#fff; box-shadow:0 18px 50px rgba(15,23,42,.15); }
+.barre { background:#f4f4f5; border-bottom-color:#e4e4e7; } .barre i { background:#d4d4d8; } .barre b { color:#18181b; } .barre a { color:#52525b; }
+h1, .info h2, .partie, .carte .txt b, .sim b, .pas-tete b { color:#18181b; }
+.titre-haut { background:#fff; border-bottom-color:#e4e4e7; }
+.ariane { background:#fafafa; border-bottom-color:#e4e4e7; color:#a1a1aa; } .ariane a { color:#52525b; } .ariane a:hover, .ariane span[aria-current] { color:#b45309; } .ariane i.sep { color:#d4d4d8; }
+.question, b.cle, .etiquette-prompt, .note a.mail, .lien-os[aria-pressed="true"], .tuile .clic { color:#b45309; }
+.note, .lien-os, .carte .txt small, .tuile em, .sim .bientot { color:#71717a; }
+/* tuiles et cartes */
+.tuile, .tuile:not(.vedette):not([aria-pressed="true"]) { color:#18181b; background:#fff; border-color:#e4e4e7; box-shadow:0 2px 8px rgba(0,0,0,.05); }
+a.tuile, button.tuile:not([disabled]) { background:#fffbeb; }
+a.tuile:hover, button.tuile:not([disabled]):hover { background:#fef3c7; }
+.tuile[aria-pressed="true"] { background:#fef3c7; }
+.etiquette-prix { border-color:#fff; }
+.carte, .sim { background:#fff; border-color:#e4e4e7; box-shadow:0 2px 8px rgba(0,0,0,.05); }
+.carte:hover:not([disabled]) { box-shadow:0 8px 24px rgba(0,0,0,.1); }
+.carte[aria-pressed="true"], .sim[aria-pressed="true"] { background:#fffbeb; }
+.carte .rond { color:#d97706; }
+/* étapes, encadrés, infos */
+ol.etapes > li, .info { background:#fffbeb; }
+.verifier { background:#fff7ed; }
+.but { background:#fafafa; border-color:#e4e4e7; }
+.partie { border-top-color:#e4e4e7; }
+/* messages à copier */
+.phrase code { background:#fafafa; color:#18181b; scrollbar-color:#f59e0b #fef3c7; }
+.phrase code::-webkit-scrollbar-track { background:#fef3c7; }
+.copier.coche { background:#dcfce7; color:#14532d; }
+/* captures */
+.deux-images img { background:#f4f4f5; border-color:#e4e4e7; } .deux-images figcaption { color:#3f3f46; }
+/* onglets */
+.onglets { border-bottom-color:#e4e4e7; }
+.onglets button { color:#52525b; background:#f4f4f5; border-color:#e4e4e7; }
+.onglets button:hover { color:#b45309; }
+/* les trois cadres d'un prompt */
+.bloc-partie.creer { background:#fffbeb; } .bloc-partie.creer .partie { color:#b45309; } .bloc-partie.creer .partie small { color:#a16207; }
+.bloc-partie.attendre { background:#f5f3ff; } .bloc-partie.attendre .partie { color:#6d28d9; } .bloc-partie.attendre .partie small { color:#7c3aed; } .bloc-partie.attendre b.cle { color:#5b21b6; }
+.bloc-partie.voir { background:#eff6ff; } .bloc-partie.voir .partie { color:#1d4ed8; } .bloc-partie.voir .partie small { color:#2563eb; } .bloc-partie.voir b.cle { color:#1e40af; }
+/* boutons d'aide */
+.aide-bouton { color:#3f3f46; background:#f4f4f5; border-color:#e4e4e7; }
+.allow-rejouer { background:#fffbeb; color:#b45309; } .allow-rejouer:hover { background:#fef3c7; }
+/* l'animation « Allow write access », en clair */
+.scene-allow { background:#fafafa; border-color:#e4e4e7; }
+.scene-allow .dlg { background:#fff; border-color:#e4e4e7; color:#27272a; box-shadow:0 8px 24px rgba(0,0,0,.08); }
+.scene-allow .t { color:#18181b; } .scene-allow .cmd { background:#f4f4f5; color:#18181b; }
+.scene-allow .opt i { background:#f4f4f5; color:#71717a; } .scene-allow .o4 em, .scene-allow .skip { color:#a1a1aa; }
+.scene-allow .ok { color:#15803d; }
+@keyframes al-o1 { 0%, 32% { background:#f4f4f5; border-color:#e4e4e7; } 34%, 100% { background:transparent; border-color:transparent; } }
+@keyframes al-o2 { 0%, 32% { background:transparent; border-color:transparent; box-shadow:none; } 34%, 70% { background:#fef3c7; border-color:#f59e0b; box-shadow:0 0 0 4px rgba(245,158,11,.3); } 72%, 100% { background:#f4f4f5; border-color:#e4e4e7; box-shadow:none; } }
+/* Je commence avec Antigravity */
+.pas { background:#fff; border-color:#e4e4e7; box-shadow:0 2px 8px rgba(0,0,0,.05); }
+.btn-deux { color:#3f3f46; border-color:#d4d4d8; } .btn-deux:hover { color:#18181b; border-color:#a1a1aa; }
+.pas.fait { background:#f0fdf4; border-color:#86efac; } .pas.fait .pas-tete b { color:#14532d; } .pas.fait .pas-fait { color:#15803d; } .pas.fait .pas-modif { color:#71717a; }
+.theme-bascule { background:#fff; color:#3f3f46; border-color:#d4d4d8; }
+
+/* la fenêtre « ouvre une conversation dans ton projet », en clair */
+.nc-fenetre { background:#fff; color:#27272a; } .nc-fenetre h2 { color:#18181b; }
+.ecran-nc { background:#fff; border-color:#e4e4e7; }
+.nc-gauche { background:#f4f4f5; color:#27272a; } .nc-nouveau { background:#e4e4e7; }
+.nc-ancien span { background:#e4e4e7; }
+.nc-reponse { color:#27272a; } .nc-reponse b { color:#7e22ce; } .nc-lien { color:#2563eb; }
+.nc-saisie { background:#fff; border-color:#d4d4d8; } .nc-chip { background:#f4f4f5; color:#18181b; }
+.nc-msg { color:#18181b; } .nc-bas { color:#3f3f46; } .nc-envoi { background:#18181b; color:#fff; }
+@keyframes nc-survol { 0%, 14% { background:transparent; } 16%, 100% { background:#e4e4e7; } }
+@keyframes nc-vieux { 0%, 32% { background:#e4e4e7; } 34%, 100% { background:transparent; } }
+.nc-new { background:#e4e4e7; }
+
+/* « Voir ta simulation », en clair (le navigateur externe reste clair dans les deux thèmes) */
+.ecran-va { background:#fafafa; border-color:#e4e4e7; }
+.va-ag { background:#fff; border-color:#e4e4e7; color:#27272a; } .va-ag-gauche { background:#f4f4f5; } .va-sel { background:#e4e4e7; } .va-ligne { color:#71717a; } .va-tip b { color:#15803d; }
+.va-code { background:#18181b; border-color:#27272a; }
+.nc-e1-fait { background:#f0fdf4; border-color:#86efac; color:#14532d; } .nc-recopier { color:#71717a; }
+.replie-ligne { background:#f0fdf4; border-color:#86efac; color:#14532d; } .replie-ligne > button { color:#71717a; }
+.onglets-haut { background:#fff; border-bottom-color:#e4e4e7; }
+.va-app { color:#27272a; }
+.q-fait { background:#f0fdf4; border-color:#86efac; color:#14532d; } .q-ok { color:#15803d; } .q-modif { color:#71717a; }
+.nc-liste { border-top-color:#e4e4e7; } .nc-liste-bouton { color:#3f3f46; border-color:#d4d4d8; }
+.nc-go code { color:#92400e; background:#fffbeb; }
+.nc-fenetre .nc-msg { color:#b45309; }
+.nc-bulle { background:#f4f4f5; color:#18181b; }
+.nc-think { background:linear-gradient(90deg,#a1a1aa 0%,#18181b 50%,#a1a1aa 100%); background-size:200% 100%; -webkit-background-clip:text; background-clip:text; }
+@keyframes nc-ajout { 0%, 65% { opacity:0; background:transparent; } 67%, 98% { opacity:1; background:#e4e4e7; } 100% { opacity:0; } }
+.va-moi { background:#f4f4f5; } .va-imp b { color:#7e22ce; } .va-imp u { color:#2563eb; } .va-ag-droite { border-left-color:#e4e4e7; }
+.barre a.icone { background:#fff; border-color:#d4d4d8; }
+/* « Antigravity travaille », en clair */
+.ecran-wk { background:#fff; border-color:#e4e4e7; color:#27272a; }
+.wk-working { background:linear-gradient(90deg,#a1a1aa 0%,#18181b 45%,#a1a1aa 90%); background-size:250% 100%; -webkit-background-clip:text; background-clip:text; }
+.wk-temps { color:#71717a; } .wk-tip b { color:#15803d; } .wk-tip i { color:#ea580c; }
+.allow-fenetre { background:#fff; }
+.moins-btn { color:#b45309; } .plus-compte { color:#71717a; }
+.note-version { background:#eef2ff; border-color:#a5b4fc; }
+.plus-compte { color:#92400e; background:#fffbeb; } .zero-btn { color:#71717a; } .zero-btn:hover { color:#dc2626; }
+.nouvelle-version { color:#4338ca; } .note-nouvelle { background:#eef2ff; border-color:#a5b4fc; }
+.fini-retour { color:#71717a; }
+.pas-expl { color:#3f3f46; }
+.token-popup { background:#fff; color:#18181b; border-color:#e4e4e7; box-shadow:0 20px 60px rgba(0,0,0,.2); }
+.token-popup input { background:#fafafa; border-color:#d4d4d8; }
+.token-erreur { color:#dc2626; } .token-aide { color:#52525b; } .token-fermer:hover { color:#18181b; }
+.token-lien { color:#52525b; }
+.nc-deja { border-top-color:#e4e4e7; } .nc-deja-btn { background:#fff; color:#18181b; border-color:#d4d4d8; } .nc-deja span { color:#52525b; }
+.tuile-ag, .faq details { background:#fff; border-color:#e4e4e7; } .tuile-ag b { color:#18181b; } .tuile-ag small { color:#52525b; } .tuile-ag:hover, .tuile-ag[aria-pressed="true"] { border-color:#f59e0b; }
+.lien-etape { color:#b45309; }
+.retour-tuiles { color:#b45309; }
+.cp-fen { background:#fff; color:#27272a; } .cp-fen h2 { color:#18181b; } .cp-fermer:hover { color:#18181b; }
+.config-bloc { background:#fffbeb; }
+/* configurer.html : l'écran d'Antigravity en mode clair (comme Antigravity en thème clair) */
+.cp-ecran { background:#fff; color:#27272a; border-color:#e4e4e7; }
+.cp-menu { background:#f4f4f5; border-right-color:#e4e4e7; } .cp-menu .cp-new { background:#e4e4e7; } .cp-menu .cp-sec { color:#71717a; }
+.cp-sugg { color:#27272a; }
+.cp-boite { background:#f8f8f9; border-color:#e4e4e7; } .cp-np { color:#52525b; }
+.cp-saisie { background:#fff; border-color:#e4e4e7; } .cp-indice { color:#71717a; } .cp-colle { color:#18181b; } .cp-bas { color:#3f3f46; }
+.cp-astuce { background:#fff; border-color:#e4e4e7; color:#3f3f46; box-shadow:0 8px 20px rgba(0,0,0,.12); } .cp-astuce b { color:#18181b; } .cp-astuce i { background:#f4f4f5; color:#18181b; }
+.cp-z { background:#fef3c7; color:#b45309; }
+img[src$="openai.svg"] { filter:invert(1); }   /* le logo ChatGPT est blanc : noir en mode clair */
