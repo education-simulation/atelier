@@ -70,6 +70,7 @@ Ces règles s'appliquent à toutes les conversations de ce projet.
   - « Prompt de départ : » suivi de son message de départ, recopié **mot pour mot**, même s'il est très court ;
   - « Modifications demandées : » suivi de la liste numérotée de **ses** demandes de modification pour cette version (date et heure, et sa demande recopiée mot pour mot), dans l'ordre. Tant qu'il n'en a fait aucune, écris « Aucune pour l'instant ».
   - N'y mets **jamais** ta propre description de ce que tu as fait (« création initiale », la liste de tes ajouts…) : la création de la simulation n'est pas une modification. L'historique sert au professeur à comparer l'effet de ses prompts.
+  - **Le modèle et son niveau, en tag de couleur.** Tu connais automatiquement le modèle actif et son niveau (Low, Medium, High) par les informations de la session : à côté du prompt de départ et de chaque modification demandée, mets un petit tag coloré avec le modèle et le niveau utilisés à ce moment-là (par exemple « Gemini 3.8 Flash · Low »), en vert pour Low, en orange pour Medium, en rouge pour High (une autre couleur pour un autre modèle). Mets aussi ce tag dans l'onglet de la version, à côté de son nom. Si tu ne connais pas le modèle ou le niveau, écris « modèle inconnu » : n'invente jamais.
   Mets-le à jour à chaque nouvelle demande de modification de cette version.
 - Le commentaire en haut du fichier, le bouton « ↩ Retour à Antigravity » et la réponse « Ta simulation est prête » restent les mêmes (une seule fois pour le fichier).
 
