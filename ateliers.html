@@ -30,18 +30,29 @@
     </section>
 
     <div id="suite-ateliers" hidden>
-    <div class="q" id="q2" style="display:none">
-    <p class="question">Choisis :</p>
+    <div class="q" id="q2">
+    <p class="question">As-tu créé un projet pour préparer l'atelier ?</p>
     <div class="choix">
-      <button type="button" class="carte" data-choix="page"><span class="num">1</span><span class="rond"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="m10 13-2 2 2 2"/><path d="m14 13 2 2-2 2"/></svg></span><span class="txt"><b>Une simple page de simulation</b><small>Une page HTML, qui s'ouvre d'un double-clic</small></span></button>
-      <button type="button" class="carte" disabled><span class="num">2</span><span class="rond"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="7" rx="2"/><rect x="3" y="13" width="18" height="7" rx="2"/><path d="M7 7.5h.01M7 16.5h.01"/></svg></span><span class="txt"><b>Une page de simulation avec serveur local</b><small>Bientôt</small></span></button>
-      <button type="button" class="carte" disabled><span class="num">3</span><span class="rond"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a14 14 0 0 1 0 18a14 14 0 0 1 0-18"/></svg></span><span class="txt"><b>Un exemple de site avec serveur, et publier mon site en ligne</b><small>Bientôt</small></span></button>
+      <button type="button" class="carte" data-projet="oui"><span class="rond">✅</span><span class="txt"><b>Oui</b><small>Le projet « mes simulations » est prêt</small></span></button>
+      <button type="button" class="carte" data-projet="non"><span class="rond">❌</span><span class="txt"><b>Non</b><small>Pas encore</small></span></button>
+      <button type="button" class="carte" data-projet="nsp"><span class="rond">❔</span><span class="txt"><b>Je ne sais pas</b><small>On vérifie ensemble</small></span></button>
     </div>
     <p class="q-fait"><span class="q-num">2</span> <b class="q-txt"></b> <span class="q-ok">✓</span><button type="button" class="q-modif">modifier</button></p>
     </div>
 
+    <section class="info" id="prep-non" hidden>
+      <p>Prépare d'abord l'atelier : crée le projet « mes simulations » et installe ses règles. Cela prend quelques minutes.</p>
+      <p style="margin:10px 0 0"><a class="nc-comment" href="projet.html" style="text-decoration:none">📁 Préparer l'atelier dans un projet ›</a></p>
+    </section>
+
+    <section class="info" id="prep-nsp" hidden>
+      <p>Copie ce message, colle-le dans <b class="cle">une conversation de ton projet « mes simulations »</b> (ou une nouvelle conversation dans ce projet), puis Entrée : l'IA te dit si l'atelier est bien préparé.</p>
+      <div class="phrase"><code>Sans rien créer ni modifier, vérifie seulement si cette conversation est dans un projet préparé pour l'atelier RASF : regarde s'il existe, à la racine du projet, un fichier AGENTS.md qui contient les règles des simulations (les commandes go titrage, go metamerie, go cinetique). Réponds seulement par une ligne : « ✅ Ton projet est prêt pour l'atelier : choisis Oui sur la page. » si c'est le cas, sinon « ❌ Ce projet n'est pas encore préparé : choisis Non sur la page. »</code><button type="button" class="copier">📋 Copier</button></div>
+      <p class="note">Selon la réponse, reviens ici et choisis <b>Oui</b> ou <b>Non</b>, au point ②.</p>
+    </section>
+
     <section id="page" hidden>
-      <p class="question"><span class="q-num q-num-titre">2</span> Crée une nouvelle conversation pour chaque atelier que tu veux tester, dans ton projet « mes simulations »</p>
+      <p class="question"><span class="q-num q-num-titre">3</span> Crée une nouvelle conversation pour chaque atelier que tu veux tester, dans ton projet « mes simulations »</p>
       <p class="sim-note">Dans chaque nouvelle conversation, écris la commande de l'atelier, puis Entrée :</p>
       <ol class="ateliers-go"><li><b>Atelier 1 · titrage</b> : <code>go titrage</code></li><li><b>Atelier 2 · métamérie</b> : <code>go metamerie</code></li><li><b>Atelier 3 · cinétique</b> : <code>go cinetique</code></li></ol>
       <p style="margin:12px 0 0"><button type="button" class="nc-comment">▶ Comment démarrer une nouvelle conversation dans le projet ?</button></p>
@@ -99,13 +110,25 @@ function plier(id, texte) {
   q.querySelector(".q-txt").textContent = texte;
 }
 document.querySelector("#q1 .q-modif").addEventListener("click", () => { document.getElementById("q1").classList.remove("fait"); });
-document.querySelector("#q2 .q-modif").addEventListener("click", () => { document.getElementById("q2").classList.remove("fait"); });
+document.querySelector("#q2 .q-modif").addEventListener("click", () => { document.getElementById("q2").classList.remove("fait"); projet(""); });
+// ② « As-tu créé un projet pour préparer l'atelier ? » : Oui → ③ les conversations ; Non → la préparation ; Je ne sais pas → un message pour vérifier
+// (reposée à chaque ouverture, comme ①)
+const libProjet = { oui: "J'ai préparé l'atelier dans un projet", non: "Je n'ai pas encore préparé l'atelier", nsp: "Je ne sais pas si l'atelier est préparé" };
+function projet(v) {
+  document.querySelectorAll("[data-projet]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.projet === v)));
+  document.getElementById("page").hidden = v !== "oui";
+  document.getElementById("prep-non").hidden = v !== "non";
+  document.getElementById("prep-nsp").hidden = v !== "nsp";
+  plier("q2", v ? libProjet[v] : "");
+}
+document.querySelectorAll("[data-projet]").forEach((b) => b.addEventListener("click", () => projet(b.dataset.projet)));
+document.querySelector("#prep-nsp .copier").addEventListener("click", (e) => copierTexte(e.currentTarget, document.querySelector("#prep-nsp code").textContent, "📋 Copier"));
 // « Où lis-tu cette page ? » : gardé dans le navigateur (atelier.ou)
 function ou(v) {
   document.querySelectorAll("[data-ou]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.ou === v)));
   document.getElementById("hors").hidden = v !== "hors";
   document.getElementById("suite-ateliers").hidden = v !== "dans";
-  if (v === "dans") montrer("page");   // « Je suis dans Antigravity » : directement les conversations à créer
+  if (v !== "dans") projet("");   // hors d'Antigravity : on cache la suite
   plier("q1", v ? (v === "dans" ? "Je suis dans Antigravity" : "Je ne suis pas dans Antigravity") : "");
 }
 document.querySelectorAll("[data-ou]").forEach((b) => b.addEventListener("click", () => ou(b.dataset.ou)));
@@ -124,8 +147,7 @@ function montrer(choix, sim) {
 }
 document.querySelectorAll("[data-choix]").forEach((b) => b.addEventListener("click", () => montrer(b.dataset.choix)));
 const [c, s] = location.hash.slice(1).split("/");
-if (!c && document.getElementById("q1").classList.contains("fait")) montrer("page");
-if (c === "page") montrer("page", sims[s] ? s : undefined);
+
 
 // Choisir une simulation : une fenêtre explique comment ouvrir une conversation dans le projet,
 // et donne le message qui y ouvre la page de l'atelier. Elle reste ouverte au rechargement (#page/titrage).
@@ -199,8 +221,7 @@ document.querySelectorAll(".hors-copier").forEach((b) => b.addEventListener("cli
 }));
 // Les tuiles mènent directement à la page de la simulation ; le bouton en dessous montre comment démarrer une nouvelle conversation
 document.querySelector(".nc-comment").addEventListener("click", () => ouvrirConv("titrage", true));
-if (c === "page" && sims[s]) ouvrirConv(s);
-window.addEventListener("hashchange", () => { const [c2, s2] = location.hash.slice(1).split("/"); montrer(c2 === "page" ? "page" : undefined, sims[s2] ? s2 : undefined); });
+
 </script>
 </body>
 </html>
