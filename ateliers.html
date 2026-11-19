@@ -153,8 +153,27 @@ function ouvrirConv(sim, general) {
   // « C'est fait » : la conversation est ajoutée, on va directement à la page de l'atelier
   const deja = document.createElement("div"); deja.className = "nc-deja";
   deja.innerHTML = general ? '<button type="button" class="nc-deja-btn nc-fermer-ok">✅ C\'est fait</button>' : '<a class="nc-deja-btn" href="' + sim + '.html#simple">✅ C\'est fait</a>';
-  if (general) v.querySelector(".nc-nom").textContent = "Démarre une nouvelle conversation dans le projet « mes simulations »";   // la fenêtre se ferme : on va directement sur la page de l'atelier
+  if (general) v.querySelector(".nc-nom").textContent = "Crée 3 nouvelles conversations dans le projet « mes simulations », une par atelier";   // la fenêtre se ferme : on va directement sur la page de l'atelier
   v.querySelector(".nc-fenetre").appendChild(deja);
+  // Bouton « Comment démarrer » : l'animation crée 3 conversations à la suite (go titrage, go metamerie, go cinetique) ;
+  // chaque conversation créée reste dans le projet, puis tout recommence
+  if (general) {
+    const ordre = ["titrage", "metamerie", "cinetique"], noms3 = { titrage: "titrage", metamerie: "métamérie", cinetique: "cinétique" };
+    let k = 0;
+    const regler = (x) => {
+      v.querySelector(".nc-msg").textContent = mots[x]; v.querySelector(".nc-bulle").textContent = mots[x];
+      v.querySelector(".nc-titre-conv").textContent = convs[x];
+      v.querySelector(".nc-info-2").innerHTML = "✍️ Conversation " + (ordre.indexOf(x) + 1) + " sur 3 : écris <b>" + mots[x] + "</b>, puis Entrée";
+    };
+    regler(ordre[0]);
+    v.querySelector(".nc-msg").addEventListener("animationiteration", (e) => {
+      if (e.animationName !== "nc-msg") return;
+      const ajout = v.querySelector(".nc-ajout");
+      if (k === ordre.length - 1) { v.querySelectorAll(".nc-gardee").forEach((p) => p.remove()); k = 0; }   // les 3 sont faites : on recommence
+      else { const p = document.createElement("p"); p.className = "nc-sous nc-gardee"; p.textContent = "💬 " + convs[ordre[k]]; ajout.before(p); k++; }
+      regler(ordre[k]);
+    });
+  }
   v.addEventListener("click", (e) => { if (e.target === v || e.target.closest(".nc-fermer") || e.target.closest(".nc-fermer-ok")) fermerConv(); });
   document.body.appendChild(v);
 }
