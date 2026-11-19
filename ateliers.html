@@ -3,17 +3,17 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Atelier · Que veux-tu construire ?</title>
-<link rel="stylesheet" href="style.css?v=72">
+<title>Atelier · Démarrer les ateliers</title>
+<link rel="stylesheet" href="style.css?v=73">
 <link rel="stylesheet" href="clair.css?v=16" id="theme-clair">
 <script src="theme.js?v=1"></script>
 </head>
 <body>
 <div class="fen">
   <header class="haut">
-  <div class="barre"><i></i><i></i><i></i><b>Atelier · Que veux-tu construire ?</b><a href="./">‹ Accueil</a></div>
+  <div class="barre"><i></i><i></i><i></i><b>Atelier · Démarrer les ateliers</b><a href="./">‹ Accueil</a></div>
   <nav class="ariane" aria-label="Fil d'Ariane"><a href="./">🏠 Accueil</a><i class="sep">›</i><a href="antigravity.html">Antigravity</a><i class="sep">›</i><span aria-current="page" id="ariane-ateliers">Ateliers</span><span id="ariane-choix"></span></nav>
-    <div class="titre-haut"><h1>🧪 Que veux-tu construire ?</h1></div>
+    <div class="titre-haut"><h1>🧪 Démarrer les ateliers</h1></div>
   </header>
   <div class="corps">
     <div class="q" id="q1">
@@ -30,7 +30,7 @@
     </section>
 
     <div id="suite-ateliers" hidden>
-    <div class="q" id="q2">
+    <div class="q" id="q2" style="display:none">
     <p class="question">Choisis :</p>
     <div class="choix">
       <button type="button" class="carte" data-choix="page"><span class="num">1</span><span class="rond"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="m10 13-2 2 2 2"/><path d="m14 13 2 2-2 2"/></svg></span><span class="txt"><b>Une simple page de simulation</b><small>Une page HTML, qui s'ouvre d'un double-clic</small></span></button>
@@ -42,7 +42,7 @@
 
     <section id="page" hidden>
       <p class="pre-requis">⚠️ Cela ne marche que si tu as d'abord fait <a href="projet.html"><b>« Préparer l'atelier dans un projet »</b></a> : le projet « mes simulations » et ses règles.</p>
-      <p class="question">Crée 3 nouvelles conversations dans ton projet Antigravity « mes simulations », une par atelier</p>
+      <p class="question"><span class="q-num q-num-titre">2</span> Crée une, deux ou trois nouvelles conversations dans ton projet « mes simulations », une par simulation</p>
       <p class="sim-note">Dans chacune, écris sa commande, puis Entrée : <code>go titrage</code>, <code>go metamerie</code>, <code>go cinetique</code>.</p>
       <p style="margin:12px 0 0"><button type="button" class="nc-comment">▶ Comment démarrer une nouvelle conversation dans le projet ?</button></p>
       <p class="question" style="margin-top:22px">Puis démarre :</p>
@@ -105,12 +105,13 @@ function ou(v) {
   document.querySelectorAll("[data-ou]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.ou === v)));
   document.getElementById("hors").hidden = v !== "hors";
   document.getElementById("suite-ateliers").hidden = v !== "dans";
+  if (v === "dans") montrer("page");   // « Je suis dans Antigravity » : directement les conversations à créer
   plier("q1", v ? (v === "dans" ? "Je suis dans Antigravity" : "Je ne suis pas dans Antigravity") : "");
 }
 document.querySelectorAll("[data-ou]").forEach((b) => b.addEventListener("click", () => ou(b.dataset.ou)));
 // « Où lis-tu cette page ? » est reposée à chaque ouverture et à chaque rechargement (choix de Marco, 19/11/2026)
 // Un choix à la fois ; l'atelier et la simulation restent dans l'adresse (#page, #page/titrage) pour survivre au rechargement
-const noms = { page: "Simple page de simulation" }, sims = { titrage: "Titrage", metamerie: "Métamérie", cinetique: "Cinétique chimique" };
+const noms = { page: "Démarrer" }, sims = { titrage: "Titrage", metamerie: "Métamérie", cinetique: "Cinétique chimique" };
 function montrer(choix, sim) {
   document.querySelectorAll("section[id]").forEach((s) => { s.hidden = s.id !== choix; });
   document.querySelectorAll("[data-choix]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.choix === choix)));

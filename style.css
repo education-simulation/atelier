@@ -647,3 +647,4 @@ button.nc-deja-btn { all:unset; cursor:pointer; background:#16a34a; color:#fff; 
 .ax-sim { margin:0; display:flex; align-items:center; gap:8px; flex-wrap:wrap; font-size:17px; } .ax-sim .ico { font-size:22px; }
 .ax-go { margin-left:auto; font-size:13px; color:#a1a1aa; } .ax-go code, .ax-rappel code { font:800 13px Menlo,Consolas,monospace; color:#fde68a; background:#3a2a08; border-radius:6px; padding:1px 6px; }
 .ax-bloc .idees { margin:0; }
+.q-num-titre { background:#f59e0b; color:#1f1300; margin-right:6px; vertical-align:2px; }
