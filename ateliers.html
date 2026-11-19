@@ -3,20 +3,20 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Atelier · Choisis ton atelier</title>
-<link rel="stylesheet" href="style.css?v=68">
-<link rel="stylesheet" href="clair.css?v=15" id="theme-clair">
+<title>Atelier · Que veux-tu construire ?</title>
+<link rel="stylesheet" href="style.css?v=70">
+<link rel="stylesheet" href="clair.css?v=16" id="theme-clair">
 <script src="theme.js?v=1"></script>
 </head>
 <body>
 <div class="fen">
   <header class="haut">
-  <div class="barre"><i></i><i></i><i></i><b>Atelier · Choisis ton atelier</b><a href="./">‹ Accueil</a></div>
+  <div class="barre"><i></i><i></i><i></i><b>Atelier · Que veux-tu construire ?</b><a href="./">‹ Accueil</a></div>
   <nav class="ariane" aria-label="Fil d'Ariane"><a href="./">🏠 Accueil</a><i class="sep">›</i><a href="antigravity.html">Antigravity</a><i class="sep">›</i><span aria-current="page" id="ariane-ateliers">Ateliers</span><span id="ariane-choix"></span></nav>
-    <div class="titre-haut"><h1>🧪 Choisis ton atelier</h1></div>
+    <div class="titre-haut"><h1>🧪 Que veux-tu construire ?</h1></div>
   </header>
   <div class="corps">
-    <div class="q" id="q1">
+    <div class="q" id="q1" hidden>
     <p class="question">Où lis-tu cette page ?</p>
     <div class="choix">
       <button type="button" class="carte" data-ou="dans"><span class="rond"><img src="logos/antigravity.png" alt="" style="width:30px;height:30px"></span><span class="txt"><b>Je suis dans Antigravity</b><small>Dans la conversation de configuration, ou dans mon projet</small></span></button>
@@ -44,24 +44,25 @@
 
     <div id="suite-ateliers" hidden>
     <div class="q" id="q2">
-    <p class="question">Que veux-tu construire ?</p>
+    <p class="question">Choisis :</p>
     <div class="choix">
       <button type="button" class="carte" data-choix="page"><span class="num">1</span><span class="rond"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="m10 13-2 2 2 2"/><path d="m14 13 2 2-2 2"/></svg></span><span class="txt"><b>Une simple page de simulation</b><small>Une page HTML, qui s'ouvre d'un double-clic</small></span></button>
       <button type="button" class="carte" disabled><span class="num">2</span><span class="rond"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="7" rx="2"/><rect x="3" y="13" width="18" height="7" rx="2"/><path d="M7 7.5h.01M7 16.5h.01"/></svg></span><span class="txt"><b>Une page de simulation avec serveur local</b><small>Bientôt</small></span></button>
       <button type="button" class="carte" disabled><span class="num">3</span><span class="rond"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a14 14 0 0 1 0 18a14 14 0 0 1 0-18"/></svg></span><span class="txt"><b>Un exemple de site avec serveur, et publier mon site en ligne</b><small>Bientôt</small></span></button>
     </div>
-    <p class="q-fait"><span class="q-num">2</span> <b class="q-txt"></b> <span class="q-ok">✓</span><button type="button" class="q-modif">modifier</button></p>
+    <p class="q-fait"><span class="q-num">1</span> <b class="q-txt"></b> <span class="q-ok">✓</span><button type="button" class="q-modif">modifier</button></p>
     </div>
 
     <section id="page" hidden>
-      <p class="question">Quelle simulation veux-tu essayer ?</p>
+      <p class="pre-requis">⚠️ Cela ne marche que si tu as d'abord fait <a href="projet.html"><b>« Préparer l'atelier dans un projet »</b></a> : le projet « mes simulations » et ses règles.</p>
+      <p class="question">Crée 3 nouvelles conversations dans ton projet Antigravity « mes simulations », une par atelier</p>
+      <p class="sim-note">Dans chacune, écris sa commande, puis Entrée : l'IA démarre et paramètre l'atelier, et te donne le lien de sa page.</p>
       <div class="sims">
-        <a class="sim" href="titrage.html#simple" data-sim="titrage"><span class="ico">⚗️</span><b>Simulation d'un titrage</b><span class="domaine">Analyse</span><span class="sim-go">💬 nouvelle conversation dans le projet :<code>go titrage</code></span></a>
-        <a class="sim" href="metamerie.html#simple" data-sim="metamerie"><span class="ico">🎨</span><b>Simulation de la métamérie</b><span class="domaine">Formulation</span><span class="sim-go">💬 nouvelle conversation dans le projet :<code>go metamerie</code></span></a>
-        <a class="sim" href="cinetique.html#simple" data-sim="cinetique"><span class="ico">⏱️</span><b>Cinétique chimique</b><span class="domaine">Synthèse</span><span class="sim-go">💬 nouvelle conversation dans le projet :<code>go cinetique</code></span></a>
+        <a class="sim" href="titrage.html#simple" data-sim="titrage"><span class="ico">⚗️</span><b>Simulation d'un titrage</b><span class="domaine">Analyse</span><span class="sim-go">💬 conversation 1 :<code>go titrage</code></span></a>
+        <a class="sim" href="metamerie.html#simple" data-sim="metamerie"><span class="ico">🎨</span><b>Simulation de la métamérie</b><span class="domaine">Formulation</span><span class="sim-go">💬 conversation 2 :<code>go metamerie</code></span></a>
+        <a class="sim" href="cinetique.html#simple" data-sim="cinetique"><span class="ico">⏱️</span><b>Cinétique chimique</b><span class="domaine">Synthèse</span><span class="sim-go">💬 conversation 3 :<code>go cinetique</code></span></a>
       </div>
-      <p class="sim-note">💡 Pour chaque simulation, démarre une <b class="cle">nouvelle conversation, séparée des autres</b>, dans ton projet « mes simulations », en écrivant <code>go titrage</code>, <code>go metamerie</code> ou <code>go cinetique</code>, pour démarrer et paramétrer l'atelier.</p>
-      <p style="margin:10px 0 0"><button type="button" class="nc-comment">▶ Comment démarrer une nouvelle conversation dans le projet ?</button></p>
+      <p style="margin:12px 0 0"><button type="button" class="nc-comment">▶ Comment démarrer une nouvelle conversation dans le projet ?</button></p>
       <p class="note" id="sim-retour" hidden>⏳ Le parcours de cette simulation arrive bientôt.</p>
     </section>
     </div>
@@ -123,7 +124,7 @@ function ou(v) {
 document.querySelectorAll("[data-ou]").forEach((b) => b.addEventListener("click", () => ou(b.dataset.ou)));
 let ouDepart = new URLSearchParams(location.search).get("ou"); // lien venu d'Antigravity : ?ou=dans
 if (!ouDepart) { try { ouDepart = localStorage.getItem("atelier.ou"); } catch {} }
-if (ouDepart === "dans" || ouDepart === "hors") ou(ouDepart);
+ou("dans");   // la page s'ouvre dans Antigravity : plus de question « Où lis-tu cette page ? »
 // Un choix à la fois ; l'atelier et la simulation restent dans l'adresse (#page, #page/titrage) pour survivre au rechargement
 const noms = { page: "Simple page de simulation" }, sims = { titrage: "Titrage", metamerie: "Métamérie", cinetique: "Cinétique chimique" };
 function montrer(choix, sim) {
@@ -139,6 +140,7 @@ function montrer(choix, sim) {
 }
 document.querySelectorAll("[data-choix]").forEach((b) => b.addEventListener("click", () => montrer(b.dataset.choix)));
 const [c, s] = location.hash.slice(1).split("/");
+if (!c) montrer("page");
 if (c === "page") montrer("page", sims[s] ? s : undefined);
 
 // Choisir une simulation : une fenêtre explique comment ouvrir une conversation dans le projet,
