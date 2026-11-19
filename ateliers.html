@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Atelier · Démarrer les ateliers</title>
-<link rel="stylesheet" href="style.css?v=73">
-<link rel="stylesheet" href="clair.css?v=16" id="theme-clair">
+<link rel="stylesheet" href="style.css?v=74">
+<link rel="stylesheet" href="clair.css?v=17" id="theme-clair">
 <script src="theme.js?v=1"></script>
 </head>
 <body>
@@ -41,8 +41,9 @@
     </div>
 
     <section id="page" hidden>
-      <p class="question"><span class="q-num q-num-titre">2</span> Crée une, deux ou trois nouvelles conversations dans ton projet « mes simulations », une par simulation</p>
-      <p class="sim-note">Dans chacune, écris sa commande, puis Entrée : <code>go titrage</code>, <code>go metamerie</code>, <code>go cinetique</code>.</p>
+      <p class="question"><span class="q-num q-num-titre">2</span> Crée une nouvelle conversation pour chaque atelier que tu veux tester, dans ton projet « mes simulations »</p>
+      <p class="sim-note">Dans chaque nouvelle conversation, écris la commande de l'atelier, puis Entrée :</p>
+      <ol class="ateliers-go"><li><b>Atelier 1 · titrage</b> : <code>go titrage</code></li><li><b>Atelier 2 · métamérie</b> : <code>go metamerie</code></li><li><b>Atelier 3 · cinétique</b> : <code>go cinetique</code></li></ol>
       <p style="margin:12px 0 0"><button type="button" class="nc-comment">▶ Comment démarrer une nouvelle conversation dans le projet ?</button></p>
       <p class="question" style="margin-top:22px">Puis démarre :</p>
       <div class="sims axes">
@@ -153,7 +154,7 @@ function ouvrirConv(sim, general) {
   // « C'est fait » : la conversation est ajoutée, on va directement à la page de l'atelier
   const deja = document.createElement("div"); deja.className = "nc-deja";
   deja.innerHTML = general ? '<button type="button" class="nc-deja-btn nc-fermer-ok">✅ C\'est fait</button>' : '<a class="nc-deja-btn" href="' + sim + '.html#simple">✅ C\'est fait</a>';
-  if (general) v.querySelector(".nc-nom").textContent = "Crée 3 nouvelles conversations dans le projet « mes simulations », une par atelier";   // la fenêtre se ferme : on va directement sur la page de l'atelier
+  if (general) v.querySelector(".nc-nom").textContent = "Crée une nouvelle conversation pour chaque atelier que tu veux tester";   // la fenêtre se ferme : on va directement sur la page de l'atelier
   v.querySelector(".nc-fenetre").appendChild(deja);
   // Bouton « Comment démarrer » : l'animation crée 3 conversations à la suite (go titrage, go metamerie, go cinetique) ;
   // chaque conversation créée reste dans le projet, puis tout recommence
@@ -163,7 +164,7 @@ function ouvrirConv(sim, general) {
     const regler = (x) => {
       v.querySelector(".nc-msg").textContent = mots[x]; v.querySelector(".nc-bulle").textContent = mots[x];
       v.querySelector(".nc-titre-conv").textContent = convs[x];
-      v.querySelector(".nc-info-2").innerHTML = "✍️ Conversation " + (ordre.indexOf(x) + 1) + " sur 3 : écris <b>" + mots[x] + "</b>, puis Entrée";
+      v.querySelector(".nc-info-2").innerHTML = "✍️ Atelier " + (ordre.indexOf(x) + 1) + " · " + noms3[x] + " : nouvelle conversation, écris <b>" + mots[x] + "</b>, puis Entrée";
     };
     regler(ordre[0]);
     v.querySelector(".nc-msg").addEventListener("animationiteration", (e) => {
