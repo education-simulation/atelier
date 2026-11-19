@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Atelier · Que veux-tu construire ?</title>
-<link rel="stylesheet" href="style.css?v=70">
+<link rel="stylesheet" href="style.css?v=71">
 <link rel="stylesheet" href="clair.css?v=16" id="theme-clair">
 <script src="theme.js?v=1"></script>
 </head>
@@ -16,7 +16,7 @@
     <div class="titre-haut"><h1>🧪 Que veux-tu construire ?</h1></div>
   </header>
   <div class="corps">
-    <div class="q" id="q1" hidden>
+    <div class="q" id="q1">
     <p class="question">Où lis-tu cette page ?</p>
     <div class="choix">
       <button type="button" class="carte" data-ou="dans"><span class="rond"><img src="logos/antigravity.png" alt="" style="width:30px;height:30px"></span><span class="txt"><b>Je suis dans Antigravity</b><small>Dans la conversation de configuration, ou dans mon projet</small></span></button>
@@ -26,20 +26,7 @@
     </div>
 
     <section class="info" id="hors" hidden>
-      <h2>🚀 Ouvre l'atelier dans Antigravity</h2>
-      <p>Les ateliers se font <b class="cle">dans Antigravity</b>. Ton projet est déjà prêt ? Il suffit d'ouvrir cette page dans Antigravity :</p>
-      <ol class="hors-etapes">
-        <li><b>Copie ce message :</b>
-          <div class="phrase"><code>Sans rien lancer, réponds seulement par cet encadré, rien d'autre :
-
-&gt; [!IMPORTANT]
-&gt; 👉 **Clique sur ce lien pour ouvrir l'atelier :** https://atelier.rasf.fr/ateliers.html?ou=dans</code><button type="button" class="copier hors-copier">📋 Copier et ouvrir Antigravity</button></div>
-          <p class="note" id="hors-retour" hidden></p></li>
-        <li>Antigravity s'ouvre (si ton navigateur demande d'ouvrir Antigravity, accepte) : clique sur <b class="cle">« + New Conversation »</b>, en haut à gauche.</li>
-        <li>Colle le message (<b class="cle">Cmd + V</b> sur Mac, <b class="cle">Ctrl + V</b> sur Windows), puis <b class="cle">Entrée</b>.</li>
-        <li>Clique sur <b class="cle">le lien de sa réponse</b> : cette page s'ouvre dans Antigravity, et tu choisis ton atelier.</li>
-      </ol>
-      <p class="note">Antigravity n'est pas encore configuré ? <a class="mail" href="configurer.html">Configure-le d'abord</a>. Pas encore installé ? <a class="mail" href="antigravity.html#installer">Installe-le</a>.</p>
+      <p style="text-align:center;margin:4px 0"><a class="nc-comment" href="antigravity://" style="text-decoration:none;font-size:18px;padding:12px 22px">🚀 Ouvrir Antigravity</a></p>
     </section>
 
     <div id="suite-ateliers" hidden>
@@ -50,7 +37,7 @@
       <button type="button" class="carte" disabled><span class="num">2</span><span class="rond"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="7" rx="2"/><rect x="3" y="13" width="18" height="7" rx="2"/><path d="M7 7.5h.01M7 16.5h.01"/></svg></span><span class="txt"><b>Une page de simulation avec serveur local</b><small>Bientôt</small></span></button>
       <button type="button" class="carte" disabled><span class="num">3</span><span class="rond"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a14 14 0 0 1 0 18a14 14 0 0 1 0-18"/></svg></span><span class="txt"><b>Un exemple de site avec serveur, et publier mon site en ligne</b><small>Bientôt</small></span></button>
     </div>
-    <p class="q-fait"><span class="q-num">1</span> <b class="q-txt"></b> <span class="q-ok">✓</span><button type="button" class="q-modif">modifier</button></p>
+    <p class="q-fait"><span class="q-num">2</span> <b class="q-txt"></b> <span class="q-ok">✓</span><button type="button" class="q-modif">modifier</button></p>
     </div>
 
     <section id="page" hidden>
@@ -124,7 +111,7 @@ function ou(v) {
 document.querySelectorAll("[data-ou]").forEach((b) => b.addEventListener("click", () => ou(b.dataset.ou)));
 let ouDepart = new URLSearchParams(location.search).get("ou"); // lien venu d'Antigravity : ?ou=dans
 if (!ouDepart) { try { ouDepart = localStorage.getItem("atelier.ou"); } catch {} }
-ou("dans");   // la page s'ouvre dans Antigravity : plus de question « Où lis-tu cette page ? »
+if (ouDepart === "dans" || ouDepart === "hors") ou(ouDepart);
 // Un choix à la fois ; l'atelier et la simulation restent dans l'adresse (#page, #page/titrage) pour survivre au rechargement
 const noms = { page: "Simple page de simulation" }, sims = { titrage: "Titrage", metamerie: "Métamérie", cinetique: "Cinétique chimique" };
 function montrer(choix, sim) {
@@ -140,7 +127,7 @@ function montrer(choix, sim) {
 }
 document.querySelectorAll("[data-choix]").forEach((b) => b.addEventListener("click", () => montrer(b.dataset.choix)));
 const [c, s] = location.hash.slice(1).split("/");
-if (!c) montrer("page");
+if (!c && document.getElementById("q1").classList.contains("fait")) montrer("page");
 if (c === "page") montrer("page", sims[s] ? s : undefined);
 
 // Choisir une simulation : une fenêtre explique comment ouvrir une conversation dans le projet,
