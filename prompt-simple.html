@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Atelier · Démarrer avec un prompt simple</title>
+<link rel="stylesheet" href="style.css?v=83">
+<link rel="stylesheet" href="clair.css?v=25" id="theme-clair">
+<script src="theme.js?v=1"></script>
+</head>
+<body>
+<div class="fen">
+  <header class="haut">
+  <div class="barre"><i></i><i></i><i></i><b>Atelier · Démarrer avec un prompt simple</b><a class="icone" href="configurer.html" target="_blank" rel="noopener" data-info="Configurer Antigravity" aria-label="Configurer Antigravity">⚙️</a><a class="icone" href="decouvrir.html?mode=demo&amp;v=6" target="_blank" rel="noopener" data-info="Découvrir Antigravity" aria-label="Découvrir Antigravity">🧭</a><a class="nouvel-atelier" href="ateliers.html?ou=dans#page">＋ Nouvel atelier</a></div>
+  <nav class="ariane" aria-label="Fil d'Ariane"><a href="./">🏠 Accueil</a><i class="sep">›</i><a href="antigravity.html">Antigravity</a><i class="sep">›</i><a href="ateliers.html">Ateliers</a><i class="sep">›</i><span aria-current="page">Prompt simple</span></nav>
+    <div class="titre-haut"><h1>✏️ Démarrer avec un prompt simple</h1></div>
+    <div class="onglets-haut">
+    <div class="onglets" role="tablist">
+      <button type="button" role="tab" data-onglet="prompts">✏️ Les prompts</button>
+      <button type="button" role="tab" data-onglet="compare">⚖️ On compare</button>
+      <button type="button" role="tab" data-onglet="modifier">🛠️ On modifie</button>
+    </div>
+    </div>
+  </header>
+  <div class="corps">
+
+    <section class="panneau" data-panneau="prompts">
+      <p class="ax-rappel">Chaque prompt se colle dans <b class="cle">la conversation de son atelier</b>, dans ton projet « mes simulations » (celle où tu as écrit <code>go …</code>), puis Entrée. Antigravity écrit alors la simulation dans un fichier HTML du projet.</p>
+      <div class="ax-bloc"><p class="ax-sim"><span class="ico">⚗️</span><b>Simulation d'un titrage</b> <span class="domaine-titre">Analyse</span><span class="ax-go">dans la conversation <code>go titrage</code></span></p>
+        <div class="phrase"><code>Fais-moi une simulation de titrage acido-basique.</code><button type="button" class="copier">📋 Copier</button></div>
+      </div>
+      <div class="ax-bloc"><p class="ax-sim"><span class="ico">🎨</span><b>Simulation de la métamérie</b> <span class="domaine-titre">Formulation</span><span class="ax-go">dans la conversation <code>go metamerie</code></span></p>
+        <div class="phrase"><code>Fais-moi une simulation de la métamérie.</code><button type="button" class="copier">📋 Copier</button></div>
+      </div>
+      <div class="ax-bloc"><p class="ax-sim"><span class="ico">⏱️</span><b>Cinétique chimique</b> <span class="domaine-titre">Synthèse</span><span class="ax-go">dans la conversation <code>go cinetique</code></span></p>
+        <div class="phrase"><code>Fais-moi une simulation des profils réactionnels.</code><button type="button" class="copier">📋 Copier</button></div>
+      </div>
+
+    </section>
+
+    <section class="panneau" data-panneau="compare" hidden>
+      <div class="niveau-modele">
+        <p><b>🎚️ Essaie le même prompt</b> avec un autre modèle ou un autre niveau (par exemple <b class="cle">Gemini 3.8 Flash High</b>) : en bas à gauche de la zone de message, change le modèle ou son niveau, puis recolle le même prompt. L'IA en fait une <b class="cle">nouvelle version dans le même fichier</b>, avec un onglet et un tag de couleur, pour comparer.</p>
+      </div>
+      <div class="ax-bloc"><p class="ax-sim"><span class="ico">⚗️</span><b>Simulation d'un titrage</b> <span class="domaine-titre">Analyse</span><span class="ax-go">dans la conversation <code>go titrage</code></span></p>
+        <div class="phrase"><code>Fais-moi une simulation de titrage acido-basique.</code><button type="button" class="copier">📋 Copier</button></div>
+      </div>
+      <div class="ax-bloc"><p class="ax-sim"><span class="ico">🎨</span><b>Simulation de la métamérie</b> <span class="domaine-titre">Formulation</span><span class="ax-go">dans la conversation <code>go metamerie</code></span></p>
+        <div class="phrase"><code>Fais-moi une simulation de la métamérie.</code><button type="button" class="copier">📋 Copier</button></div>
+      </div>
+      <div class="ax-bloc"><p class="ax-sim"><span class="ico">⏱️</span><b>Cinétique chimique</b> <span class="domaine-titre">Synthèse</span><span class="ax-go">dans la conversation <code>go cinetique</code></span></p>
+        <div class="phrase"><code>Fais-moi une simulation des profils réactionnels.</code><button type="button" class="copier">📋 Copier</button></div>
+      </div>
+
+    </section>
+
+    <section class="panneau" data-panneau="modifier" hidden>
+      <p>Demande des changements à l'IA, <b class="cle">dans la conversation de l'atelier</b>. Quelques idées, à copier ou à écrire avec tes mots :</p>
+      <div class="ax-bloc"><p class="ax-sim"><span class="ico">⚗️</span><b>Simulation d'un titrage</b> <span class="domaine-titre">Analyse</span><span class="ax-go">dans la conversation <code>go titrage</code></span></p>
+      <ul class="idees">
+        <li><div class="phrase"><code>Ajoute un curseur pour faire varier le volume versé VB, en plus de la saisie.</code><button type="button" class="copier" data-coche>📋 Copier</button></div></li>
+        <li><div class="phrase"><code>Affiche sous le graphique un tableau d'avancement : état initial, état intermédiaire, état final.</code><button type="button" class="copier" data-coche>📋 Copier</button></div></li>
+        <li><div class="phrase"><code>Ajoute un exemple prêt à l'emploi : le dosage des ions fer(II) par les ions permanganate (5 Fe²⁺ + MnO₄⁻ + 8 H⁺ → 5 Fe³⁺ + Mn²⁺ + 4 H₂O).</code><button type="button" class="copier" data-coche>📋 Copier</button></div></li>
+        <li><div class="phrase"><code>Ajoute un bouton pour télécharger le graphique en image.</code><button type="button" class="copier" data-coche>📋 Copier</button></div></li>
+      </ul>
+      </div>
+      <div class="ax-bloc"><p class="ax-sim"><span class="ico">🎨</span><b>Simulation de la métamérie</b> <span class="domaine-titre">Formulation</span><span class="ax-go">dans la conversation <code>go metamerie</code></span></p>
+      <ul class="idees">
+        <li><div class="phrase"><code>Ajoute un curseur pour régler l'amplitude du noir métamérique, et montre comment l'écart sous l'illuminant A grandit avec elle.</code><button type="button" class="copier" data-coche>📋 Copier</button></div></li>
+        <li><div class="phrase"><code>Ajoute l'illuminant F2 (tube fluorescent blanc froid) et un éclairage LED blanc, en plus de D65, A et F11.</code><button type="button" class="copier" data-coche>📋 Copier</button></div></li>
+        <li><div class="phrase"><code>Affiche aussi l'écart ΔE2000, à côté du ΔE*ab, avec une phrase qui dit si l'écart est visible (au-delà d'environ 1 à 2).</code><button type="button" class="copier" data-coche>📋 Copier</button></div></li>
+        <li><div class="phrase"><code>Ajoute un exemple prêt à l'emploi : deux teintes beiges de fond de teint, identiques à la lumière du jour, mais différentes sous l'éclairage d'une boutique.</code><button type="button" class="copier" data-coche>📋 Copier</button></div></li>
+        <li><div class="phrase"><code>Ajoute un bouton pour télécharger le graphique en image.</code><button type="button" class="copier" data-coche>📋 Copier</button></div></li>
+      </ul>
+      </div>
+      <div class="ax-bloc"><p class="ax-sim"><span class="ico">⏱️</span><b>Cinétique chimique</b> <span class="domaine-titre">Synthèse</span><span class="ax-go">dans la conversation <code>go cinetique</code></span></p>
+      <ul class="idees">
+        <li><div class="phrase"><code>Ajoute une animation : une bille qui roule sur le profil et ne franchit l'état de transition que si l'énergie apportée (réglable avec un curseur) dépasse Ea.</code><button type="button" class="copier" data-coche>📋 Copier</button></div></li>
+        <li><div class="phrase"><code>Ajoute l'exemple du cours en une étape : CH3I + C2H5ONa → CH3OC2H5 + NaI, avec Ea = 80 kJ/mol, et affiche k à 20 °C et à 50 °C.</code><button type="button" class="copier" data-coche>📋 Copier</button></div></li>
+        <li><div class="phrase"><code>Ajoute un curseur de température et un graphique qui montre comment k varie avec T, pour Ea = 20 kJ/mol et pour Ea = 100 kJ/mol, sur le même graphique.</code><button type="button" class="copier" data-coche>📋 Copier</button></div></li>
+        <li><div class="phrase"><code>Ajoute la courbe de la concentration du réactif en fonction du temps, C = C0·exp(−k·t), et place le temps de demi-réaction sur la courbe.</code><button type="button" class="copier" data-coche>📋 Copier</button></div></li>
+        <li><div class="phrase"><code>Ajoute un bouton pour télécharger le graphique en image.</code><button type="button" class="copier" data-coche>📋 Copier</button></div></li>
+      </ul>
+      </div>
+      <p class="note">💡 Après chaque modification, <b class="cle">recharge la page</b> de la simulation dans ton navigateur.</p>
+
+    </section>
+
+  </div>
+</div>
+<script src="copier.js?v=14"></script>
+<script src="token.js?v=4"></script>
+<script>
+// Les onglets ; l'onglet ouvert reste dans l'adresse pour survivre au rechargement
+const ongl = [...document.querySelectorAll("[data-onglet]")];
+function ouvrir(id) {
+  if (!ongl.some((b) => b.dataset.onglet === id)) id = "prompts";
+  ongl.forEach((b) => b.setAttribute("aria-selected", String(b.dataset.onglet === id)));
+  document.querySelectorAll("[data-panneau]").forEach((p) => { p.hidden = p.dataset.panneau !== id; });
+  history.replaceState(null, "", "#" + id);
+}
+ongl.forEach((b) => b.addEventListener("click", () => ouvrir(b.dataset.onglet)));
+ouvrir(location.hash.slice(1));
+</script>
+</body>
+</html>

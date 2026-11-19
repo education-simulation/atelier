@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Atelier · Que veux-tu construire ?</title>
-<link rel="stylesheet" href="style.css?v=71">
+<link rel="stylesheet" href="style.css?v=72">
 <link rel="stylesheet" href="clair.css?v=16" id="theme-clair">
 <script src="theme.js?v=1"></script>
 </head>
@@ -43,13 +43,13 @@
     <section id="page" hidden>
       <p class="pre-requis">⚠️ Cela ne marche que si tu as d'abord fait <a href="projet.html"><b>« Préparer l'atelier dans un projet »</b></a> : le projet « mes simulations » et ses règles.</p>
       <p class="question">Crée 3 nouvelles conversations dans ton projet Antigravity « mes simulations », une par atelier</p>
-      <p class="sim-note">Dans chacune, écris sa commande, puis Entrée : l'IA démarre et paramètre l'atelier, et te donne le lien de sa page.</p>
-      <div class="sims">
-        <a class="sim" href="titrage.html#simple" data-sim="titrage"><span class="ico">⚗️</span><b>Simulation d'un titrage</b><span class="domaine">Analyse</span><span class="sim-go">💬 conversation 1 :<code>go titrage</code></span></a>
-        <a class="sim" href="metamerie.html#simple" data-sim="metamerie"><span class="ico">🎨</span><b>Simulation de la métamérie</b><span class="domaine">Formulation</span><span class="sim-go">💬 conversation 2 :<code>go metamerie</code></span></a>
-        <a class="sim" href="cinetique.html#simple" data-sim="cinetique"><span class="ico">⏱️</span><b>Cinétique chimique</b><span class="domaine">Synthèse</span><span class="sim-go">💬 conversation 3 :<code>go cinetique</code></span></a>
-      </div>
+      <p class="sim-note">Dans chacune, écris sa commande, puis Entrée : <code>go titrage</code>, <code>go metamerie</code>, <code>go cinetique</code>.</p>
       <p style="margin:12px 0 0"><button type="button" class="nc-comment">▶ Comment démarrer une nouvelle conversation dans le projet ?</button></p>
+      <p class="question" style="margin-top:22px">Puis démarre :</p>
+      <div class="sims axes">
+        <a class="sim" href="prompt-simple.html"><span class="ico">✏️</span><b>Démarrer avec un prompt simple</b><small>Une phrase par simulation, puis on compare les modèles et on modifie</small></a>
+        <a class="sim" href="prompt-detaille.html"><span class="ico">📝</span><b>Démarrer avec un prompt plus détaillé</b><small>Plusieurs messages précis, qui construisent la simulation pas à pas</small></a>
+      </div>
       <p class="note" id="sim-retour" hidden>⏳ Le parcours de cette simulation arrive bientôt.</p>
     </section>
     </div>
@@ -115,8 +115,7 @@ function montrer(choix, sim) {
   document.querySelectorAll("section[id]").forEach((s) => { s.hidden = s.id !== choix; });
   document.querySelectorAll("[data-choix]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.choix === choix)));
   plier("q2", choix ? noms[choix] : "");
-  document.querySelectorAll("[data-sim]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.sim === sim)));
-  document.getElementById("sim-retour").hidden = true;
+    document.getElementById("sim-retour").hidden = true;
   const a = document.getElementById("ariane-ateliers");
   a.outerHTML = choix ? '<a href="ateliers.html" id="ariane-ateliers">Ateliers</a>' : '<span aria-current="page" id="ariane-ateliers">Ateliers</span>';
   document.getElementById("ariane-choix").innerHTML = (choix ? '<i class="sep"> › </i>' + (sim ? '<a href="#' + choix + '">' + noms[choix] + '</a><i class="sep"> › </i><span aria-current="page">' + sims[sim] + '</span>' : '<span aria-current="page">' + noms[choix] + '</span>') : "");

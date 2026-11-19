@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Atelier · Démarrer avec un prompt détaillé</title>
+<link rel="stylesheet" href="style.css?v=83">
+<link rel="stylesheet" href="clair.css?v=25" id="theme-clair">
+<script src="theme.js?v=1"></script>
+</head>
+<body>
+<div class="fen">
+  <header class="haut">
+  <div class="barre"><i></i><i></i><i></i><b>Atelier · Démarrer avec un prompt détaillé</b><a class="icone" href="configurer.html" target="_blank" rel="noopener" data-info="Configurer Antigravity" aria-label="Configurer Antigravity">⚙️</a><a class="icone" href="decouvrir.html?mode=demo&amp;v=6" target="_blank" rel="noopener" data-info="Découvrir Antigravity" aria-label="Découvrir Antigravity">🧭</a><a class="nouvel-atelier" href="ateliers.html?ou=dans#page">＋ Nouvel atelier</a></div>
+  <nav class="ariane" aria-label="Fil d'Ariane"><a href="./">🏠 Accueil</a><i class="sep">›</i><a href="antigravity.html">Antigravity</a><i class="sep">›</i><a href="ateliers.html">Ateliers</a><i class="sep">›</i><span aria-current="page">Prompt détaillé</span></nav>
+    <div class="titre-haut"><h1>📝 Démarrer avec un prompt détaillé</h1></div>
+    <div class="onglets-haut">
+    <div class="onglets" role="tablist">
+      <button type="button" role="tab" data-onglet="titrage">⚗️ Titrage</button>
+      <button type="button" role="tab" data-onglet="metamerie">🎨 Métamérie</button>
+      <button type="button" role="tab" data-onglet="cinetique">⏱️ Cinétique chimique</button>
+    </div>
+    </div>
+  </header>
+  <div class="corps">
+
+    <section class="panneau" data-panneau="titrage">
+      <div class="ax-bloc"><p class="ax-sim"><span class="ico">⚗️</span><b>Simulation d'un titrage</b> <span class="domaine-titre">Analyse</span><span class="ax-go">dans la conversation <code>go titrage</code></span></p>
+      <p>Les messages l'un après l'autre, <b class="cle">dans la conversation de l'atelier</b> : copie, colle, puis Entrée. Attends la fin de chaque réponse avant le suivant.</p>
+      <p class="etiquette-prompt">① L'avancement d'une réaction</p>
+      <div class="phrase"><code>Bonjour, je souhaiterais que tu m'aides à concevoir une simulation en HTML (un seul fichier .html, pas de Python), que je puisse facilement partager à mes collègues.
+
+Cette simulation modélise une réaction chimique et détermine son état final. Notation : aA + bB → cC + dD.
+A et B sont les réactifs, C et D les produits. Les coefficients stœchiométriques a, b, c et d sont des grandeurs d'entrée, modifiables facilement.
+
+On entre ensuite les quantités de matière initiales nA,0, nB,0, nC,0 et nD,0 (en mol ; l'indice 0 signifie « initial »).
+
+Le programme calcule xa = nA,0/a et xb = nB,0/b, puis l'avancement final Xf = min(xa, xb), qui désigne le réactif limitant :
+- si Xf = xa, le réactif limitant est A ;
+- si Xf = xb, le réactif limitant est B ;
+- si xa = xb, le mélange est stœchiométrique : A et B sont limitants tous les deux.
+
+Pour tout avancement X compris entre 0 et Xf, le programme calcule :
+nA = nA,0 − a·X ;
+nB = nB,0 − b·X ;
+nC = nC,0 + c·X ;
+nD = nD,0 + d·X.
+
+La page affiche un diagramme en barres : en abscisse les 4 espèces A, B, C et D, en ordonnée leurs quantités de matière. On fait varier X entre 0 et Xf avec un curseur et avec une saisie au clavier ; le diagramme se met à jour aussitôt (les barres des réactifs baissent, celles des produits montent, jusqu'à la disparition du réactif limitant).
+
+La page affiche aussi l'équation de la réaction, les quantités de matière initiales, l'avancement final Xf et le réactif limitant. Merci !</code><button type="button" class="copier">📋 Copier</button></div>
+      <p class="etiquette-prompt">② Le titrage : quantités de matière et courbe de pH</p>
+      <div class="phrase"><code>Merci. Génère maintenant un nouveau code, similaire au précédent, qui illustre un titrage acido-basique.
+
+L'espèce A est l'espèce titrée (dans le bécher), B l'espèce titrante (dans la burette). On n'entre plus l'avancement X mais le volume versé VB (en mL), avec un curseur et une saisie, de 0 à 2·Veq, pour voir aussi ce qui se passe après l'équivalence.
+
+Données d'entrée : cA (mol/L), VA (mL), cB (mol/L), et les coefficients a et b.
+À l'état initial : nA,0 = cA·VA (en mmol) et nB,0 = nC,0 = nD,0 = 0 (B est encore dans la burette).
+Volume à l'équivalence : Veq = cA·VA·b/(a·cB) (en mL).
+
+Avant l'équivalence (0 ≤ VB ≤ Veq), B est limitant : X = cB·VB/b, nA = nA,0 − a·X, nB = 0, nC = c·X et nD = d·X. À l'équivalence, nA = nB = 0.
+Après l'équivalence (VB &gt; Veq), A a disparu et B s'accumule : nA = 0, nB = cB·(VB − Veq), nC = c·Xeq et nD = d·Xeq, avec Xeq = cB·Veq/b.
+
+Garde le diagramme en barres des quantités de matière, et ajoute à côté la courbe pH = f(VB), tracée de 0 à 2·Veq, avec un point qui suit le volume choisi et une ligne verticale à Veq. Pour cette courbe, on se limite à a = b = 1 (25 °C, pKe = 14), en tenant compte de la dilution (volume total VA + VB) :
+- acide fort titré par une base forte : avant l'équivalence [H3O+] = (cA·VA − cB·VB)/(VA + VB) ; à l'équivalence pH = 7 ; après, [HO−] = (cB·VB − cA·VA)/(VA + VB) et pH = 14 + log[HO−] ;
+- acide faible (pKa modifiable, par exemple 4,8 pour l'acide éthanoïque) titré par une base forte : à VB = 0, pH = ½(pKa − log cA) ; entre les deux, pH = pKa + log(VB/(Veq − VB)) ; à l'équivalence, pH = 7 + ½pKa + ½log(cA·VA/(VA + Veq)) ; après, comme pour l'acide fort.
+Un menu permet de choisir le type d'acide.
+
+La page affiche l'équation de la réaction, cA, VA, cB, Veq, le pH et les quantités de matière pour le volume choisi. Merci !</code><button type="button" class="copier">📋 Copier</button></div>
+      <p class="etiquette-prompt">③ L'exploitation de mesures (copier-coller depuis Excel ou fichier CSV)</p>
+      <div class="phrase"><code>Merci, parfait pour prévoir le volume à l'équivalence ! Maintenant, j'aimerais que tu ajoutes un onglet « Mes mesures » pour exploiter un vrai titrage.
+
+On y colle ses mesures copiées depuis Excel (deux colonnes), ou on charge un fichier CSV (séparateur « ; » ou « , », virgule décimale acceptée), sans aucune bibliothèque externe. La page reconnaît d'après les en-têtes la colonne du volume V (mL) et celle de la grandeur mesurée (pH, ou potentiel E en mV), et on peut corriger ce choix avec deux menus.
+
+Elle trace alors la grandeur mesurée en fonction de V, et propose trois exploitations, chacune avec le Veq trouvé :
+- la dérivée première dpH/dV : Veq au maximum du pic ;
+- la dérivée seconde : Veq là où elle s'annule en changeant de signe ;
+- la méthode des tangentes parallèles : deux tangentes à placer avec des curseurs, la parallèle à égale distance, et Veq à son intersection avec la courbe.
+
+Compare ces Veq entre eux et avec le Veq théorique de l'onglet de simulation, et ajoute un bouton qui télécharge un exemple de fichier CSV pour tester. Merci !</code><button type="button" class="copier">📋 Copier</button></div>
+      </div>
+
+    </section>
+
+    <section class="panneau" data-panneau="metamerie" hidden>
+      <div class="ax-bloc"><p class="ax-sim"><span class="ico">🎨</span><b>Simulation de la métamérie</b> <span class="domaine-titre">Formulation</span><span class="ax-go">dans la conversation <code>go metamerie</code></span></p>
+      <p>Les messages l'un après l'autre, <b class="cle">dans la conversation de l'atelier</b> : copie, colle, puis Entrée. Attends la fin de chaque réponse avant le suivant.</p>
+      <p class="etiquette-prompt">① La couleur d'un échantillon</p>
+      <div class="phrase"><code>Bonjour, je souhaiterais que tu m'aides à concevoir une simulation en HTML (un seul fichier .html, pas de Python), que je puisse facilement partager à mes collègues.
+
+Cette simulation calcule la couleur d'un échantillon à partir de son spectre de réflectance, comme le fait un spectrophotomètre.
+
+Le domaine de longueurs d'onde va de 380 à 780 nm, au pas de 10 nm. Intègre dans le fichier les tables officielles de la CIE à ce pas : les fonctions colorimétriques de l'observateur de référence CIE 1931 (2°) x̄(λ), ȳ(λ), z̄(λ), et les répartitions spectrales des illuminants D65 (lumière du jour), A (lampe à incandescence) et F11 (tube fluorescent).
+Contrôle des tables : pour le blanc parfait (R = 1 partout), tu dois retrouver environ Xn = 95,05 ; Yn = 100 ; Zn = 108,88 sous D65, Xn = 109,85 ; Zn = 35,58 sous A, et Xn = 100,96 ; Zn = 64,35 sous F11. Affiche ces valeurs de contrôle dans un petit encadré.
+
+La réflectance R(λ) de l'échantillon (entre 0 et 1) se règle avec des curseurs : une courbe en cloche dont on règle le centre, la largeur et la hauteur, plus un niveau de fond.
+
+Pour l'illuminant choisi, de répartition spectrale S(λ), le programme calcule :
+X = k·Σ S(λ)·R(λ)·x̄(λ)·Δλ ; Y = k·Σ S(λ)·R(λ)·ȳ(λ)·Δλ ; Z = k·Σ S(λ)·R(λ)·z̄(λ)·Δλ, avec k = 100 / Σ S(λ)·ȳ(λ)·Δλ (ainsi, Y = 100 pour le blanc parfait).
+Puis les coordonnées CIELAB, avec Xn, Yn, Zn le blanc de référence du même illuminant :
+L* = 116·f(Y/Yn) − 16 ; a* = 500·[f(X/Xn) − f(Y/Yn)] ; b* = 200·[f(Y/Yn) − f(Z/Zn)], avec f(t) = t^(1/3) si t &gt; (6/29)³, et f(t) = t/(3·(6/29)²) + 4/29 sinon.
+
+La page affiche le graphique de la réflectance R(λ) et du spectre de l'illuminant, une pastille de la couleur obtenue et les valeurs de X, Y, Z, L*, a* et b*. Pour la pastille, convertis XYZ en sRGB (matrice sRGB et correction gamma) ; sous A et F11, fais d'abord une adaptation chromatique de Bradford vers D65, pour que le blanc reste blanc à l'écran. On change d'illuminant (D65, A, F11) avec des boutons, et tout se met à jour aussitôt. Merci !</code><button type="button" class="copier">📋 Copier</button></div>
+      <p class="etiquette-prompt">② La paire métamère</p>
+      <div class="phrase"><code>Merci. Ajoute maintenant, dans la même page, un deuxième échantillon pour illustrer la métamérie : deux couleurs qui paraissent identiques sous un illuminant, mais différentes sous un autre.
+
+Construis la réflectance du deuxième échantillon ainsi : R2(λ) = R1(λ) + β(λ), où β(λ) est un « noir métamérique » : une courbe qui oscille, choisie pour que X, Y et Z sous D65 ne changent pas. Pour cela, pars d'une oscillation (une sinusoïde dont on règle l'amplitude et la période), puis retire-lui sa projection sur les trois fonctions S_D65(λ)·x̄(λ), S_D65(λ)·ȳ(λ) et S_D65(λ)·z̄(λ) (projection orthogonale, par les moindres carrés). Pour que R2 reste entre 0 et 1, réduis automatiquement l'amplitude au besoin, sans jamais écrêter la courbe (l'écrêtage casserait l'égalité sous D65), et signale-le.
+
+Pour chaque illuminant, affiche les L*a*b* des deux échantillons et l'écart de couleur ΔE*ab = √(ΔL*² + Δa*² + Δb*²). Sous D65, l'écart doit être quasi nul (inférieur à 0,1) ; sous A et F11, il doit apparaître. Affiche aussi les deux pastilles côte à côte, les deux courbes de réflectance sur le même graphique (elles doivent se croiser au moins trois fois, et tu indiques le nombre de croisements), et un indice de métamérie : le ΔE*ab sous l'illuminant A.
+
+Garde le même graphique et les mêmes boutons d'illuminant. Merci !</code><button type="button" class="copier">📋 Copier</button></div>
+      <p class="etiquette-prompt">③ L'exploitation de mesures (copier-coller depuis Excel ou fichier CSV du spectrophotomètre)</p>
+      <div class="phrase"><code>Merci, parfait pour comprendre la métamérie ! Maintenant, j'aimerais que tu ajoutes un onglet « Mes mesures » pour exploiter de vraies mesures de spectrophotomètre.
+
+On y colle ses mesures copiées depuis Excel, ou on charge un fichier CSV (séparateur « ; » ou « , », virgule décimale acceptée), sans aucune bibliothèque externe. La page reconnaît la colonne des longueurs d'onde et les colonnes de réflectance (une par échantillon, en % ou entre 0 et 1, détecté automatiquement) ; si les longueurs d'onde ne tombent pas au pas de 10 nm, elle interpole linéairement.
+
+Elle trace les courbes, calcule pour chaque échantillon les L*a*b* sous D65, A et F11, et pour chaque paire l'écart ΔE*ab sous chaque illuminant, dans un tableau. Pour chaque paire, elle conclut : « métamères » si ΔE*ab &lt; 1 sous D65 et ΔE*ab &gt; 2 sous A ou F11 ; sinon « couleurs différentes » ou « couleurs identiques sous tous les illuminants ».
+
+Ajoute un bouton qui télécharge un exemple de fichier CSV pour tester (par exemple les deux échantillons de l'onglet de simulation). Merci !</code><button type="button" class="copier">📋 Copier</button></div>
+      </div>
+
+    </section>
+
+    <section class="panneau" data-panneau="cinetique" hidden>
+      <div class="ax-bloc"><p class="ax-sim"><span class="ico">⏱️</span><b>Cinétique chimique</b> <span class="domaine-titre">Synthèse</span><span class="ax-go">dans la conversation <code>go cinetique</code></span></p>
+      <p>Les messages l'un après l'autre, <b class="cle">dans la conversation de l'atelier</b> : copie, colle, puis Entrée. Attends la fin de chaque réponse avant le suivant.</p>
+      <p class="etiquette-prompt">① Le profil d'une réaction en une étape, et la loi d'Arrhenius</p>
+      <div class="phrase"><code>Bonjour, je souhaiterais que tu m'aides à concevoir une simulation en HTML (un seul fichier .html, pas de Python), que je puisse facilement partager à mes collègues.
+
+Cette simulation trace le profil réactionnel d'une réaction en une étape : l'énergie E en fonction de la coordonnée de réaction.
+
+On entre l'énergie d'activation Ea (en kJ/mol) et l'enthalpie de réaction ΔrH (en kJ/mol), avec des curseurs et des saisies. Le niveau des réactifs sert de référence (E = 0). Le sommet de la courbe est l'état de transition (ET), à l'énergie Ea ; le niveau des produits est à ΔrH.
+Si ΔrH &lt; 0, la réaction est exothermique (les produits sont plus bas que les réactifs) ; si ΔrH &gt; 0, elle est endothermique (les produits sont plus hauts). Pour une réaction endothermique, Ea doit rester supérieure à ΔrH : le programme l'empêche et l'explique.
+
+La courbe est lisse : un plateau pour les réactifs, une bosse pour l'état de transition, un plateau pour les produits. Sur le graphique, affiche une flèche verticale Ea (des réactifs jusqu'au sommet), une flèche ΔrH (des réactifs jusqu'aux produits), l'énergie d'activation de la réaction inverse (Ea − ΔrH), et les étiquettes « réactifs », « ET » et « produits ».
+
+Relie le profil à la vitesse avec la loi d'Arrhenius : k = A·exp(−Ea/(R·T)), avec R = 8,314 J/(mol·K), Ea convertie en J/mol et T en kelvins. On règle la température T (en °C, convertie en K) et le facteur A (en s⁻¹, par défaut 10¹³ s⁻¹, sur une échelle logarithmique). Affiche k, et le temps de demi-réaction t1/2 = ln 2 / k pour une réaction d'ordre 1, dans une unité lisible (s, min, h, jours ou années).
+
+Ajoute deux exemples prêts à l'emploi : la combustion du dihydrogène, H2 + ½ O2 → H2O (g), avec ΔrH = −242 kJ/mol (très exothermique, mais lente à température ambiante sans étincelle, car Ea est élevée), et la comparaison d'une réaction rapide (Ea = 20 kJ/mol) et d'une réaction lente (Ea = 100 kJ/mol) à la même température. Tout se met à jour aussitôt. Merci !</code><button type="button" class="copier">📋 Copier</button></div>
+      <p class="etiquette-prompt">② Plusieurs étapes, catalyse, produit cinétique ou thermodynamique</p>
+      <div class="phrase"><code>Merci. Génère maintenant un nouveau code, similaire au précédent (mêmes flèches, mêmes étiquettes, même graphique), pour les mécanismes en plusieurs étapes et la catalyse, avec trois onglets.
+
+1. Mécanisme en deux étapes : le profil a deux états de transition ET1 et ET2, séparés par un creux, l'intermédiaire réactionnel (IR). On règle l'énergie de ET1, de l'IR, de ET2 et des produits. Affiche Ea1 (des réactifs à ET1) et Ea2 (de l'IR à ET2), et indique l'étape cinétiquement déterminante : celle dont l'état de transition est le plus haut. Exemple prêt à l'emploi : (CH3)3C–Cl + HO⁻ → (CH3)3C–OH + Cl⁻ (substitution nucléophile SN1), en deux étapes, avec le carbocation comme intermédiaire ; la première étape est déterminante.
+
+2. Catalyse : un bouton « avec catalyseur » superpose, dans une autre couleur, le profil catalysé. Le catalyseur ouvre un autre chemin, souvent en deux étapes avec un intermédiaire, dont les barrières sont plus basses. Les niveaux des réactifs et des produits ne changent pas : ΔrH reste le même. Affiche k avec et sans catalyseur (loi d'Arrhenius, même facteur A) et le rapport des deux. Exemple prêt à l'emploi : la déshydratation du cyclohexanol en cyclohexène, catalysée par H⁺.
+
+3. Produit cinétique et produit thermodynamique : à partir d'un même intermédiaire, deux chemins mènent à deux produits. Le produit [2] a la barrière la plus basse (produit cinétique) ; le produit [1] est le plus bas en énergie, donc le plus stable (produit thermodynamique). Avec un curseur de température, affiche les proportions des deux produits :
+- sous contrôle cinétique (basse température, réactions non renversables) : [2]/[1] = k2/k1 = exp(−(Ea2 − Ea1)/(R·T)) ;
+- sous contrôle thermodynamique (haute température, réactions renversables) : [1]/[2] = exp(−(E1 − E2)/(R·T)), avec E1 et E2 les énergies des deux produits ;
+- entre les deux, passe progressivement de l'un à l'autre selon la hauteur de la barrière de retour du produit cinétique, et indique quel contrôle domine.
+Exemple : l'addition de HBr sur le buta-1,3-diène, qui donne le produit d'addition 1,2 (cinétique) et le produit d'addition 1,4 (thermodynamique) : vers −80 °C, environ 80 % de produit 1,2 ; vers 40 °C, environ 85 % de produit 1,4. Merci !</code><button type="button" class="copier">📋 Copier</button></div>
+      <p class="etiquette-prompt">③ L'exploitation de mesures (copier-coller depuis Excel ou fichier CSV : k à différentes températures)</p>
+      <div class="phrase"><code>Merci, parfait pour comprendre les profils réactionnels ! Maintenant, j'aimerais que tu ajoutes un onglet « Mes mesures » pour exploiter des mesures de la constante de vitesse k à différentes températures T.
+
+On y colle ses mesures copiées depuis Excel (deux colonnes), ou on charge un fichier CSV (séparateur « ; » ou « , », virgule décimale acceptée), sans aucune bibliothèque externe. La page reconnaît la colonne de la température (en K ou en °C, détecté d'après l'en-tête ou les valeurs) et celle de k, et on peut corriger ce choix avec des menus.
+
+Elle trace ln k en fonction de 1/T, avec la droite de régression, son équation et le coefficient de détermination R². Puis elle fait l'exploitation : Ea déduite de la pente (pente = −Ea/R), A déduit de l'ordonnée à l'origine (ln A), et le profil réactionnel dessiné avec cette Ea.
+
+Exemple pour tester (CH3I + C2H5ONa → CH3OC2H5 + NaI) : T = 283, 293, 303 et 323 K ; k = 5,56 ; 18 ; 51 et 376. On doit trouver une pente d'environ −9 610 K, donc Ea ≈ 80 kJ/mol. Ajoute un bouton qui charge cet exemple, et un autre qui le télécharge en CSV. Merci !</code><button type="button" class="copier">📋 Copier</button></div>
+      </div>
+
+    </section>
+
+  </div>
+</div>
+<script src="copier.js?v=14"></script>
+<script src="token.js?v=4"></script>
+<script>
+// Les onglets ; l'onglet ouvert reste dans l'adresse pour survivre au rechargement
+const ongl = [...document.querySelectorAll("[data-onglet]")];
+function ouvrir(id) {
+  if (!ongl.some((b) => b.dataset.onglet === id)) id = "titrage";
+  ongl.forEach((b) => b.setAttribute("aria-selected", String(b.dataset.onglet === id)));
+  document.querySelectorAll("[data-panneau]").forEach((p) => { p.hidden = p.dataset.panneau !== id; });
+  history.replaceState(null, "", "#" + id);
+}
+ongl.forEach((b) => b.addEventListener("click", () => ouvrir(b.dataset.onglet)));
+ouvrir(location.hash.slice(1));
+</script>
+</body>
+</html>
