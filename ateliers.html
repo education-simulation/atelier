@@ -106,12 +106,9 @@ function ou(v) {
   document.getElementById("hors").hidden = v !== "hors";
   document.getElementById("suite-ateliers").hidden = v !== "dans";
   plier("q1", v ? (v === "dans" ? "Je suis dans Antigravity" : "Je ne suis pas dans Antigravity") : "");
-  try { localStorage.setItem("atelier.ou", v); } catch {}
 }
 document.querySelectorAll("[data-ou]").forEach((b) => b.addEventListener("click", () => ou(b.dataset.ou)));
-let ouDepart = new URLSearchParams(location.search).get("ou"); // lien venu d'Antigravity : ?ou=dans
-if (!ouDepart) { try { ouDepart = localStorage.getItem("atelier.ou"); } catch {} }
-if (ouDepart === "dans" || ouDepart === "hors") ou(ouDepart);
+// « Où lis-tu cette page ? » est reposée à chaque ouverture et à chaque rechargement (choix de Marco, 19/11/2026)
 // Un choix à la fois ; l'atelier et la simulation restent dans l'adresse (#page, #page/titrage) pour survivre au rechargement
 const noms = { page: "Simple page de simulation" }, sims = { titrage: "Titrage", metamerie: "Métamérie", cinetique: "Cinétique chimique" };
 function montrer(choix, sim) {
